@@ -18,24 +18,27 @@ function UserInfo({ user }: { user: UserWithRelationType }) {
     },
   ];
   return (
-    <div className="py-6 border-t border-gray-50 bg-white grid grid-cols-1 md:grid-cols-2 gap-4">
-      {infoList.map((info) => (
-        <div className="flex items-center gap-3 group" key={info.id}>
-          <div className="p-2 bg-gray-50 rounded-lg group-hover:bg-blue-50 transition-colors">
-            <i className="text-xl text-slate-500 group-hover:text-blue-600">
-              {info.icon}
-            </i>
-          </div>
-          <div className="flex flex-col">
-            <span className="text-[11px] uppercase text-gray-400 font-bold tracking-widest">
-              {info.nameinfo}
-            </span>
-            <span className="text-sm font-semibold text-slate-700">
-              {info.info}
-            </span>
-          </div>
-        </div>
-      ))}
+    <div className="py-4 border-t border-gray-100 bg-white grid grid-cols-1 md:grid-cols-2 gap-4">
+      {infoList.map(
+        (info) =>
+          info.info && (
+            <div className="flex items-center gap-3 group cursor-default" key={info.id}>
+              <div className="p-2 bg-gray-50 rounded-lg group-hover:bg-blue-50 transition-colors">
+                <i className="text-xl text-slate-500 group-hover:text-blue-600">
+                  {info.icon}
+                </i>
+              </div>
+              <div className="flex flex-col">
+                <span className="text-[11px] uppercase text-gray-400 font-bold tracking-widest">
+                  {info.nameinfo}
+                </span>
+                <span className="text-sm font-semibold text-slate-700">
+                  {info.info}
+                </span>
+              </div>
+            </div>
+          )
+      )}
     </div>
   );
 }

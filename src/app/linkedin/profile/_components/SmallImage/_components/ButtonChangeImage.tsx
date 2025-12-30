@@ -26,7 +26,7 @@ function ButtonChangeImage() {
         </i>
         Change photo
       </label>
-      <input onChange={handleChangeImage} type="file" id="image" hidden />
+      <input onChange={handleChangeImage} type="file" id="image" hidden  accept="image/*"/>
     </div>
   );
 }

@@ -1,5 +1,6 @@
 "use server";
 import { prisma } from "@/lib/prisma";
+import { revalidatePath } from "next/cache";
 // ================================================================
 export const ApplyChangeBigImageAction = async (
   id: string,
@@ -25,6 +26,7 @@ export const ApplyChangeBigImageAction = async (
         imageProfile: image.url,
       },
     });
+    revalidatePath("/linkedin");
   } catch (error) {
     console.log(error);
     return { error: "Failed to change image" };

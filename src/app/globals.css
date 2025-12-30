@@ -8,7 +8,7 @@
 }
 @layer utilities {
   .container-css {
-    @apply max-w-[1250px] mx-auto ;
+    @apply max-w-312.5 mx-auto ;
   };
   .transition-css{
     @apply transition duration-300

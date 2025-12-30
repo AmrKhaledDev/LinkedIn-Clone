@@ -8,7 +8,7 @@ import { FaPlus } from "react-icons/fa6";
 function OwnerPostDetails({ post, user }: { post: PostType; user: User }) {
   const date = new Date(post.createdAt);
   const formatted = date.toLocaleDateString("en-GB");
-  if(!post) return
+  if (!post) return;
   return (
     <div className="flex gap-2 p-3">
       <Image
@@ -21,8 +21,12 @@ function OwnerPostDetails({ post, user }: { post: PostType; user: User }) {
       <div className="w-full flex justify-between">
         <div>
           <Link
-            href={`/linkedin/u/${post.user.id}`}
-            className="font-semibold text-xl hover:text-primary hover:underline line-clamp-1 w-fit"
+            href={
+              post.user.id == user.id
+                ? "/linkedin/profile"
+                : `/linkedin/u/${post.user.id}`
+            }
+            className="font-semibold text-[17px] hover:text-primary hover:underline line-clamp-1 w-fit"
           >
             {post.user.name.charAt(0).toUpperCase() +
               post.user.name.slice(1).toLocaleLowerCase()}

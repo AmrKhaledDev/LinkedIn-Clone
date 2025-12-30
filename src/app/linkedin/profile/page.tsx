@@ -24,7 +24,7 @@ async function page() {
     <main className="space-section min-h-screen bg-[#F4F2EE]">
       <div className="container-css p-3">
         <div className="w-187.5 flex flex-col gap-5">
-          <div className="rounded overflow-hidden flex flex-col bg-white shadow">
+          <div className="rounded flex flex-col bg-white shadow">
             <div className="relative">
               <BigImage user={user} />
               <SmallImage user={user} />

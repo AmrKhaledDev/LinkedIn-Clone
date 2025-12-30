@@ -22,7 +22,7 @@ function EditProfileBox({ user }: { user: UserWithRelationType }) {
     <div>
       <button
         onClick={() => setShowBoxEdit(true)}
-        className="absolute button right-6 top-6 text-xl text-blackLight p-2 rounded-full hover:bg-gray-100 hover:text-black cursor-pointer transition-css"
+        className="absolute button right-2 top-2 text-xl text-blackLight p-2 rounded-full hover:bg-gray-100 hover:text-black cursor-pointer transition-css"
       >
         <HiPencil />
       </button>

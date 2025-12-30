@@ -1,7 +1,11 @@
 "use server";
 import { prisma } from "@/lib/prisma";
+import { revalidatePath } from "next/cache";
 // =======================================================================
-export const EditSmallImageAction = async (id: string, imageFile: File | null) => {
+export const EditSmallImageAction = async (
+  id: string,
+  imageFile: File | null
+) => {
   if (!id) return;
   try {
     const checkUser = await prisma.user.findUnique({
@@ -22,6 +26,7 @@ export const EditSmallImageAction = async (id: string, imageFile: File | null) =
         image: image.url,
       },
     });
+    revalidatePath("/linkedin");
   } catch (error) {
     console.log(error);
     return { error: "Failed to change image, try again later" };
