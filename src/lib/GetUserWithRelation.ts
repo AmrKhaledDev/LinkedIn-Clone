@@ -1,17 +1,23 @@
 "use server";
-
 import { auth } from "@/auth";
-import { User } from "@prisma/client";
 import { prisma } from "@/lib/prisma";
+import { UserWithRelationType } from "./types/types";
 // ======================================================================
-export const GetUser = async () => {
+export const GetUserWithRelation = async () => {
   try {
     const session = await auth();
-    let user: User | null = null;
+    let user: UserWithRelationType | null = null;
     if (session && session.user) {
       const userDB = await prisma.user.findUnique({
         where: {
           id: session.user.id,
+        },
+        include: {
+          posts: {
+            include: {
+              user: true,
+            },
+          },
         },
       });
       user = userDB;

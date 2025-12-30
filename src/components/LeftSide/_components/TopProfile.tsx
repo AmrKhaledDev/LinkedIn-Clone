@@ -16,7 +16,7 @@ async function TopProfile() {
             alt="Your Profile image"
             width={200}
             height={200}
-            className="w-full h-17.5 object-cover"
+            className="w-full h-20 object-cover"
           />
           <div className="absolute -bottom-9 left-3 object-cover">
             <Image
@@ -24,7 +24,7 @@ async function TopProfile() {
               alt="Your Photo"
               width={100}
               height={100}
-              className="w-16 rounded-full border-2 object-cover border-gray-200"
+              className="w-16 h-16 shrink-0 rounded-full border-2 object-cover border-gray-200"
             />
           </div>
         </div>
@@ -34,7 +34,7 @@ async function TopProfile() {
             {user.name.charAt(0).toUpperCase() +
               user.name.slice(1).toLocaleLowerCase()}
           </h2>
-          <h3 className="text-[13px] line-clamp-2">{user.headline}</h3>
+          <h3 className="text-[13px] line-clamp-1">{user.headline}</h3>
           <h3 className="text-[13px] text-blackLight line-clamp-1">
             {user.city}
           </h3>

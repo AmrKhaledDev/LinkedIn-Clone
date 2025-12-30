@@ -14,3 +14,23 @@ export type PostType = Prisma.PostGetPayload<{
     user: true;
   };
 }>;
+export type UserWithRelationType = Prisma.UserGetPayload<{
+  include: {
+    posts: {
+      include: {
+        user: true;
+      };
+    };
+  };
+}>;
+export type ContextStatesType = {
+  bigImage: string | null;
+  setBigImage: React.Dispatch<React.SetStateAction<string | null>>;
+  bigImageFile: File | null;
+  setBigImageFile: React.Dispatch<React.SetStateAction<File | null>>;
+  smallImage: string | null;
+  setSmallImage: React.Dispatch<React.SetStateAction<string | null>>;
+  smallImageFile: File | null;
+  setSmallImageFile: React.Dispatch<React.SetStateAction<File | null>>;
+};
+// ===

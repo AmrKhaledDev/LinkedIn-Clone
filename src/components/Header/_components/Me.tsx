@@ -32,7 +32,7 @@ function Me({ user }: { user: User | null }) {
           alt="User Image"
           width={100}
           height={100}
-          className="w-8 rounded-full border-2 border-gray-200"
+          className="w-8 h-8 shrink-0 rounded-full border-2 object-cover border-gray-200"
         />
         <div className="flex items-center gap-1">
           <span className="group-hover:text-blackLight text-[14px]">Me</span>
@@ -68,7 +68,7 @@ function MeProfile({
             alt="User Image"
             width={100}
             height={100}
-            className="w-12.5 rounded-full border-2 border-gray-200"
+            className="w-12.5 h-12.5 shrink-0 object-cover rounded-full border-2 border-gray-200"
           />
           <div className="flex flex-col">
             <span className="font-semibold">{user?.name}</span>
@@ -77,7 +77,7 @@ function MeProfile({
         </div>
         <Link
           className="border-2 link border-primary rounded-full py-2 px-4 text-[14px] flex items-center justify-center w-full text-primary hover:bg-blue-50"
-          href={"/profile"}
+          href={"/linkedin/profile"}
         >
           View Profile
         </Link>

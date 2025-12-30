@@ -1,12 +1,14 @@
 "use client";
 import { PostType } from "@/lib/types/types";
+import { User } from "@prisma/client";
 import Image from "next/image";
 import Link from "next/link";
 import { FaPlus } from "react-icons/fa6";
 // ==============================================================
-function OwnerPostDetails({ post }: { post: PostType }) {
+function OwnerPostDetails({ post, user }: { post: PostType; user: User }) {
   const date = new Date(post.createdAt);
   const formatted = date.toLocaleDateString("en-GB");
+  if(!post) return
   return (
     <div className="flex gap-2 p-3">
       <Image
@@ -14,7 +16,7 @@ function OwnerPostDetails({ post }: { post: PostType }) {
         alt="Your Image"
         width={70}
         height={70}
-        className="w-17.5 h-17.5 rounded-full object-cover border-2 border-gray-200"
+        className="w-15 h-15 shrink-0 rounded-full object-cover border-2 border-gray-200"
       />
       <div className="w-full flex justify-between">
         <div>
@@ -22,22 +24,22 @@ function OwnerPostDetails({ post }: { post: PostType }) {
             href={`/linkedin/u/${post.user.id}`}
             className="font-semibold text-xl hover:text-primary hover:underline line-clamp-1 w-fit"
           >
-            {post.user.name}
+            {post.user.name.charAt(0).toUpperCase() +
+              post.user.name.slice(1).toLocaleLowerCase()}
           </Link>
           <h2 className="text-[13px] text-slate-700 line-clamp-1">
             {post.user.headline}
           </h2>
-          <h3 className="text-[11px]  text-slate-700 line-clamp-1">
-            {post.user.email}
-          </h3>
           <p className="text-[11px] text-slate-700 line-clamp-1">{formatted}</p>
         </div>
-        <button className="text-[17px] cursor-pointer gap-1 flex items-center text-primary font-bold hover:bg-blue-100 rounded px-2 py-2 transition-css hover:text-blue-800 h-fit">
-          <i className="text-[20px] -translate-y-[0.6px]">
-            <FaPlus />
-          </i>
-          Follow
-        </button>
+        {user.id !== post.user.id && (
+          <button className="text-[17px] cursor-pointer gap-1 flex items-center text-primary font-bold hover:bg-blue-100 rounded px-2 py-2 transition-css hover:text-blue-800 h-fit">
+            <i className="text-[20px] -translate-y-[0.6px]">
+              <FaPlus />
+            </i>
+            Follow
+          </button>
+        )}
       </div>
     </div>
   );

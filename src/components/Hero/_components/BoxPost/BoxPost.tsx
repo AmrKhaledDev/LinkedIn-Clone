@@ -1,7 +1,7 @@
 "use client";
 import { User } from "@prisma/client";
 import Image from "next/image";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Icons from "./_components/Icons";
 import ButtonPost from "./_components/ButtonPost";
 import TopBoxPost from "./_components/TopBoxPost";
@@ -29,36 +29,57 @@ function BoxPost({
       removeEventListener("click", handleClick);
     };
   });
+  const textareaRef = useRef<HTMLTextAreaElement>(null);
   const [contentTxt, setContentTxt] = useState("");
   const [loading, setLoading] = useState(false);
-  const [imagePost, setImagePost] = useState("");
-  const [imagePostFile, setImagePostFile] = useState<File | null>(null);
+  const [mediaUrl, setMediaUrl] = useState("");
+  const [mediaFile, setMediaFile] = useState<File | null>(null);
   const handleClick = async () => {
-    if (contentTxt.trim().length < 1 && !imagePost) return;
-    setLoading(true);
-    const result = await CreatePostAction({
-      contentTxt,
-      postImage: imagePostFile,
-      userId: user.id,
-    });
-    setLoading(false);
-    if (result?.error)
-      return toast.error(result.error, {
-        className: "toast-font",
+    try {
+      setLoading(true);
+      const formData = new FormData();
+      if (mediaFile) formData.append("file", mediaFile);
+      formData.append("pathname", "posts-media");
+      const res = await fetch(`/api/upload-media`, {
+        method: "POST",
+        body: formData,
       });
-    setContentTxt("");
-    setImagePostFile(null);
-    setImagePost("");
-    setShowBoxPost(false);
-    toast.success("Done Post");
+      const media = (await res.json()) as {
+        url: string;
+        type: "video" | "image";
+      };
+      const result = await CreatePostAction({
+        contentTxt,
+        mediaUrl: media.url,
+        mediaType: media.type,
+        userId: user.id,
+      });
+      setLoading(false);
+      if (result?.error)
+        return toast.error(result.error, {
+          className: "toast-font",
+        });
+      setContentTxt("");
+      setMediaFile(null);
+      setMediaUrl("");
+      setShowBoxPost(false);
+      toast.success("Done Post");
+    } catch (error) {
+      console.log(error);
+      return { error: "Failed fetch" };
+    }
   };
+  useEffect(() => {
+    textareaRef.current!.focus();
+  }, [showBoxPost]);
+  const isVideo = mediaFile?.type.startsWith("video");
   return (
     <div
-      className={`w-full h-screen bg-black/20 backdrop-blur inset-0 flex items-center justify-center z-30 ${
+      className={`w-full h-screen bg-black/45 backdrop-blur inset-0 flex items-center justify-center z-50 ${
         showBoxPost ? "fixed" : "hidden"
       }`}
     >
-      <div className="shadow bg-white rounded w-137.5 div">
+      <div className="shadow bg-white rounded w-190 div">
         <TopBoxPost setShowBoxPost={setShowBoxPost} />
         <div className="p-5 flex flex-col gap-5">
           <div className="flex items-center gap-3">
@@ -67,47 +88,55 @@ function BoxPost({
               alt="your photo"
               width={100}
               height={100}
-              className="rounded-full w-15 h-15 border-2 border-gray-200"
+              className="rounded-full w-15 h-15 shrink-0 object-cover border-2 border-gray-200"
             />
             <div className="flex flex-col ">
-              <h2 className="text-xl font-semibold">{user.name}</h2>
+              <h2 className="text-xl font-semibold">
+                {user.name.charAt(0).toUpperCase() +
+                  user.name.slice(1).toLocaleLowerCase()}
+              </h2>
               <h3 className="text-gray-400 text-[14px] font-semibold">
                 {user.email}
               </h3>
             </div>
           </div>
           <textarea
-            onKeyDown={(e) => {
-              if (e.key == "Enter") return handleClick();
-            }}
+            ref={textareaRef}
             value={contentTxt}
             onChange={(e) => setContentTxt(e.target.value)}
-            rows={6}
+            rows={9}
             placeholder="what do you want to talk about?"
-            className="border border-gray-100 rounded p-2 outline-none resize-none"
+            className="rounded p-2 outline-none resize-none text-xl"
           />
-          {imagePost && (
+          {mediaUrl && (
             <div className="relative div">
-              <Image
-                src={imagePost}
-                alt="Post Image"
-                width={500}
-                height={500}
-                className="w-full rounded object-cover max-h-100"
-              />
-              <button type="button" onClick={()=> setImagePost("")} className="absolute top-3 right-3 cursor-pointer text-red-500 text-xl p-2 rounded-full bg-white shadow hover:scale-105 transition-css"><MdDelete/></button>
+              {isVideo ? (
+                <video controls src={mediaUrl} />
+              ) : (
+                <Image
+                  src={mediaUrl}
+                  alt="Post Image"
+                  width={500}
+                  height={500}
+                  className="w-full rounded object-cover max-h-100"
+                />
+              )}
+              <button
+                type="button"
+                onClick={() => setMediaUrl("")}
+                className="absolute top-3 right-3 cursor-pointer text-red-500 text-xl p-2 rounded-full bg-white shadow hover:scale-105 transition-css "
+              >
+                <MdDelete />
+              </button>
             </div>
           )}
-          <div className="flex items-center justify-between">
-            <Icons
-              setImagePost={setImagePost}
-              setImagePostFile={setImagePostFile}
-            />
+          <div className="flex items-center justify-between border-t pt-2 border-t-gray-200">
+            <Icons setMediaUrl={setMediaUrl} setMediaFile={setMediaFile} />
             <ButtonPost
               loading={loading}
               handleClick={handleClick}
               contentTxt={contentTxt}
-              imagePost={imagePost}
+              mediaUrl={mediaUrl}
             />
           </div>
         </div>

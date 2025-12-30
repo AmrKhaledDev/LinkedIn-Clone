@@ -1,9 +1,7 @@
-import { GetAllPosts } from "@/server/db/GetAllPosts";
 import PostDesign from "./_components/PostDesign";
 import { PostType } from "@/lib/types/types";
 // ==============================================================
-async function Posts() {
-  const posts = await GetAllPosts();
+async function Posts({posts}:{posts:PostType[]}) {
   return (
     <div>
       <ul className="flex flex-col gap-3">

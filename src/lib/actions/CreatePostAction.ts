@@ -13,38 +13,21 @@ export const CreatePostAction = async (data: CreatePostActionDataType) => {
         id: validation.data.userId,
       },
     });
-    let image: { image: string } | null = null;
-    if (validation.data.postImage) {
-      image = await uploadImagePost(validation.data.postImage);
-    }
     if (!user) return { error: "Sign in to create post" };
+    const mediaUrl = validation.data.mediaUrl;
+    const mediaType = validation.data.mediaType;
+
     await prisma.post.create({
       data: {
         contentText: validation.data.contentTxt,
         userId: validation.data.userId,
-        image: image && image.image ? image.image : "",
+        image: mediaType == "image" ? mediaUrl : null,
+        video: mediaType == "video" ? mediaUrl : null,
       },
     });
-    revalidatePath("/linkedin")
+    revalidatePath("/linkedin");
   } catch (error) {
     console.log(error);
     return { error: "Failed create post try again later" };
-  }
-};
-
-const uploadImagePost = async (imageFile: File | null) => {
-  const formData = new FormData();
-  if (imageFile) formData.append("file", imageFile);
-  formData.append("pathname", "posts-images");
-  try {
-    const res = await fetch(`${process.env.NEXT_URL}/api/upload-post-image`, {
-      method: "POST",
-      body: formData,
-    });
-    const imagePost = await res.json();
-    return imagePost;
-  } catch (error) {
-    console.log(error);
-    return { error: "Failed fetch" };
   }
 };
