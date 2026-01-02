@@ -21,12 +21,12 @@ function BoxEditSmallImage({ user }: { user: User }) {
   });
   return (
     <div>
-      <div className="absolute bottom-5 right-0  z-20">
+      <div className="absolute sm:bottom-5 bottom-2 sm:right-0 -right-2  z-20">
         <button
           onClick={() => {
             setShowBoxEditImage(!showBoxEditImage);
           }}
-          className="cursor-pointer button text-[17px] bg-gray-50 rounded-full text-primary  p-2"
+          className="cursor-pointer button sm:text-[17px] bg-gray-50 rounded-full text-primary  p-2"
         >
           <FaCamera />
         </button>

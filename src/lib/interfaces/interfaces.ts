@@ -1,4 +1,4 @@
-export  interface StatesRegister {
+export interface StatesRegister {
   name: string;
   email: string;
   password: string;
@@ -9,7 +9,7 @@ export  interface StatesRegister {
   };
   loading: boolean;
 }
-export  interface StatesLogin {
+export interface StatesLogin {
   email: string;
   password: string;
   errors: {
@@ -17,4 +17,12 @@ export  interface StatesLogin {
     password?: string;
   };
   loading: boolean;
+}
+
+export interface FormEditProfileErrors {
+  name?: string;
+  headline?: string;
+  school?: string;
+  country?: string;
+  city?: string;
 }

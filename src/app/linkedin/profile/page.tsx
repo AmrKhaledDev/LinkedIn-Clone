@@ -23,19 +23,25 @@ async function page() {
   return (
     <main className="space-section min-h-screen bg-[#F4F2EE]">
       <div className="container-css p-3">
-        <div className="w-187.5 flex flex-col gap-5">
+        <div className="lg:w-187.5 md:w-176 flex flex-col gap-5">
           <div className="rounded flex flex-col bg-white shadow">
             <div className="relative">
               <BigImage user={user} />
               <SmallImage user={user} />
             </div>
-            <div className="overflow-hidden px-7 flex pt-15 flex-col gap-3 relative">
+            <div className="overflow-hidden px-7 flex sm:pt-15 pt-10 flex-col gap-3 relative">
               <UserDetails user={user} />
               <UserInfo user={user} />
               <EditProfileBox user={user} />
             </div>
           </div>
-          <Posts posts={user.posts} />
+          {user.posts.length > 0 ? (
+            <Posts posts={user.posts} />
+          ) : (
+            <p className="text-center font-bold tracking-widest p-3 shadow bg-white text-red-400 uppercase sm:text-[15px] text-[13px]">
+              Your posts will be displayed here
+            </p>
+          )}
         </div>
       </div>
     </main>

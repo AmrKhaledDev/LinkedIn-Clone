@@ -18,7 +18,7 @@ function UserInfo({ user }: { user: UserWithRelationType }) {
     },
   ];
   return (
-    <div className="py-4 border-t border-gray-100 bg-white grid grid-cols-1 md:grid-cols-2 gap-4">
+    <div className="py-4 border-t border-gray-100 bg-white grid sm:grid-cols-2 gap-4">
       {infoList.map(
         (info) =>
           info.info && (

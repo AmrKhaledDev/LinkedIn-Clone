@@ -14,7 +14,7 @@ export const ApplyChangeBigImageAction = async (
       },
     });
     type UploadResult = { url: string } | { error: string };
-    if (!checkUser) return { error: "Login to change image" };
+    if (!checkUser) return { error: "User not found, register" };
     if (!imageFile) return { error: "No image provided" };
     const image: UploadResult = await uploadBigImage(imageFile);
     if ("error" in image) {

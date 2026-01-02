@@ -27,13 +27,12 @@ function EditProfileBox({ user }: { user: UserWithRelationType }) {
         <HiPencil />
       </button>
       <div
-        className={`w-full fixed min-h-screen bg-black/45 backdrop-blur inset-0 z-40 items-center justify-center ${
+        className={`w-full fixed min-h-screen overflow-y-hidden bg-black/45 backdrop-blur inset-0 z-40 items-center justify-center ${
           showBoxEdit ? "flex" : "hidden"
         }`}
       >
-        <div className="w-[40%] h-fit div overflow-y-auto shadow rounded bg-white space-y-6">
-          <TopBox setShowBoxEdit={setShowBoxEdit} />
-          <Form user={user} />
+        <div className="w-[40%] h-fit div overflow-y-auto shadow rounded space-y-6">
+          <Form user={user} setShowBoxEdit={setShowBoxEdit}/>
         </div>
       </div>
     </div>

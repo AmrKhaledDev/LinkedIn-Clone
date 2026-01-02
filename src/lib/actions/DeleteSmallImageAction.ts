@@ -10,7 +10,7 @@ export const DeleteSmallImageAction = async (id: string) => {
         id,
       },
     });
-    if (!checkUser) return { error: "Login to delete your image" };
+    if (!checkUser) return { error: "User not found, register" };
     if (!checkUser.image || checkUser.image.trim().length < 1)
       return { error: "No image found to delete" };
     await prisma.user.update({

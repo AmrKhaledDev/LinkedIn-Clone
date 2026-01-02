@@ -47,7 +47,7 @@ function ActionsInPost({ user }: { user: User }) {
 });
   return (
     <div>
-      <div className="flex items-center gap-12 py-3 justify-center border-t border-t-gray-200">
+      <div className="flex items-center gap-12 py-3 justify-between border-t px-5 border-t-gray-200">
         {actions.map((action) => (
           <div
             onClick={action.handle}

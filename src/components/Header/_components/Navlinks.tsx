@@ -62,11 +62,11 @@ function Navlinks() {
     <>
       <Image
         onClick={() => setOpenNave(!openNav)}
-        src={"/menu.svg"}
+        src={"/ellipsis.svg"}
         alt="Menu"
         width={100}
         height={100}
-        className={`w-6 sm:hidden block button rounded-full ${
+        className={`w-9 sm:hidden block button rounded-full p-2 ${
           openNav && "bg-gray-100"
         }`}
       />

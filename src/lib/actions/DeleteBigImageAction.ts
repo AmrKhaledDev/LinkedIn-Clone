@@ -15,7 +15,7 @@ export const DeleteBigImageAction = async (
         id,
       },
     });
-    if (!checkUser) return { error: "Login to delete image" };
+    if (!checkUser) return { error: "User not found, register" };
     await prisma.user.update({
       where: {
         id,

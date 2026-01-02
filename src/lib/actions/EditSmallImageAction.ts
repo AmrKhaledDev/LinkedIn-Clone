@@ -13,7 +13,7 @@ export const EditSmallImageAction = async (
         id,
       },
     });
-    if (!checkUser) return { error: "Login to change image" };
+    if (!checkUser) return { error: "User not found, register" };
     if (!imageFile) return { error: "No image provided" };
     type UploadResult = { url: string } | { error: string };
     const image: UploadResult = await uploadImage(imageFile);

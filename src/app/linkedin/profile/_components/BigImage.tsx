@@ -11,7 +11,7 @@ function BigImage({user}:{user:User}) {
         alt="Profile Image"
         width={900}
         height={900}
-        className="w-full object-cover h-70"
+        className="w-full sm:object-cover sm:h-70 h-50"
       />
      <EditBigImage user={user}/>
     </div>

@@ -3,6 +3,7 @@ import { PostType } from "@/lib/types/types";
 import { User } from "@prisma/client";
 import Image from "next/image";
 import Link from "next/link";
+import { BsFillPatchCheckFill } from "react-icons/bs";
 import { FaPlus } from "react-icons/fa6";
 // ==============================================================
 function OwnerPostDetails({ post, user }: { post: PostType; user: User }) {
@@ -20,17 +21,22 @@ function OwnerPostDetails({ post, user }: { post: PostType; user: User }) {
       />
       <div className="w-full flex justify-between">
         <div>
-          <Link
-            href={
-              post.user.id == user.id
-                ? "/linkedin/profile"
-                : `/linkedin/u/${post.user.id}`
-            }
-            className="font-semibold text-[17px] hover:text-primary hover:underline line-clamp-1 w-fit"
-          >
-            {post.user.name.charAt(0).toUpperCase() +
-              post.user.name.slice(1).toLocaleLowerCase()}
-          </Link>
+          <div className="flex items-center gap-1">
+            <Link
+              href={
+                post.user.id == user.id
+                  ? "/linkedin/profile"
+                  : `/linkedin/u/${post.user.id}`
+              }
+              className="font-semibold text-[17px] hover:text-primary hover:underline line-clamp-1 w-fit"
+            >
+              {post.user.name.charAt(0).toUpperCase() +
+                post.user.name.slice(1).toLocaleLowerCase()}
+            </Link>
+            <i className="text-blue-500 text pb-0.5 text-[14px]" title="Super Admin">
+              <BsFillPatchCheckFill/>
+            </i>
+          </div>
           <h2 className="text-[13px] text-slate-700 line-clamp-1">
             {post.user.headline}
           </h2>
