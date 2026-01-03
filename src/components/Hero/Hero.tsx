@@ -16,7 +16,7 @@ async function Hero() {
   if (!user) redirect("/login");
   const posts = await GetAllPosts();
   return (
-    <main className="flex-1 flex flex-col gap-3">
+    <main className="flex-1 flex flex-col gap-3 overflow-hidden">
       <div className="w-full p-5 shadow rounded flex flex-col gap-3 bg-white">
         <div className="flex items-center gap-3 ">
           <Link href={"/linkedin/profile"} className="shrink-0">

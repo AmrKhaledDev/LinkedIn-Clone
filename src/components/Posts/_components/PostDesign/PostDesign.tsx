@@ -3,8 +3,10 @@ import Image from "next/image";
 import PostDetails from "./_components/PostDetails";
 import OwnerPostDetails from "./_components/OwnerPostDetails";
 import { GetUser } from "@/lib/GetUser";
-import ActionsInPost from "./_components/ActionsInPost";
+import ActionsInPost from "./_components/PostFooter";
 import EditPost from "./_components/EditPost";
+import Comments from "./_components/Comments/Comments";
+import PostFooter from "./_components/PostFooter";
 // =====================================================================
 async function PostDesign({ post }: { post: PostType }) {
   const user = await GetUser();
@@ -16,9 +18,9 @@ async function PostDesign({ post }: { post: PostType }) {
         <OwnerPostDetails post={post} user={user} />
         <PostDetails post={post} />
         <div className="flex justify-between px-3">
-          <div className="flex items-center gap-2 ">
+          <div className="flex items-center gap-2">
             <div className="flex items-center gap-1">
-              <Image src={"/like.png"} alt="Like" width={18} height={18} />
+              <Image src={"/like.svg"} alt="Like" width={20} height={20} />
               <span className="text-blackLight text-[13px]">17</span>
             </div>
             <div className="flex items-center gap-1">
@@ -31,9 +33,14 @@ async function PostDesign({ post }: { post: PostType }) {
               <span className="text-blackLight text-[13px]">10</span>
             </div>
           </div>
-          <h2 className="text-blackLight text-[11.5px] pt-1 font-semibold uppercase">No comments</h2>
+          <h2 className="text-blackLight text-[13px] pt-1 ">
+            <span className="text-[12px] mr-1 pt-1.5">
+              {post.comments.length}
+            </span>
+            comment
+          </h2>
         </div>
-        <ActionsInPost user={user} />
+          <PostFooter user={user} post={post} />
       </div>
     </li>
   );

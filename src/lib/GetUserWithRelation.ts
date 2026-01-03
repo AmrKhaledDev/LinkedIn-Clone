@@ -14,11 +14,22 @@ export const GetUserWithRelation = async () => {
         },
         include: {
           posts: {
-            orderBy:{
-              createdAt:"desc"
+            orderBy: {
+              createdAt: "desc",
             },
             include: {
               user: true,
+              comments: {
+                include: {
+                  user: true,
+                  post: {
+                    include: {
+                      user: true,
+                    },
+                  },
+                },
+                orderBy: [{ isAuthor: "desc" }, { createdAt: "desc" }],
+              },
             },
           },
         },

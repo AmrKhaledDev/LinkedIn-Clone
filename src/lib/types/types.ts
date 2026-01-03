@@ -11,16 +11,47 @@ export type RegisterActionDataType = z.infer<typeof RegisterSchema>;
 export type LoginActionDataType = z.infer<typeof LoginSchema>;
 export type CreatePostActionDataType = z.infer<typeof CreatePostSchema>;
 export type EditProfileActionDataType = z.infer<typeof EditProfileSchema>;
-export type CreateArticleActionDataType = z.infer<typeof CreateArticleSchema>
+export type CreateArticleActionDataType = z.infer<typeof CreateArticleSchema>;
 // Db Types
 export type PostType = Prisma.PostGetPayload<{
   include: {
     user: true;
+    comments: {
+      include: {
+        user: true;
+        post: {
+          include: {
+            user: true;
+          };
+        };
+      };
+    };
   };
 }>;
 export type UserWithRelationType = Prisma.UserGetPayload<{
   include: {
     posts: {
+      include: {
+        user: true;
+        comments: {
+          include: {
+            user: true;
+            post: {
+              include: {
+                user: true;
+              };
+            };
+          };
+        };
+      };
+    };
+  };
+}>;
+
+export type CommentDBWithRelations = Prisma.CommentGetPayload<{
+  include: {
+    user: true;
+    post: {
       include: {
         user: true;
       };
@@ -47,4 +78,7 @@ export type ContextStatesType = {
   setTitleArticle: React.Dispatch<React.SetStateAction<string | null>>;
   contentArticle: string | null;
   setContentArticle: React.Dispatch<React.SetStateAction<string | null>>;
+  // Boolean
+  addComment: boolean;
+  setAddComment: React.Dispatch<React.SetStateAction<boolean>>;
 };

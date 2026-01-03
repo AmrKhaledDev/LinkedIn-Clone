@@ -3,11 +3,13 @@ import { BiSolidLike } from "react-icons/bi";
 import { MdComment } from "react-icons/md";
 import { IoIosSend } from "react-icons/io";
 import { BiSolidDislike } from "react-icons/bi";
-import AddComment from "./AddComment";
 import { User } from "@prisma/client";
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import AddComment from "./AddComment";
+import Comments from "./Comments/Comments";
+import { PostType } from "@/lib/types/types";
 // ======================================================================
-function ActionsInPost({ user }: { user: User }) {
+function PostFooter({ user, post }: { user: User; post: PostType }) {
   const [addComment, setAddComment] = useState(false);
   const actions = [
     {
@@ -26,7 +28,7 @@ function ActionsInPost({ user }: { user: User }) {
       id: crypto.randomUUID(),
       name: "Comment",
       icon: <MdComment />,
-      handle: () => setAddComment(!addComment),
+      handle: () => setAddComment(true),
     },
     {
       id: crypto.randomUUID(),
@@ -35,16 +37,6 @@ function ActionsInPost({ user }: { user: User }) {
       handle: () => {},
     },
   ];
-  useEffect(() => {
-    const handleCLick = (e: MouseEvent) => {
-      if (!(e.target instanceof Element)) return;
-      if (!e.target.closest(".button, .input")) setAddComment(false);
-    };
-    document.addEventListener("click", handleCLick);
-    return () => {
-      removeEventListener("click", handleCLick);
-    };
-});
   return (
     <div>
       <div className="flex items-center gap-12 py-3 justify-between border-t px-5 border-t-gray-200">
@@ -61,9 +53,10 @@ function ActionsInPost({ user }: { user: User }) {
           </div>
         ))}
       </div>
-      <AddComment user={user} addComment={addComment} />
+      <AddComment user={user} postId={post.id} addComment={addComment} />
+      <Comments postComments={post.comments} addComment={addComment}/>
     </div>
   );
 }
 
-export default ActionsInPost;
+export default PostFooter;

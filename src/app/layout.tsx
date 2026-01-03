@@ -5,7 +5,7 @@ import { Toaster } from "react-hot-toast";
 // ==========================================================================
 const poppins = Poppins({
   subsets: ["latin"],
-  weight: ["500", "600", "700", "800", "900"],
+  weight: ["400","500", "600", "700", "800", "900"],
 });
 
 export const metadata: Metadata = {
@@ -23,7 +23,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${poppins.className} antialiased`}>
+      <body className={`${poppins.className} antialiased font-medium`}>
         {children} <Toaster position="top-center" reverseOrder={false} />
       </body>
     </html>
