@@ -45,27 +45,30 @@ model Session {
 }
 
 model User {
-  id            String    @id @default(cuid())
-  name          String
-  email         String    @unique
-  password      String?
-  emailVerified DateTime? @map("email_verified")
-  image         String?
-  role          Role      @default(USER)
-  headline      String?
-  country       String?
-  city          String?
-  school        String?
-  imageProfile  String?
-  accounts      Account[]
-  sessions      Session[]
-  posts         Post[]
-  createdAt     DateTime  @default(now())
-  updatedAt     DateTime  @updatedAt
-  articles      Article[]
-  comments      Comment[]
-  likes         Like[]
-  disLikes      DisLike[]
+  id              String           @id @default(cuid())
+  name            String
+  email           String           @unique
+  password        String?
+  emailVerified   DateTime?        @map("email_verified")
+  image           String?
+  role            Role             @default(USER)
+  headline        String?
+  country         String?
+  city            String?
+  school          String?
+  imageProfile    String?
+  accounts        Account[]
+  sessions        Session[]
+  posts           Post[]
+  createdAt       DateTime         @default(now())
+  updatedAt       DateTime         @updatedAt
+  articles        Article[]
+  comments        Comment[]
+  likes           Like[]
+  disLikes        DisLike[]
+  likeForComments LikeForComment[]
+  replays         Replay[]
+  likeForReplays  LikeForReplay[]
 
   @@map("users")
 }
@@ -82,6 +85,7 @@ model Post {
   comments    Comment[]
   likes       Like[]
   disLikes    DisLike[]
+  replays     Replay[]
 }
 
 model Like {
@@ -97,6 +101,36 @@ model Like {
   updatedAt DateTime @updatedAt
 
   @@unique([userId, postId])
+}
+
+model LikeForComment {
+  id String @id @default(cuid())
+
+  userId    String
+  commentId String
+
+  user    User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  comment Comment @relation(fields: [commentId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([userId, commentId])
+}
+
+model LikeForReplay {
+  id String @id @default(cuid())
+
+  userId   String
+  replayId String
+
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  replay Replay @relation(fields: [replayId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([userId, replayId])
 }
 
 model DisLike {
@@ -115,15 +149,32 @@ model DisLike {
 }
 
 model Comment {
-  id        String   @id @default(cuid())
-  content   String
-  postId    String
-  userId    String
-  isAuthor  Boolean  @default(false)
-  post      Post     @relation(fields: [postId], references: [id], onDelete: Cascade)
-  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id              String           @id @default(cuid())
+  content         String
+  postId          String
+  userId          String
+  isAuthor        Boolean          @default(false)
+  post            Post             @relation(fields: [postId], references: [id], onDelete: Cascade)
+  user            User             @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt       DateTime         @default(now())
+  updatedAt       DateTime         @updatedAt
+  likeForComments LikeForComment[]
+  replays         Replay[]
+}
+
+model Replay {
+  id             String          @id @default(cuid())
+  content        String
+  postId         String
+  userId         String
+  commentId      String
+  isAuthor       Boolean         @default(false)
+  comment        Comment         @relation(fields: [commentId], references: [id], onDelete: Cascade)
+  user           User            @relation(fields: [userId], references: [id], onDelete: Cascade)
+  post           Post            @relation(fields: [postId], references: [id], onDelete: Cascade)
+  createdAt      DateTime        @default(now())
+  updatedAt      DateTime        @updatedAt
+  likeForReplays LikeForReplay[]
 }
 
 model Article {

@@ -24,6 +24,24 @@ export type PostType = Prisma.PostGetPayload<{
             user: true;
           };
         };
+        likeForComments: {
+          include: {
+            user: true;
+            comment: true;
+          };
+        };
+        replays: {
+          include: {
+            user: true;
+            comment: true;
+            post: true;
+            likeForReplays: {
+              include: {
+                user: true;
+              };
+            };
+          };
+        };
       };
     };
     likes: {
@@ -53,6 +71,24 @@ export type UserWithRelationType = Prisma.UserGetPayload<{
                 user: true;
               };
             };
+            likeForComments: {
+              include: {
+                user: true;
+                comment: true;
+              };
+            };
+            replays: {
+              include: {
+                user: true;
+                comment: true;
+                post: true;
+                likeForReplays: {
+                  include: {
+                    user: true;
+                  };
+                };
+              };
+            };
           };
         };
         likes: {
@@ -76,6 +112,36 @@ export type CommentDBWithRelations = Prisma.CommentGetPayload<{
   include: {
     user: true;
     post: {
+      include: {
+        user: true;
+      };
+    };
+    likeForComments: {
+      include: {
+        user: true;
+        comment: true;
+      };
+    };
+    replays: {
+      include: {
+        user: true;
+        comment: true;
+        post: true;
+        likeForReplays: {
+          include: {
+            user: true;
+          };
+        };
+      };
+    };
+  };
+}>;
+export type ReplayWithRelations = Prisma.ReplayGetPayload<{
+  include: {
+    user: true;
+    comment: true;
+    post: true;
+    likeForReplays: {
       include: {
         user: true;
       };

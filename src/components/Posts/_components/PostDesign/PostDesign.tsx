@@ -9,6 +9,8 @@ import PostFooter from "./_components/PostFooter/PostFooter";
 async function PostDesign({ post }: { post: PostType }) {
   const user = await GetUser();
   if (!user) return;
+  const isLike = post.likes.find((like) => like.userId === user.id);
+  const isDisLike = post.disLikes.find((like) => like.userId === user.id);
   return (
     <li className="rounded shadow bg-white  overflow-hidden">
       <EditPost postId={post.id} />
@@ -19,7 +21,19 @@ async function PostDesign({ post }: { post: PostType }) {
           <div className="flex items-center gap-2">
             <div className="flex items-center gap-1">
               <Image src={"/like.svg"} alt="Like" width={20} height={20} />
-              <span className="text-blackLight text-[13px]">{post.likes.length}</span>
+              <span className="text-blackLight text-[13px]">
+                {isLike ? (
+                  post.likes.length > 1 ? (
+                    <span className="flex items-center gap-1">
+                      you ,<span>{post.likes.length - 1}</span>
+                    </span>
+                  ) : (
+                    <span>you</span>
+                  )
+                ) : (
+                  <>{post.likes.length}</>
+                )}
+              </span>
             </div>
             <div className="flex items-center gap-1">
               <Image
@@ -28,7 +42,19 @@ async function PostDesign({ post }: { post: PostType }) {
                 width={17.5}
                 height={17.5}
               />
-              <span className="text-blackLight text-[13px]">{post.disLikes.length}</span>
+              <span className="text-blackLight text-[13px]">
+                {isDisLike ? (
+                  post.disLikes.length > 1 ? (
+                    <span className="flex items-center gap-1">
+                      you ,<span>{post.disLikes.length - 1}</span>
+                    </span>
+                  ) : (
+                    <span>you</span>
+                  )
+                ) : (
+                  <>{post.disLikes.length}</>
+                )}{" "}
+              </span>
             </div>
           </div>
           <h2 className="text-blackLight text-[13px] pt-1 ">
@@ -38,7 +64,7 @@ async function PostDesign({ post }: { post: PostType }) {
             comment
           </h2>
         </div>
-          <PostFooter user={user} post={post} />
+        <PostFooter user={user} post={post} />
       </div>
     </li>
   );

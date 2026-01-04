@@ -14,6 +14,25 @@ export const GetAllPosts = Cache(
                 user: true,
               },
             },
+            likeForComments: {
+              include: {
+                user: true,
+                comment: true,
+              },
+            },
+            replays: {
+              include: {
+                user: true,
+                comment: true,
+                post: true,
+                likeForReplays: {
+                  include: {
+                    user: true,
+                  },
+                },
+              },
+              orderBy: [{ isAuthor: "desc" }, { createdAt: "desc" }],
+            },
           },
           orderBy: [{ isAuthor: "desc" }, { createdAt: "desc" }],
         },

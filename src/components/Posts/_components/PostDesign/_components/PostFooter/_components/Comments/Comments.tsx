@@ -1,20 +1,23 @@
 "use client";
+import { User } from "@prisma/client";
 import CommentDesign from "./_components/CommentDesign";
-import { CommentDBWithRelations } from "@/lib/types/types";
+import { PostType } from "@/lib/types/types";
 // ===================================================================================
-function Comments({
-  postComments,
+ function Comments({
+  post,
   addComment,
+  user
 }: {
-  postComments: CommentDBWithRelations[];
+  post: PostType;
   addComment: boolean;
+  user:User
 }) {
   return (
     <>
-      {addComment && postComments.length > 0 && (
+      {addComment && post.comments.length > 0 && (
         <ul className="p-3 flex mt-4 flex-col gap-7 ">
-          {postComments.map((comment) => (
-            <CommentDesign key={comment.id} comment={comment} />
+          {post.comments.map((comment) => (
+            <CommentDesign key={comment.id} comment={comment} postId={post.id} user={user} />
           ))}
         </ul>
       )}

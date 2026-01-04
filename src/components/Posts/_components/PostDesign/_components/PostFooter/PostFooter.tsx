@@ -20,7 +20,7 @@ function PostFooter({ user, post }: { user: User; post: PostType }) {
         <SendButton />
       </div>
       <AddComment user={user} postId={post.id} addComment={addComment} />
-      <Comments postComments={post.comments} addComment={addComment} />
+      <Comments post={post} addComment={addComment} user={user}  />
     </div>
   );
 }
