@@ -32,8 +32,8 @@ function BoxEditSmallImage({ user }: { user: User }) {
         </button>
       </div>
       <div
-        className={`absolute -bottom-44 -right-25 shadow bg-white rounded-2xl flex flex-col gap-2 z-30 p-2 w-55 transition-css box
-           ${showBoxEditImage ? "opacity-100" : "opacity-0 -translate-y-70"}`}
+        className={`absolute -bottom-47 -right-25 shadow bg-white rounded-2xl flex-col gap-2 z-30 p-2 w-55 transition-css box
+           ${showBoxEditImage ? "flex" : "hidden"}`}
       >
         <ButtonChangeImage />
         <ButtonSave user={user} setShowBoxEditImage={setShowBoxEditImage} />

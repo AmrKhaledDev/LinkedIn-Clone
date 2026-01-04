@@ -26,6 +26,18 @@ export type PostType = Prisma.PostGetPayload<{
         };
       };
     };
+    likes: {
+      include: {
+        user: true;
+        post: true;
+      };
+    };
+    disLikes: {
+      include: {
+        user: true;
+        post: true;
+      };
+    };
   };
 }>;
 export type UserWithRelationType = Prisma.UserGetPayload<{
@@ -41,6 +53,18 @@ export type UserWithRelationType = Prisma.UserGetPayload<{
                 user: true;
               };
             };
+          };
+        };
+        likes: {
+          include: {
+            user: true;
+            post: true;
+          };
+        };
+        disLikes: {
+          include: {
+            user: true;
+            post: true;
           };
         };
       };
@@ -78,7 +102,4 @@ export type ContextStatesType = {
   setTitleArticle: React.Dispatch<React.SetStateAction<string | null>>;
   contentArticle: string | null;
   setContentArticle: React.Dispatch<React.SetStateAction<string | null>>;
-  // Boolean
-  addComment: boolean;
-  setAddComment: React.Dispatch<React.SetStateAction<boolean>>;
 };

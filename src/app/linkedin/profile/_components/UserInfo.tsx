@@ -8,12 +8,14 @@ function UserInfo({ user }: { user: UserWithRelationType }) {
       id: crypto.randomUUID(),
       nameinfo: "Email Address",
       info: user.email,
+      type: "email",
       icon: <MdOutlineAlternateEmail />,
     },
     {
       id: crypto.randomUUID(),
       nameinfo: "Location",
       info: user.city && user.country && user.city + ", " + user.country,
+      type: "location",
       icon: <IoLocationSharp />,
     },
   ];
@@ -22,7 +24,10 @@ function UserInfo({ user }: { user: UserWithRelationType }) {
       {infoList.map(
         (info) =>
           info.info && (
-            <div className="flex items-center gap-3 group cursor-default" key={info.id}>
+            <div
+              className="flex items-center gap-3 group cursor-default"
+              key={info.id}
+            >
               <div className="p-2 bg-gray-50 rounded-lg group-hover:bg-blue-50 transition-colors">
                 <i className="text-xl text-slate-500 group-hover:text-blue-600">
                   {info.icon}
@@ -32,7 +37,11 @@ function UserInfo({ user }: { user: UserWithRelationType }) {
                 <span className="text-[11px] uppercase text-gray-400 font-bold tracking-widest">
                   {info.nameinfo}
                 </span>
-                <span className="text-sm font-semibold text-slate-700">
+                <span
+                  className={`text-sm font-semibold text-slate-700 ${
+                    info.type === "location" && "capitalize"
+                  }`}
+                >
                   {info.info}
                 </span>
               </div>

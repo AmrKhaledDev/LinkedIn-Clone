@@ -30,12 +30,11 @@ async function TopProfile() {
         </div>
         {/* text */}
         <div className="px-3">
-          <h2 className="text-xl font-semibold line-clamp-1">
-            {user.name.charAt(0).toUpperCase() +
-              user.name.slice(1).toLocaleLowerCase()}
+          <h2 className="text-xl capitalize font-semibold line-clamp-1">
+            {user.name}
           </h2>
           <h3 className="text-[13px] line-clamp-1">{user.headline}</h3>
-          <h3 className="text-[13px] text-blackLight line-clamp-1">
+          <h3 className="text-[13px] text-blackLight line-clamp-1 capitalize">
             {user.city}
           </h3>
           <h3 className="text-[12px] line-clamp-1">{user.school}</h3>

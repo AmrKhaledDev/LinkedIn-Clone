@@ -64,6 +64,8 @@ model User {
   updatedAt     DateTime  @updatedAt
   articles      Article[]
   comments      Comment[]
+  likes         Like[]
+  disLikes      DisLike[]
 
   @@map("users")
 }
@@ -78,16 +80,48 @@ model Post {
   userId      String
   user        User      @relation(fields: [userId], references: [id], onDelete: Cascade)
   comments    Comment[]
+  likes       Like[]
+  disLikes    DisLike[]
+}
+
+model Like {
+  id String @id @default(cuid())
+
+  userId String
+  postId String
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  post Post @relation(fields: [postId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([userId, postId])
+}
+
+model DisLike {
+  id String @id @default(cuid())
+
+  userId String
+  postId String
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  post Post @relation(fields: [postId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([userId, postId])
 }
 
 model Comment {
-  id      String @id @default(cuid())
-  content String
-  postId  String
-  userId  String
-  isAuthor Boolean @default(false)
-  post    Post   @relation(fields: [postId], references: [id], onDelete: Cascade)
-  user    User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  id        String   @id @default(cuid())
+  content   String
+  postId    String
+  userId    String
+  isAuthor  Boolean  @default(false)
+  post      Post     @relation(fields: [postId], references: [id], onDelete: Cascade)
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }

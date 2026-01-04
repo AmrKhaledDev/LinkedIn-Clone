@@ -16,11 +16,14 @@ function UserDetails({ user }: { user: UserWithRelationType }) {
         {/* Name and Join Date */}
         <div className="flex items-center gap-3 justify-between">
           <div className="flex items-center gap-2">
-            <h2 className="sm:text-3xl text-2xl font-bold text-slate-900 tracking-tight">
-              {user.name.charAt(0).toUpperCase() +
-                user.name.slice(1).toLocaleLowerCase()}
+            <h2 className="sm:text-3xl capitalize text-2xl font-bold text-slate-900 tracking-tight">
+              {user.name}
             </h2>
-            <i className="text-blue-500 sm:text-xl" title="Super Admin"><BsFillPatchCheckFill/></i>
+            {user.role === "SUPER_ADMIN" && (
+              <i className="text-blue-500 sm:text-xl" title="Super Admin">
+                <BsFillPatchCheckFill />
+              </i>
+            )}
           </div>
           <span className="px-4 py-1.5 sm:block hidden bg-blue-50 text-blue-600 text-xs font-bold rounded-full uppercase tracking-wider">
             Joined In {formatted}

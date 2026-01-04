@@ -3,10 +3,8 @@ import Image from "next/image";
 import PostDetails from "./_components/PostDetails";
 import OwnerPostDetails from "./_components/OwnerPostDetails";
 import { GetUser } from "@/lib/GetUser";
-import ActionsInPost from "./_components/PostFooter";
 import EditPost from "./_components/EditPost";
-import Comments from "./_components/Comments/Comments";
-import PostFooter from "./_components/PostFooter";
+import PostFooter from "./_components/PostFooter/PostFooter";
 // =====================================================================
 async function PostDesign({ post }: { post: PostType }) {
   const user = await GetUser();
@@ -21,7 +19,7 @@ async function PostDesign({ post }: { post: PostType }) {
           <div className="flex items-center gap-2">
             <div className="flex items-center gap-1">
               <Image src={"/like.svg"} alt="Like" width={20} height={20} />
-              <span className="text-blackLight text-[13px]">17</span>
+              <span className="text-blackLight text-[13px]">{post.likes.length}</span>
             </div>
             <div className="flex items-center gap-1">
               <Image
@@ -30,7 +28,7 @@ async function PostDesign({ post }: { post: PostType }) {
                 width={17.5}
                 height={17.5}
               />
-              <span className="text-blackLight text-[13px]">10</span>
+              <span className="text-blackLight text-[13px]">{post.disLikes.length}</span>
             </div>
           </div>
           <h2 className="text-blackLight text-[13px] pt-1 ">

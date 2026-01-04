@@ -30,6 +30,18 @@ export const GetUserWithRelation = async () => {
                 },
                 orderBy: [{ isAuthor: "desc" }, { createdAt: "desc" }],
               },
+              likes: {
+                include: {
+                  user: true,
+                  post: true,
+                },
+              },
+              disLikes: {
+                include: {
+                  user: true,
+                  post: true,
+                },
+              },
             },
           },
         },

@@ -17,6 +17,18 @@ export const GetAllPosts = Cache(
           },
           orderBy: [{ isAuthor: "desc" }, { createdAt: "desc" }],
         },
+        likes: {
+          include: {
+            user: true,
+            post: true,
+          },
+        },
+        disLikes: {
+          include: {
+            user: true,
+            post: true,
+          },
+        },
       },
       orderBy: {
         createdAt: "desc",

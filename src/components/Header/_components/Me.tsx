@@ -71,7 +71,7 @@ function MeProfile({
             className="w-12.5 h-12.5 shrink-0 object-cover rounded-full border-2 border-gray-200"
           />
           <div className="flex flex-col">
-            <span className="font-semibold">{user?.name}</span>
+            <span className="font-semibold capitalize">{user?.name}</span>
             <span className="text-[13px] font-normal line-clamp-1 text-blackLight">{user?.headline ? user.headline :""}</span>
           </div>
         </div>

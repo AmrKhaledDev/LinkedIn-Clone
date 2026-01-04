@@ -7,8 +7,14 @@ import { BsFillPatchCheckFill } from "react-icons/bs";
 import { FaPlus } from "react-icons/fa6";
 // ==============================================================
 function OwnerPostDetails({ post, user }: { post: PostType; user: User }) {
-  const date = new Date(post.createdAt);
-  const formatted = date.toLocaleDateString("en-GB");
+  const date = new Date(user.createdAt);
+
+  const options = {
+    day: "numeric",
+    month: "short",
+    year: "numeric",
+  } as const;
+  const formatted = date.toLocaleDateString("en-GB", options);
   if (!post) return;
   return (
     <div className="flex gap-2 p-3">
@@ -28,14 +34,18 @@ function OwnerPostDetails({ post, user }: { post: PostType; user: User }) {
                   ? "/linkedin/profile"
                   : `/linkedin/u/${post.user.id}`
               }
-              className="font-semibold text-[17px] hover:text-primary hover:underline line-clamp-1 w-fit"
+              className="font-semibold capitalize text-[19px] hover:text-primary hover:underline line-clamp-1 w-fit"
             >
-              {post.user.name.charAt(0).toUpperCase() +
-                post.user.name.slice(1).toLocaleLowerCase()}
+              {post.user.name}
             </Link>
-            <i className="text-blue-500 text pb-0.5 text-[14px]" title="Super Admin">
-              <BsFillPatchCheckFill/>
-            </i>
+            {post.user.role === "SUPER_ADMIN" && (
+              <i
+                className="text-blue-500 text pb-0.5 text-[14px]"
+                title="Super Admin"
+              >
+                <BsFillPatchCheckFill />
+              </i>
+            )}
           </div>
           <h2 className="text-[13px] text-slate-700 line-clamp-1">
             {post.user.headline}
@@ -43,7 +53,7 @@ function OwnerPostDetails({ post, user }: { post: PostType; user: User }) {
           <p className="text-[11px] text-slate-700 line-clamp-1">{formatted}</p>
         </div>
         {user.id !== post.user.id && (
-          <button className="text-[17px] cursor-pointer gap-1 flex items-center text-primary font-bold hover:bg-blue-100 rounded px-2 py-2 transition-css hover:text-blue-800 h-fit">
+          <button className="text-[17px] cursor-pointer gap-1 flex items-center text-primary font-bold hover:bg-blue-50 rounded px-2 py-2 transition-css hover:text-blue-800 h-fit">
             <i className="text-[20px] -translate-y-[0.6px]">
               <FaPlus />
             </i>
