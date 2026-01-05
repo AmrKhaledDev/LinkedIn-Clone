@@ -4,7 +4,10 @@ import Image from "next/image";
 import { BsFillPatchCheckFill } from "react-icons/bs";
 import CommentFooter from "./CommentFooter";
 import { User } from "@prisma/client";
-import ReplayDesign from "./ReplayDesign";
+import ReplayDesign from "./ReplayDesign/ReplayDesign";
+import EditComment from "./EditCommentBox";
+import { useState } from "react";
+import EditCommentContent from "./EditCommentContent";
 // ===============================================================================
 function CommentDesign({
   comment,
@@ -15,8 +18,9 @@ function CommentDesign({
   user: User;
   postId: string;
 }) {
+  const [editCommentText, setEditCommentText] = useState(false);
   return (
-    <li className="bg-gray-100 p-3 rounded-2xl">
+    <li className="bg-white p-3 rounded-2xl">
       <div className="flex gap-2 w-full">
         <Image
           src={comment.user.image || "/user.svg"}
@@ -27,38 +31,59 @@ function CommentDesign({
         />
         <div className="flex flex-col gap-2 w-full">
           <div>
-            <div className="flex items-center gap-2">
-              <div className="flex items-center gap-1">
-                <h2 className="line-clamp-1 font-semibold text-[18px] capitalize">
-                  {comment.user.name}
-                </h2>
-                {comment.user.role === "SUPER_ADMIN" && (
-                  <i
-                    className="text-blue-500 text text-[14px]"
-                    title="Super Admin"
-                  >
-                    <BsFillPatchCheckFill />
-                  </i>
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-2">
+                <div className="flex items-center gap-1">
+                  <h2 className="line-clamp-1 font-semibold text-[18px] capitalize">
+                    {comment.user.name}
+                  </h2>
+                  {comment.user.role === "SUPER_ADMIN" && (
+                    <i
+                      className="text-blue-500 text text-[14px]"
+                      title="Super Admin"
+                    >
+                      <BsFillPatchCheckFill />
+                    </i>
+                  )}
+                </div>
+                {comment.isAuthor && (
+                  <p className=" capitalize font-semibold px-2 text-[12px] rounded  bg-gray-600 text-white">
+                    author
+                  </p>
+                )}
+                {comment.isEdited && (
+                  <p className="inline-block rounded-md bg-gray-100 px-2 py-0.5 text-[11px] font-semibold tracking-wide text-gray-600">
+                    Edited
+                  </p>
                 )}
               </div>
-              {comment.isAuthor && (
-                <p className=" capitalize font-semibold px-2 text-[12px] rounded  bg-gray-600 text-white">
-                  author
-                </p>
-              )}
+              <EditComment
+                user={user}
+                setEditCommentText={setEditCommentText}
+                comment={comment}
+              />
             </div>
             <h3 className="line-clamp-1 text-[13px] text-blackLight font-normal">
               {comment.user.headline}
             </h3>
           </div>
-          <p>{comment.content}</p>
+          {editCommentText ? (
+            <EditCommentContent
+              user={user}
+              comment={comment}
+              setEditCommentText={setEditCommentText}
+              editCommentText={editCommentText}
+            />
+          ) : (
+            <p>{comment.content}</p>
+          )}
           <CommentFooter user={user} comment={comment} postId={postId} />
         </div>
       </div>
       <div className="ml-13.5 mt-2 flex flex-col gap-2">
         {comment.replays.length > 0 &&
           comment.replays.map((replay) => (
-              <ReplayDesign replay={replay} key={replay.id} user={user}/>
+            <ReplayDesign replay={replay} key={replay.id} user={user} />
           ))}
       </div>
     </li>

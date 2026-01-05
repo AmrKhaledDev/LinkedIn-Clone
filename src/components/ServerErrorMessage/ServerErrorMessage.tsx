@@ -1,12 +1,12 @@
 "use client";
 
-import { BiSolidError } from "react-icons/bi";
+import { IoWarning } from "react-icons/io5";
 // ===================================================================
 function ServerErrorMessage({ message }: { message: string }) {
   return (
-    <p className="text-red-500 p-2 rounded bg-red-200 flex items-center gap-2">
-      <i className="text-xl">
-        <BiSolidError />
+    <p className="bg-red-500 py-1 px-2 rounded flex items-center gap-2 font-semibold sm:text-[13px] text-[12px] mt-1 text-white">
+      <i className="text-xl sm:block hidden">
+        <IoWarning />
       </i>
       {message}
     </p>

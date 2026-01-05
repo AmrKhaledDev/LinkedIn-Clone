@@ -4,8 +4,10 @@ import { Dispatch, SetStateAction } from "react";
 import { MdComment } from "react-icons/md";
 // ==========================================================================================
 function CommentButton({
+  addComment,
   setAddComment,
 }: {
+  addComment:boolean,
   setAddComment: Dispatch<SetStateAction<boolean>>;
 }) {
   const handleClick = () => setAddComment(true);
@@ -14,14 +16,14 @@ function CommentButton({
     <div
       onClick={handleClick}
       className={`
-      flex items-center gap-2 cursor-pointer py-2 px-4 rounded transition-css
-      hover:bg-gray-100 text-slate-700
+      flex items-center gap-2 cursor-pointer sm:py-2 sm:px-4 py-1 px-2 rounded transition-css
+       text-slate-700 ${addComment ? "bg-gray-50" : "hover:bg-gray-100"}
     `}
     >
-      <i className="text-[20px]">
+      <i className="sm:text-[20px] text-[25px]">
         <MdComment />
       </i>
-      <h2 className="text-[14px] font-bold">Comment</h2>
+      <h2 className="sm:text-[14px] sm:block hidden text-[12px] font-bold">Comment</h2>
     </div>
   );
 }

@@ -15,7 +15,7 @@ import { PostType } from "@/lib/types/types";
   return (
     <>
       {addComment && post.comments.length > 0 && (
-        <ul className="p-3 flex mt-4 flex-col gap-7 ">
+        <ul className="p-3 flex flex-col ">
           {post.comments.map((comment) => (
             <CommentDesign key={comment.id} comment={comment} postId={post.id} user={user} />
           ))}

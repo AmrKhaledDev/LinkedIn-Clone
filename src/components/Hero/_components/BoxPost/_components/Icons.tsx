@@ -18,11 +18,11 @@ function Icons({
     }
   };
   return (
-    <div className="flex items-center gap-5">
+    <div className="flex items-center md:gap-5 sm:gap-3 gap-1">
       <div className="flex items-center gap-3  py-2 pr-3">
         <div>
           <label
-            className="text-[28px] text-gray-500 cursor-pointer hover:text-primary transition-css"
+            className="md:text-[28px] sm:text-[23px] text-[20px] text-gray-500 cursor-pointer hover:text-primary transition-css"
             htmlFor="image-post"
           >
             <FaRegImage className=" hover:scale-105" />
@@ -37,7 +37,7 @@ function Icons({
         </div>
         <div>
           <label
-            className="text-[28px] text-gray-500 cursor-pointer hover:text-primary transition-css"
+            className="md:text-[28px] sm:text-[23px] text-[20px] text-gray-500 cursor-pointer hover:text-primary transition-css"
             htmlFor="video-post"
           >
             <IoLogoYoutube className=" hover:scale-105" />

@@ -10,7 +10,6 @@ import ButtonSubmit from "@/components/ButtonSubmit/ButtonSubmit";
 import { StatesRegister } from "@/lib/interfaces/interfaces";
 import Or from "@/components/Or/Or";
 import ServerErrorMessage from "@/components/ServerErrorMessage/ServerErrorMessage";
-import ValidationErrorMessage from "@/components/ValidationErrorMessage/ValidationErrorMessage";
 // ============================================================
 function FormRegister() {
   const [states, setStates] = useState<StatesRegister>({
@@ -100,11 +99,11 @@ function FormRegister() {
           }
           placeholder="Enter your name"
           className={`border border-black py-4 px-3 rounded disabled:border-gray-200 ${
-            states.errors.name && "border-red-500"
+            states.errors.name && "border-red-500 border-2" 
           }`}
         />
         {states.errors.name && (
-          <ValidationErrorMessage message={states.errors.name} />
+          <ServerErrorMessage message={states.errors.name} />
         )}
       </div>
       {/* Email */}
@@ -119,12 +118,12 @@ function FormRegister() {
             setStates((prev) => ({ ...prev, email: e.target.value }))
           }
           className={`border border-black py-4 px-3 rounded disabled:border-gray-200 ${
-            states.errors.email && "border-red-500"
+            states.errors.email && "border-red-500 border-2"
           }`}
           placeholder="Enter your email"
         />
         {states.errors.email && (
-          <ValidationErrorMessage message={states.errors.email} />
+          <ServerErrorMessage message={states.errors.email} />
         )}
       </div>
       {/* Password */}
@@ -140,7 +139,7 @@ function FormRegister() {
               setStates((prev) => ({ ...prev, password: e.target.value }))
             }
             className={`border border-black py-4 px-3 rounded disabled:border-gray-200 ${
-              states.errors.password && "border-red-500"
+              states.errors.password && "border-re border-2d-500"
             }`}
             placeholder="Enter your password"
           />
@@ -150,7 +149,7 @@ function FormRegister() {
           />
         </div>
         {states.errors.password && (
-          <ValidationErrorMessage message={states.errors.password} />
+          <ServerErrorMessage message={states.errors.password} />
         )}
       </div>
       {serverError && <ServerErrorMessage message={serverError} />}

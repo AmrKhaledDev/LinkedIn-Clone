@@ -10,7 +10,6 @@ import { LoginAction } from "@/lib/actions/LoginAction";
 import ButtonAuthO from "@/components/ButtonAuthO/ButtonAuthO";
 import Or from "@/components/Or/Or";
 import ServerErrorMessage from "@/components/ServerErrorMessage/ServerErrorMessage";
-import ValidationErrorMessage from "@/components/ValidationErrorMessage/ValidationErrorMessage";
 // ============================================================
 function FormLogin() {
   const [states, setStates] = useState<StatesLogin>({
@@ -78,7 +77,7 @@ function FormLogin() {
   return (
     <form
       onSubmit={handleSubmit}
-      className="bg-white shadow-xl px-6 py-10 rounded-xl flex flex-col gap-3 sm:w-95 w-full "
+      className="bg-white shadow-xl px-6 py-10 rounded-xl flex flex-col gap-3 sm:w-100 w-full "
     >
       <h1 className="font-semibold text-3xl mb-3">Sign in</h1>
       {!states.loading && (
@@ -101,12 +100,12 @@ function FormLogin() {
             setStates((prev) => ({ ...prev, email: e.target.value }))
           }
           className={`border border-black py-4 px-3 rounded disabled:border-gray-200 ${
-            states.errors.email && "border-red-500"
+            states.errors.email && "border-red-500 border-2"
           }`}
           placeholder="Enter your email"
         />
         {states.errors.email && (
-          <ValidationErrorMessage message={states.errors.email} />
+          <ServerErrorMessage message={states.errors.email} />
         )}
       </div>
       {/* Password */}
@@ -122,7 +121,7 @@ function FormLogin() {
               setStates((prev) => ({ ...prev, password: e.target.value }))
             }
             className={`border border-black py-4 px-3 rounded disabled:border-gray-200 ${
-              states.errors.password && "border-red-500"
+              states.errors.password && "border-red-500 border-2"
             }`}
             placeholder="Enter your password"
           />
@@ -132,7 +131,7 @@ function FormLogin() {
           />
         </div>
         {states.errors.password && (
-          <ValidationErrorMessage message={states.errors.password} />
+          <ServerErrorMessage message={states.errors.password} />
         )}
       </div>
       {serverError && <ServerErrorMessage message={serverError} />}

@@ -81,21 +81,20 @@ function BoxPost({
     >
       <div className="shadow bg-white rounded w-190 div">
         <TopBoxPost setShowBoxPost={setShowBoxPost} />
-        <div className="p-5 flex flex-col gap-5">
+        <div className="md:p-5 sm:p-3 p-2 flex flex-col gap-5">
           <div className="flex items-center gap-3">
             <Image
               src={user.image ? user.image : "/user.svg"}
               alt="your photo"
               width={100}
               height={100}
-              className="rounded-full w-15 h-15 shrink-0 object-cover border-2 border-gray-200"
+              className="rounded-full md:w-15 md:h-15 w-12 h-12 shrink-0 object-cover border-2 border-gray-200"
             />
             <div className="flex flex-col ">
-              <h2 className="text-xl font-semibold">
-                {user.name.charAt(0).toUpperCase() +
-                  user.name.slice(1).toLocaleLowerCase()}
+              <h2 className="md:text-xl sm:text-[17px] font-semibold capitalize">
+                {user.name}
               </h2>
-              <h3 className="text-gray-400 text-[14px] font-semibold">
+              <h3 className="text-gray-400 sm:text-[14px] text-[13px] font-semibold">
                 {user.email}
               </h3>
             </div>
@@ -104,9 +103,8 @@ function BoxPost({
             ref={textareaRef}
             value={contentTxt}
             onChange={(e) => setContentTxt(e.target.value)}
-            rows={9}
             placeholder="what do you want to talk about?"
-            className="rounded p-2 outline-none resize-none text-xl"
+            className="rounded p-2 md:min-h-62.5 sm:min-h-52 min-h-45 outline-none resize-none md:text-xl sm:text-[17px]"
           />
           {mediaUrl && (
             <div className="relative div">

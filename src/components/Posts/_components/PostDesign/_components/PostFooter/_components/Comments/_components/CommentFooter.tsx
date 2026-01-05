@@ -79,7 +79,7 @@ function CommentFooter({
                   {isLikeForComment ? (
                     comment.likeForComments.length > 1 ? (
                       <span className="flex items-center gap-1">
-                        you , 
+                        you, 
                         <span>{comment.likeForComments.length - 1}</span>
                       </span>
                     ) : (
@@ -115,7 +115,7 @@ function CommentFooter({
         </div>
       </div>
       <div
-        className={`mt-2 w-full bg-white rounded-2xl overflow-hidden  items-end flex-col ${
+        className={`mt-2 w-full bg-white border border-gray-100 rounded-2xl overflow-hidden  items-end flex-col ${
           showBoxReplay ? "flex" : "hidden"
         }`}
       >

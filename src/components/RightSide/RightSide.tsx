@@ -5,7 +5,7 @@ import { FaArrowRightLong } from "react-icons/fa6";
 // =====================================================
 function RightSide() {
   return (
-    <aside className="w-80 flex flex-col gap-2 ">
+    <aside className="w-80 flex-col gap-2 xl:flex hidden">
       <div className="shadow rounded overflow-hidden p-3 flex flex-col gap-5 bg-white">
         <div className="flex items-center justify-between">
           <h2 className="text-blackLight">Add to your feed</h2>

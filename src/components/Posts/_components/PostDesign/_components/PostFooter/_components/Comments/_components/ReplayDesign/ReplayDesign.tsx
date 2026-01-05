@@ -5,6 +5,7 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 import { BsFillPatchCheckFill } from "react-icons/bs";
+import EditReplayBox from "./_components/EditReplayBox";
 // =====================================================================
 function ReplayDesign({
   user,
@@ -24,7 +25,7 @@ function ReplayDesign({
     (like) => like.userId === user.id
   );
   return (
-    <div className="flex gap-2 w-full bg-white p-3 rounded-xl">
+    <div className="flex gap-2 w-full bg-gray-100 p-3 rounded-xl">
       <Image
         src={replay.user.image || "/user.svg"}
         alt="User Image"
@@ -34,25 +35,28 @@ function ReplayDesign({
       />
       <div className="flex flex-col gap-1 w-full">
         <div>
-          <div className="flex items-center gap-2">
-            <div className="flex items-center gap-1">
-              <h2 className="line-clamp-1 font-semibold capitalize">
-                {replay.user.name}
-              </h2>
-              {replay.user.role === "SUPER_ADMIN" && (
-                <i
-                  className="text-blue-500 text text-[12px]"
-                  title="Super Admin"
-                >
-                  <BsFillPatchCheckFill />
-                </i>
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-2">
+              <div className="flex items-center gap-1">
+                <h2 className="line-clamp-1 font-semibold capitalize">
+                  {replay.user.name}
+                </h2>
+                {replay.user.role === "SUPER_ADMIN" && (
+                  <i
+                    className="text-blue-500 text text-[12px]"
+                    title="Super Admin"
+                  >
+                    <BsFillPatchCheckFill />
+                  </i>
+                )}
+              </div>
+              {replay.isAuthor && (
+                <p className=" capitalize font-semibold px-2 text-[10px] rounded  bg-gray-600 text-white">
+                  author
+                </p>
               )}
             </div>
-            {replay.isAuthor && (
-              <p className=" capitalize font-semibold px-2 text-[10px] rounded  bg-gray-600 text-white">
-                author
-              </p>
-            )}
+            <EditReplayBox user={user} replay={replay} />
           </div>
           <h3 className="line-clamp-1 text-[11px] text-blackLight font-normal">
             {replay.user.headline}
@@ -78,7 +82,7 @@ function ReplayDesign({
                   {isLikeForReplay ? (
                     replay.likeForReplays.length > 1 ? (
                       <span>
-                        you , <span>{replay.likeForReplays.length -1}</span>
+                        you, <span>{replay.likeForReplays.length - 1}</span>
                       </span>
                     ) : (
                       <span>you</span>

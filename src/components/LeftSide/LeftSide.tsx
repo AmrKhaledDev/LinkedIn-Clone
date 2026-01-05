@@ -5,7 +5,7 @@ import TopProfile from "./_components/TopProfile";
 // ===========================================================
 function LeftSide() {
   return (
-    <aside className="w-65 flex flex-col gap-2">
+    <aside className="sm:w-65 flex flex-col gap-2 w-full">
       <TopProfile />
       <div className="p-5 shadow rounded bg-white">
         <Link
@@ -13,15 +13,15 @@ function LeftSide() {
           className="group hover:underline flex items-center justify-between"
         >
           <div>
-            <h3 className="text-[13px]">Connections</h3>
-            <h2 className="text-blackLight text-[14px]">Grow your network</h2>
+            <h3 className="sm:text-[13px]">Connections</h3>
+            <h2 className="text-blackLight sm:text-[14px]">Grow your network</h2>
           </div>
           <Image
             src={"/add-friend-icon.svg"}
             alt="Add Friend Icon"
             width={50}
             height={50}
-            className="w-5 border-b group-hover:border-b-black border-transparent"
+            className="sm:w-5 w-6 border-b group-hover:border-b-black border-transparent"
           />
         </Link>
       </div>

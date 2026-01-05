@@ -20,14 +20,14 @@ function PostDetails({ post }: { post: PostType }) {
   return (
     <div className="w-full flex flex-col gap-1">
       <div className="px-3 pb-2">
-        <p className="text-slate-800 whitespace-pre-line">
+        <p className="text-slate-800 sm:text-[15px] text-[14px] whitespace-pre-line">
           {displayText}
         </p>
         
         {isLongText && (
           <button
             onClick={() => setIsExpanded(!isExpanded)}
-            className="text-blue-600 hover:underline font-medium mr-1 text-[14px] cursor-pointer"
+            className="text-blue-600 hover:underline font-medium mr-1 sm:text-[14px] text-[13px] cursor-pointer"
           >
             {isExpanded ? "Show less" : "Show more"}
           </button>

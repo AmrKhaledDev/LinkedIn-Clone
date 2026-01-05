@@ -36,7 +36,7 @@ function AddComment({
         width={40}
         height={40}
         alt="Your Photo"
-        className="rounded-full w-10 h-10 shrink-0 button object-cover border-2 border-gray-100"
+        className="rounded-full md:w-10 md:h-10 w-8 h-8 shrink-0 button object-cover border-2 border-gray-100"
       />
       <div className="w-full relative">
         <input
@@ -51,7 +51,7 @@ function AddComment({
             setCommentText(value);
           }}
           value={commentText}
-          className="py-3 px-4 input border-2 border-gray-400 text-[14px] outline-none w-full resize-none font-semibold tracking-wider overflow-hidden 
+          className="md:py-3 md:px-4 py-1.5 px-3 input border-2 border-gray-400 sm:text-[14px] text-[13px] outline-none w-full resize-none font-semibold tracking-wider overflow-hidden 
           rounded-full
          "
           placeholder="Add a comment..."
@@ -63,8 +63,8 @@ function AddComment({
           onClick={handleAddComment}
           title="Send Comment"
           className={`absolute ${
-            loading ? "bg-blue-50 cursor-wait" : "p-2"
-          } text-[17px] transition-css  font-semibold rounded-full top-2 right-2
+            loading ? "bg-blue-50 cursor-wait" : "sm:p-2 p-1.5"
+          } sm:text-[17px] transition-css  font-semibold rounded-full sm:top-2 top-1 sm:right-2 right-1
             ${
               commentText.trim().length < 1
                 ? "bg-gray-200 text-gray-500 cursor-default"

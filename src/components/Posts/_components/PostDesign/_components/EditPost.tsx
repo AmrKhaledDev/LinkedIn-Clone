@@ -32,7 +32,7 @@ function EditPost({ postId }: EditPostProps) {
   const isOpen = openId === postId;
 
   return (
-    <div id={`edit-post-${postId}`} className="py-2 border-b border-b-gray-200 mx-3 flex items-center justify-end relative">
+    <div id={`edit-post-${postId}`} className="py-2 mx-3 flex items-center justify-end relative">
       <div className="w-fit relative">
         <div>
           <Image

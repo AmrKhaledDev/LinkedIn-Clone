@@ -23,7 +23,7 @@ async function page() {
   return (
     <main className="space-section min-h-screen bg-[#F4F2EE]">
       <div className="container-css p-3">
-        <div className="lg:w-187.5 md:w-176 flex flex-col gap-5">
+        <div className="lg:w-187.5 md:w-176 flex flex-col gap-2">
           <div className="rounded flex flex-col bg-white shadow">
             <div className="relative">
               <BigImage user={user} />

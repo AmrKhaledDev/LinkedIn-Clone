@@ -16,8 +16,8 @@ async function Hero() {
   if (!user) redirect("/login");
   const posts = await GetAllPosts();
   return (
-    <main className="flex-1 flex flex-col gap-3 overflow-hidden">
-      <div className="w-full p-5 shadow rounded flex flex-col gap-3 bg-white">
+    <main className="flex-1 flex flex-col gap-3 ">
+      <div className="w-full md:p-5 sm:p:3 p-2 shadow rounded flex flex-col gap-3 bg-white">
         <div className="flex items-center gap-3 ">
           <Link href={"/linkedin/profile"} className="shrink-0">
             <Image
@@ -25,7 +25,7 @@ async function Hero() {
               alt="Your Photo"
               width={100}
               height={100}
-              className="w-12.5 h-12.5 shrink-0 object-cover rounded-full border-2 border-gray-200"
+              className="md:w-12.5 md:h-12.5 w-10 h-10  shrink-0 object-cover rounded-full border-2 border-gray-200"
             />
           </Link>
           <ButtonAddPost user={user} />
@@ -41,9 +41,9 @@ async function Hero() {
                 alt={action.nameAction}
                 width={50}
                 height={50}
-                className="w-6"
+                className="sm:w-6 w-7"
               />
-              {action.nameAction}
+              <span className="sm:block hidden">{action.nameAction}</span>
             </button>
           ))}
           <Link
@@ -55,9 +55,9 @@ async function Hero() {
               alt={"Article icons"}
               width={50}
               height={50}
-              className="w-6"
+                className="sm:w-6 w-7"
             />
-            Write article
+           <span className="sm:block hidden"> Write article</span>
           </Link>
         </ul>
       </div>

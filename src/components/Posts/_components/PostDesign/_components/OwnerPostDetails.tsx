@@ -23,7 +23,7 @@ function OwnerPostDetails({ post, user }: { post: PostType; user: User }) {
         alt="Your Image"
         width={70}
         height={70}
-        className="w-15 h-15 shrink-0 rounded-full object-cover border-2 border-gray-200"
+        className="sm:w-15 sm:h-15 w-12 h-12 shrink-0 rounded-full object-cover border-2 border-gray-200"
       />
       <div className="w-full flex justify-between">
         <div>
@@ -34,27 +34,27 @@ function OwnerPostDetails({ post, user }: { post: PostType; user: User }) {
                   ? "/linkedin/profile"
                   : `/linkedin/u/${post.user.id}`
               }
-              className="font-semibold capitalize text-[19px] hover:text-primary hover:underline line-clamp-1 w-fit"
+              className="font-semibold capitalize sm:text-[19px] text-[17px] hover:text-primary hover:underline line-clamp-1 w-fit"
             >
               {post.user.name}
             </Link>
             {post.user.role === "SUPER_ADMIN" && (
               <i
-                className="text-blue-500 text pb-0.5 text-[14px]"
+                className="text-blue-500 text pb-0.5 sm:text-[14px] text-[13px]"
                 title="Super Admin"
               >
                 <BsFillPatchCheckFill />
               </i>
             )}
           </div>
-          <h2 className="text-[13px] text-slate-700 line-clamp-1">
+          <h2 className="sm:text-[13px] text-[12px] text-slate-700 line-clamp-1 ">
             {post.user.headline}
           </h2>
           <p className="text-[11px] text-slate-700 line-clamp-1">{formatted}</p>
         </div>
         {user.id !== post.user.id && (
-          <button className="text-[17px] cursor-pointer gap-1 flex items-center text-primary font-bold hover:bg-blue-50 rounded px-2 py-2 transition-css hover:text-blue-800 h-fit">
-            <i className="text-[20px] -translate-y-[0.6px]">
+          <button className="sm:text-[17px] text-[14px] cursor-pointer gap-1 flex items-center text-primary font-bold hover:bg-blue-50 rounded px-2 py-2 transition-css hover:text-blue-800 h-fit">
+            <i className="sm:text-[20px] -translate-y-[0.6px]">
               <FaPlus />
             </i>
             Follow
