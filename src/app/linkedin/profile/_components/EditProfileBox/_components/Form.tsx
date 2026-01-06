@@ -1,6 +1,6 @@
 "use client";
 import Loader from "@/components/Loader/Loader";
-import { EditProfileAction } from "@/lib/actions/EditProfileAction";
+import { EditProfileAction } from "@/lib/actions/EditActions/EditProfileAction";
 import { FormEditProfileErrors } from "@/lib/interfaces/interfaces";
 import { EditProfileSchema } from "@/lib/schemas/EditProfileSchema";
 import { User } from "@prisma/client";

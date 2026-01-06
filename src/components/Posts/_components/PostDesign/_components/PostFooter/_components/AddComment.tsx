@@ -1,6 +1,6 @@
 "use client";
 import { ContextStates } from "@/context/Context";
-import { CreateCommentAction } from "@/lib/actions/CreateCommentAction";
+import { CreateCommentAction } from "@/lib/actions/CreateActions/CreateCommentAction";
 import { User } from "@prisma/client";
 import Image from "next/image";
 import { useRouter } from "next/navigation";

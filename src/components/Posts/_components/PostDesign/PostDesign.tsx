@@ -12,7 +12,7 @@ async function PostDesign({ post }: { post: PostType }) {
   const isLike = post.likes.find((like) => like.userId === user.id);
   const isDisLike = post.disLikes.find((like) => like.userId === user.id);
   return (
-    <li className="rounded shadow bg-white ">
+    <li className="rounded shadow bg-white">
       <EditPost postId={post.id} />
       <div className="flex flex-col">
         <OwnerPostDetails post={post} user={user} />

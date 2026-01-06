@@ -35,11 +35,11 @@ function BottomLinks() {
     <div className="p-5 shadow rounded flex flex-col gap-4 bg-white">
       {links.map((link) => (
         <Link
-          className="flex items-center sm:gap-2 gap-4 sm:text-[14px] text-[16px] hover:underline"
+          className="flex items-center sm:gap-2 gap-4 xl:text-[14px] lg:text-[16px] sm:text-[14px] text-[16px] hover:underline"
           href={link.url}
           key={link.id}
         >
-          <i className="sm:text-[17px] text-xl">{link.icon}</i>
+          <i className="xl:text-[17px] lg:text-[20px] sm:text-[17px] text-xl">{link.icon}</i>
           {link.linkName}
         </Link>
       ))}

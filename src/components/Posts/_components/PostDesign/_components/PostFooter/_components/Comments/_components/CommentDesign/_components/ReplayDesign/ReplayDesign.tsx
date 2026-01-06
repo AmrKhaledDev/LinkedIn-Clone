@@ -1,4 +1,4 @@
-import { CreateLikeForReplayAction } from "@/lib/actions/CreateLikeForReplayAction";
+import { CreateLikeForReplayAction } from "@/lib/actions/CreateActions/CreateLikeForReplayAction";
 import { ReplayWithRelations } from "@/lib/types/types";
 import { User } from "@prisma/client";
 import Image from "next/image";
@@ -6,6 +6,8 @@ import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 import { BsFillPatchCheckFill } from "react-icons/bs";
 import EditReplayBox from "./_components/EditReplayBox";
+import { useState } from "react";
+import EditReplayContent from "./_components/EditReplayContent";
 // =====================================================================
 function ReplayDesign({
   user,
@@ -24,6 +26,7 @@ function ReplayDesign({
   const isLikeForReplay = replay.likeForReplays.find(
     (like) => like.userId === user.id
   );
+  const [editReplayText, setEditReplayText] = useState(false);
   return (
     <div className="flex gap-2 w-full bg-gray-100 p-3 rounded-xl">
       <Image
@@ -31,19 +34,19 @@ function ReplayDesign({
         alt="User Image"
         width={50}
         height={50}
-        className="w-9 h-9 rounded-full border shrink-0 border-gray-100 object-cover"
+        className="sm:w-9 w-7 sm:h-9 h-7 rounded-full border shrink-0 border-gray-100 object-cover"
       />
       <div className="flex flex-col gap-1 w-full">
         <div>
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
               <div className="flex items-center gap-1">
-                <h2 className="line-clamp-1 font-semibold capitalize">
+                <h2 className="line-clamp-1 font-semibold capitalize sm:text-[15px] text-[14px]">
                   {replay.user.name}
                 </h2>
                 {replay.user.role === "SUPER_ADMIN" && (
                   <i
-                    className="text-blue-500 text text-[12px]"
+                    className="text-blue-500 text sm:text-[12px] text-[11px]"
                     title="Super Admin"
                   >
                     <BsFillPatchCheckFill />
@@ -51,18 +54,27 @@ function ReplayDesign({
                 )}
               </div>
               {replay.isAuthor && (
-                <p className=" capitalize font-semibold px-2 text-[10px] rounded  bg-gray-600 text-white">
+                <p className=" capitalize font-semibold px-2 sm:text-[10px] text-[9px] rounded  bg-gray-600 text-white">
                   author
                 </p>
               )}
+                {replay.isEdited && (
+                  <p className="inline-block rounded-md bg-white px-2 py-0.5 sm:text-[10px] text-[9px] font-semibold tracking-wide text-gray-600">
+                    Edited
+                  </p>
+                )}
             </div>
-            <EditReplayBox user={user} replay={replay} />
+            <EditReplayBox setEditReplayText={setEditReplayText} user={user} replay={replay} />
           </div>
-          <h3 className="line-clamp-1 text-[11px] text-blackLight font-normal">
+          <h3 className="line-clamp-1 sm:text-[11px] text-[10px] text-blackLight font-normal">
             {replay.user.headline}
           </h3>
         </div>
-        <p className="text-[14px]">{replay.content}</p>
+        {editReplayText ? (
+          <EditReplayContent setEditReplayText={setEditReplayText} editReplayText replay={replay} user={user}/>
+        ) : (
+          <p className="sm:text-[14px] text-[13px] break-all">{replay.content}</p>
+        )}
         <div className="flex items-center gap-1">
           <button
             onClick={handleLikeForReplay}

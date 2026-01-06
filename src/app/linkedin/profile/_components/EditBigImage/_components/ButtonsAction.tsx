@@ -1,6 +1,6 @@
 "use client";
 
-import { DeleteBigImageAction } from "@/lib/actions/DeleteBigImageAction";
+import { DeleteBigImageAction } from "@/lib/actions/DeleteActions/DeleteBigImageAction";
 import { User } from "@prisma/client";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";

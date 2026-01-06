@@ -1,6 +1,6 @@
 "use server";
-import { CreateArticleSchema } from "../schemas/CreateArticleSchema";
-import { CreateArticleActionDataType } from "../types/types";
+import { CreateArticleSchema } from "../../schemas/CreateArticleSchema";
+import { CreateArticleActionDataType } from "../../types/types";
 import { prisma } from "@/lib/prisma";
 // ==============================================================
 export const CreateArticleAction = async (

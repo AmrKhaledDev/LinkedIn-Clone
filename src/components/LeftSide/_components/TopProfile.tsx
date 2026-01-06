@@ -14,9 +14,9 @@ async function TopProfile() {
           <Image
             src={user.imageProfile ? user.imageProfile : "/card-bg.svg"}
             alt="Your Profile image"
-            width={200}
-            height={200}
-            className="w-full sm:h-20 h-30 object-cover"
+            width={400}
+            height={400}
+            className="w-full xl:h-20 lg:h-30 sm:h-20 h-30 object-cover"
           />
           <div className="absolute -bottom-9 left-3 object-cover">
             <Image
@@ -24,20 +24,20 @@ async function TopProfile() {
               alt="Your Photo"
               width={100}
               height={100}
-              className="sm:w-16 sm:h-16 w-22 h-22 shrink-0 rounded-full border-2 object-cover border-gray-200"
+              className="xl:w-16 xl:h-16 lg:w-20 lg:h-20 sm:w-16 sm:h-16 w-22 h-22 shrink-0 rounded-full border-2 object-cover border-gray-200"
             />
           </div>
         </div>
         {/* text */}
         <div className="px-3">
-          <h2 className="sm:text-xl text-2xl capitalize font-semibold line-clamp-1">
-            {user.name}
+          <h2 className="xl:text-xl lg:text-2xl sm:text-xl text-2xl capitalize font-semibold line-clamp-1">
+           {user.name}
           </h2>
-          <h3 className="sm:text-[13px]  line-clamp-1">{user.headline}</h3>
-          <h3 className="sm:text-[13px]  text-blackLight line-clamp-1 capitalize">
+          <h3 className="xl:text-[13px] lg:text-[14px] sm:text-[13px]  line-clamp-1">{user.headline}</h3>
+          <h3 className="xl:text-[13px] lg:text-[14px] sm:text-[13px]  text-blackLight line-clamp-1 capitalize">
             {user.city}
           </h3>
-          <h3 className="sm:text-[12px] line-clamp-1">{user.school}</h3>
+          <h3 className="xl:text-[12px] lg:text-[13px] sm:text-[12px] line-clamp-1">{user.school}</h3>
         </div>
       </Link>
     </div>

@@ -1,6 +1,6 @@
 "use client";
-import { CreateLikeForComment } from "@/lib/actions/CreateLikeForCommentAction";
-import { CreateReplayAction } from "@/lib/actions/CreateReplayAction";
+import { CreateLikeForComment } from "@/lib/actions/CreateActions/CreateLikeForCommentAction";
+import { CreateReplayAction } from "@/lib/actions/CreateActions/CreateReplayAction";
 import { CommentDBWithRelations } from "@/lib/types/types";
 import { User } from "@prisma/client";
 import Image from "next/image";
@@ -64,7 +64,7 @@ function CommentFooter({
         <div className="flex items-center gap-1">
           <button
             onClick={handleClickLikeForComment}
-            className={`hover:bg-gray-100 rounded cursor-pointer py-1 text-[14px] px-1 transition-css ${
+            className={`hover:bg-gray-100 rounded cursor-pointer py-1 sm:text-[14px] text-[13px] px-1 transition-css ${
               isLikeForComment ? "text-primary" : ""
             }`}
           >
@@ -74,11 +74,11 @@ function CommentFooter({
             <>
               <span className="size-0.5 rounded-full bg-gray-500" />
               <div className="flex items-center gap-1">
-                <Image src={"/like.svg"} alt="Like" width={18} height={18} />
+                <Image src={"/like.svg"} alt="Like" width={18} height={18} className="sm:w-[18px] sm:h-[18px] w-[16px] h-[16px]"/>
                 <h4 className="text-[13px] font-normal text-gray-500">
                   {isLikeForComment ? (
                     comment.likeForComments.length > 1 ? (
-                      <span className="flex items-center gap-1">
+                      <span className="flex items-center gap-1 sm:text-[15px] text-[14px]">
                         you, 
                         <span>{comment.likeForComments.length - 1}</span>
                       </span>
@@ -97,7 +97,7 @@ function CommentFooter({
         <div className="flex items-center gap-1">
           <button
             onClick={() => setShowBoxReplay(!showBoxReplay)}
-            className="hover:bg-gray-100 rounded cursor-pointer py-1 text-[14px] px-1 transition-css"
+            className="hover:bg-gray-100 rounded cursor-pointer py-1 sm:text-[14px] text-[13px] px-1 transition-css"
           >
             Replay
           </button>
@@ -105,7 +105,7 @@ function CommentFooter({
             <>
               <span className="size-0.5 rounded-full bg-gray-500" />
               <div className="text-[13px] text-gray-500 font-normal">
-                <h4>
+                <h4 className="sm:text-[15px] text-[12px]">
                   <span>{comment.replays.length}</span>{" "}
                   {comment.replays.length > 1 ? "replays" : "replay"}
                 </h4>

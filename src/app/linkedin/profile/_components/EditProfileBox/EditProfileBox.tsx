@@ -1,7 +1,6 @@
 "use client";
 import { HiPencil } from "react-icons/hi2";
 import Form from "./_components/Form";
-import TopBox from "./_components/TopBox";
 import { useEffect, useState } from "react";
 import { UserWithRelationType } from "@/lib/types/types";
 // =====================================================================================

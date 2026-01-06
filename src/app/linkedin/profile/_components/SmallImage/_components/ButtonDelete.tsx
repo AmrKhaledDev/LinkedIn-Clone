@@ -1,6 +1,6 @@
 "use client";
 import Loader from "@/components/Loader/Loader";
-import { DeleteSmallImageAction } from "@/lib/actions/DeleteSmallImageAction";
+import { DeleteSmallImageAction } from "@/lib/actions/DeleteActions/DeleteSmallImageAction";
 import { User } from "@prisma/client";
 import { useRouter } from "next/navigation";
 import { useState } from "react";

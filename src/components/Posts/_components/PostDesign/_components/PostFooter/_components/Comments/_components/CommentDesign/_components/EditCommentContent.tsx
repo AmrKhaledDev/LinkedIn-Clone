@@ -1,7 +1,7 @@
 "use client";
 
 import ServerErrorMessage from "@/components/ServerErrorMessage/ServerErrorMessage";
-import { EditCommentContentACtion } from "@/lib/actions/EditCommentContentAction";
+import { EditCommentContentAction } from "@/lib/actions/EditActions/EditCommentContentAction";
 import { CommentDBWithRelations } from "@/lib/types/types";
 import {  User } from "@prisma/client";
 import { useRouter } from "next/navigation";
@@ -24,7 +24,7 @@ function EditCommentContent({
   const router = useRouter();
   const handleEditCommentContent = async () => {
     setLoading(true);
-    const result = await EditCommentContentACtion(
+    const result = await EditCommentContentAction(
       user.id,
       comment.id,
       valueEditComment

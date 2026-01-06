@@ -1,8 +1,8 @@
 "use server";
 import { revalidatePath } from "next/cache";
-import { EditProfileSchema } from "../schemas/EditProfileSchema";
-import { EditProfileActionDataType } from "../types/types";
 import { prisma } from "@/lib/prisma";
+import { EditProfileSchema } from "@/lib/schemas/EditProfileSchema";
+import { EditProfileActionDataType } from "@/lib/types/types";
 // ===============================================================================
 export const EditProfileAction = async (data: EditProfileActionDataType) => {
   const validation = EditProfileSchema.safeParse(data);

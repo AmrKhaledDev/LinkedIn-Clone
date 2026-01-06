@@ -1,4 +1,4 @@
-import { IoIosSend } from "react-icons/io";
+import { LuSend } from "react-icons/lu";
 // ==========================================================================
 function SendButton() {
   return (
@@ -8,10 +8,10 @@ function SendButton() {
       hover:bg-gray-100 text-slate-700
     `}
     >
-      <i className="sm:text-[20px] text-[25px]">
-        <IoIosSend />
+      <i className="text-[20px] send">
+        <LuSend />
       </i>
-      <h2 className="sm:text-[14px] sm:block hidden text-[12px] font-bold">Send</h2>
+      <h2 className="text-[14px] font-bold sendText">Send</h2>
     </div>
   );
 }

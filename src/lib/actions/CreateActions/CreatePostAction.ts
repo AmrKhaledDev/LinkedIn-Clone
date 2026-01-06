@@ -1,7 +1,7 @@
 "use server";
 import { revalidatePath } from "next/cache";
-import { CreatePostSchema } from "../schemas/CreatePostSchema";
-import { CreatePostActionDataType } from "../types/types";
+import { CreatePostSchema } from "../../schemas/CreatePostSchema";
+import { CreatePostActionDataType } from "../../types/types";
 import { prisma } from "@/lib/prisma";
 // ===================================================================
 export const CreatePostAction = async (data: CreatePostActionDataType) => {

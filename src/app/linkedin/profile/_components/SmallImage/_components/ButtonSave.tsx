@@ -1,7 +1,7 @@
 "use client";
 import Loader from "@/components/Loader/Loader";
 import { ContextStates } from "@/context/Context";
-import { EditSmallImageAction } from "@/lib/actions/EditSmallImageAction";
+import { EditSmallImageAction } from "@/lib/actions/EditActions/EditSmallImageAction";
 import { User } from "@prisma/client";
 import { useRouter } from "next/navigation";
 import { useContext, useState } from "react";

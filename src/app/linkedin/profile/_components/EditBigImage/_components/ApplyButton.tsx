@@ -2,7 +2,7 @@
 
 import Loader from "@/components/Loader/Loader";
 import { ContextStates } from "@/context/Context";
-import { ApplyChangeBigImageAction } from "@/lib/actions/ApplyChangeBigImageAction";
+import { ApplyChangeBigImageAction } from "@/lib/actions/EditActions/EditBigImageAction";
 import { useContext, useState } from "react";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";

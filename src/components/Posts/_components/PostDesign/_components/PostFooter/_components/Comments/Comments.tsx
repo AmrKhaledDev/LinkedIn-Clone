@@ -1,6 +1,6 @@
 "use client";
 import { User } from "@prisma/client";
-import CommentDesign from "./_components/CommentDesign";
+import CommentDesign from "./_components/CommentDesign/CommentDesign";
 import { PostType } from "@/lib/types/types";
 // ===================================================================================
  function Comments({

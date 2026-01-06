@@ -5,7 +5,7 @@ import React, { useEffect, useRef, useState } from "react";
 import Icons from "./_components/Icons";
 import ButtonPost from "./_components/ButtonPost";
 import TopBoxPost from "./_components/TopBoxPost";
-import { CreatePostAction } from "@/lib/actions/CreatePostAction";
+import { CreatePostAction } from "@/lib/actions/CreateActions/CreatePostAction";
 import toast from "react-hot-toast";
 import { MdDelete } from "react-icons/md";
 // ======================================================

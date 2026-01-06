@@ -6,7 +6,7 @@ import ButtonShowPassword from "@/components/ButtonShowPassword/ButtonShowPasswo
 import ButtonSubmit from "@/components/ButtonSubmit/ButtonSubmit";
 import { StatesLogin } from "@/lib/interfaces/interfaces";
 import { LoginSchema } from "@/lib/schemas/LoginSchema";
-import { LoginAction } from "@/lib/actions/LoginAction";
+import { LoginAction } from "@/lib/actions/AuthActions/LoginAction";
 import ButtonAuthO from "@/components/ButtonAuthO/ButtonAuthO";
 import Or from "@/components/Or/Or";
 import ServerErrorMessage from "@/components/ServerErrorMessage/ServerErrorMessage";

@@ -2,7 +2,7 @@
 import { useState } from "react";
 import JoinWithAuthO from "./JoinWithAuthO";
 import { RegisterSchema } from "@/lib/schemas/RegisterSchema";
-import { RegisterAction } from "@/lib/actions/RegisterAction";
+import { RegisterAction } from "@/lib/actions/AuthActions/RegisterAction";
 import toast from "react-hot-toast";
 import { redirect, useRouter } from "next/navigation";
 import ButtonShowPassword from "@/components/ButtonShowPassword/ButtonShowPassword";

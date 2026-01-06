@@ -2,12 +2,13 @@
 import { CommentDBWithRelations } from "@/lib/types/types";
 import Image from "next/image";
 import { BsFillPatchCheckFill } from "react-icons/bs";
-import CommentFooter from "./CommentFooter";
+import CommentFooter from "./_components/CommentFooter";
 import { User } from "@prisma/client";
-import ReplayDesign from "./ReplayDesign/ReplayDesign";
-import EditComment from "./EditCommentBox";
+import ReplayDesign from "./_components/ReplayDesign/ReplayDesign";
+import EditComment from "./_components/EditCommentBox";
 import { useState } from "react";
-import EditCommentContent from "./EditCommentContent";
+import EditCommentContent from "./_components/EditCommentContent";
+import EditCommentBox from "./_components/EditCommentBox";
 // ===============================================================================
 function CommentDesign({
   comment,
@@ -20,26 +21,26 @@ function CommentDesign({
 }) {
   const [editCommentText, setEditCommentText] = useState(false);
   return (
-    <li className="bg-white p-3 rounded-2xl">
+    <li className="bg-white sm:p-3 rounded-2xl">
       <div className="flex gap-2 w-full">
         <Image
           src={comment.user.image || "/user.svg"}
           alt="User Image"
           width={50}
           height={50}
-          className="w-11.25 h-11.25 rounded-full border shrink-0 border-gray-100 object-cover"
+          className="sm:w-11.25 sm:h-11.25 w-10 h-10 rounded-full border shrink-0 border-gray-100 object-cover"
         />
         <div className="flex flex-col gap-2 w-full">
           <div>
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2">
                 <div className="flex items-center gap-1">
-                  <h2 className="line-clamp-1 font-semibold text-[18px] capitalize">
+                  <h2 className="line-clamp-1 font-semibold sm:text-[18px] capitalize">
                     {comment.user.name}
                   </h2>
                   {comment.user.role === "SUPER_ADMIN" && (
                     <i
-                      className="text-blue-500 text text-[14px]"
+                      className="text-blue-500 sm:text-[14px] text-[13px]"
                       title="Super Admin"
                     >
                       <BsFillPatchCheckFill />
@@ -47,23 +48,23 @@ function CommentDesign({
                   )}
                 </div>
                 {comment.isAuthor && (
-                  <p className=" capitalize font-semibold px-2 text-[12px] rounded  bg-gray-600 text-white">
+                  <p className=" capitalize font-semibold px-2 sm:text-[12px] text-[11px] rounded  bg-gray-600 text-white">
                     author
                   </p>
                 )}
                 {comment.isEdited && (
-                  <p className="inline-block rounded-md bg-gray-100 px-2 py-0.5 text-[11px] font-semibold tracking-wide text-gray-600">
+                  <p className="inline-block rounded-md bg-gray-100 px-2 py-0.5 sm:text-[11px] text-[10px] font-semibold tracking-wide text-gray-600">
                     Edited
                   </p>
                 )}
               </div>
-              <EditComment
+              <EditCommentBox
                 user={user}
                 setEditCommentText={setEditCommentText}
                 comment={comment}
               />
             </div>
-            <h3 className="line-clamp-1 text-[13px] text-blackLight font-normal">
+            <h3 className="line-clamp-1 sm:text-[13px] text-[12px] text-blackLight font-normal">
               {comment.user.headline}
             </h3>
           </div>
@@ -75,7 +76,9 @@ function CommentDesign({
               editCommentText={editCommentText}
             />
           ) : (
-            <p>{comment.content}</p>
+            <p className="sm:text-[15px] text-[14px] break-all">
+              {comment.content}
+            </p>
           )}
           <CommentFooter user={user} comment={comment} postId={postId} />
         </div>

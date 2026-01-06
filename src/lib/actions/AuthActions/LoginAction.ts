@@ -1,9 +1,9 @@
 "use server"
 import bcrypt from "bcryptjs";
-import { LoginActionDataType } from "../types/types";
+import { LoginActionDataType } from "../../types/types";
 import { prisma } from "@/lib/prisma";
 import { signIn } from "@/auth";
-import { LoginSchema } from "../schemas/LoginSchema";
+import { LoginSchema } from "../../schemas/LoginSchema";
 // ==============================================================================
 export const LoginAction = async (data: LoginActionDataType) => {
   const validation = LoginSchema.safeParse(data);

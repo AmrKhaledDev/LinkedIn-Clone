@@ -1,6 +1,6 @@
 "use client";
 import { ContextStates } from "@/context/Context";
-import { CreateArticleAction } from "@/lib/actions/CreateArticleAction";
+import { CreateArticleAction } from "@/lib/actions/CreateActions/CreateArticleAction";
 import { CreateArticleSchema } from "@/lib/schemas/CreateArticleSchema";
 import { redirect, useRouter } from "next/navigation";
 import { useContext, useState } from "react";

@@ -2,7 +2,7 @@
 import { prisma } from "@/lib/prisma";
 import { revalidatePath } from "next/cache";
 // ======================================================
-export const EditCommentContentACtion = async (
+export const EditCommentContentAction = async (
   userId: string,
   commentId: string,
   newContent: string

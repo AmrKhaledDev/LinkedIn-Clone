@@ -5,7 +5,7 @@ import { FaPlus } from "react-icons/fa6";
 import { MdDeleteSweep } from "react-icons/md";
 import React, { Dispatch, useEffect, useState } from "react";
 import { User } from "@prisma/client";
-import { DeleteCommentAction } from "@/lib/actions/DeleteCommentAction";
+import { DeleteCommentAction } from "@/lib/actions/DeleteActions/DeleteCommentAction";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import { CommentDBWithRelations } from "@/lib/types/types";
@@ -54,14 +54,14 @@ function EditCommentBox({
         alt="Menu"
         width={50}
         height={50}
-        className={`w-8.25 h-8.25 button rounded-full cursor-pointer p-2 hover:bg-gray-100 ${
+        className={`sm:w-8.25 w-7 sm:h-8.25 h-7 button rounded-full cursor-pointer p-2 hover:bg-gray-100 ${
           showBoxEditComment && "bg-gray-100"
         }`}
       />
       <div
-        className={`p-3 rounded-xl box shadow z-50 bg-white flex-col absolute right-0 min-w-60 gap-2 mt-1 ${
-          showBoxEditComment ? "flex" : "hidden"
-        }`}
+        className={`sm:p-3 p-1 rounded-xl box shadow z-50 bg-white flex-col absolute right-0 ${
+          comment.userId !== user.id ? "min-w-70" : "min-w-fit"
+        } gap-2 mt-1 ${showBoxEditComment ? "flex" : "hidden"}`}
       >
         {comment.userId !== user.id && (
           <button
@@ -80,9 +80,9 @@ function EditCommentBox({
           <>
             <button
               onClick={handleEditComment}
-              className="flex items-center gap-2 text-slate-600 cursor-pointer font-semibold hover:bg-gray-50 rounded hover:shadow py-2 px-3"
+              className="flex items-center gap-2 sm:text-[15px] text-[13px] text-slate-600 cursor-pointer font-semibold hover:bg-gray-50 rounded hover:shadow py-2 px-3"
             >
-              <i className="text-xl">
+              <i className="sm:text-xl text-[18px]">
                 <MdModeEdit />
               </i>
               Edit
@@ -90,9 +90,9 @@ function EditCommentBox({
             <button
               onClick={handleDeleteComment}
               disabled={loading}
-              className="flex disabled:cursor-wait disabled:shadow disabled:bg-gray-200 disabled:text-gray-500 items-center gap-2 text-slate-600 cursor-pointer font-semibold hover:bg-gray-50 rounded hover:shadow py-2 px-3"
+              className="flex disabled:cursor-wait sm:text-[15px] text-[13px] disabled:shadow disabled:bg-gray-200 disabled:text-gray-500 items-center gap-2 text-slate-600 cursor-pointer font-semibold hover:bg-gray-50 rounded hover:shadow py-2 px-3"
             >
-              <i className="text-xl">
+              <i className="sm:text-xl text-[18px]">
                 <MdDeleteSweep />
               </i>
               {loading ? "Deleting" : " Delete"}

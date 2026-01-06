@@ -1,7 +1,7 @@
 "use server"
 import bcrypt from "bcryptjs";
-import { RegisterSchema } from "../schemas/RegisterSchema";
-import { RegisterActionDataType } from "../types/types";
+import { RegisterSchema } from "../../schemas/RegisterSchema";
+import { RegisterActionDataType } from "../../types/types";
 import { prisma } from "@/lib/prisma";
 import { signIn } from "@/auth";
 // ==============================================================================

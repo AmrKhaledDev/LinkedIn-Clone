@@ -37,3 +37,34 @@
     padding-top: 150px;
   }
 }
+
+/* Post Footer Icons  */
+@media(max-width:520px){
+   .likeText {
+    display: none;
+  }
+  .dislikeText {
+    display: none;
+  }
+  .commentText {
+    display: none;
+  }
+  .sendText {
+    display: none;
+  }
+}
+@media (max-width: 520px) {
+  .like {
+    font-size: 23px;
+  }
+  .dislike {
+    font-size: 23px;
+  }
+  .comment {
+    font-size: 23px;
+  }
+  .send {
+    font-size: 23px;
+  }
+}
+
