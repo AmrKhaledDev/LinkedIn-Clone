@@ -39,7 +39,7 @@ async function uploadImage(image: File | null) {
   formData.append("file", image);
   formData.append("pathname", "users-small-images");
   try {
-    const res = await fetch(`${process.env.NEXT_URL}/api/upload-small-image`, {
+    const res = await fetch(`${process.env.NEXTAUTH_URL}/api/upload-small-image`, {
       method: "POST",
       body: formData,
     });

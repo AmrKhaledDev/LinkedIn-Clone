@@ -43,7 +43,7 @@ async function uploadBigImage(image: File | null) {
   }
   formData.append("pathname", "users-big-images");
   try {
-    const res = await fetch(`${process.env.NEXT_URL}/api/upload-media`, {
+    const res = await fetch(`${process.env.NEXTAUTH_URL}/api/upload-media`, {
       method: "POST",
       body: formData,
     });
