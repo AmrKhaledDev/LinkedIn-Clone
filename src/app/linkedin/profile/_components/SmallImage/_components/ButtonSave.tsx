@@ -41,13 +41,13 @@ function ButtonSave({
     <button
       onClick={handleClick}
       disabled={!smallImage || loading}
-      className={`flex items-center gap-2 button  disabled:cursor-default disabled:text-gray-400 group cursor-pointer py-2 px-3 rounded-xl hover:bg-gray-100 shadow hover:text-green-500 transition-css font-semibold disabled:hover:bg-white ${loading && "justify-center"}`}
+      className={`flex items-center gap-2 sm:text-[15px] text-[13px] button  disabled:cursor-default disabled:text-gray-400 group cursor-pointer py-2 px-3 rounded-xl hover:bg-gray-100 shadow hover:text-green-500 transition-css font-semibold disabled:hover:bg-white ${loading && "justify-center"}`}
     >
       {loading ? (
         <Loader />
       ) : (
         <>
-          <i className="p-2 rounded bg-green-100 text-green-500 text-[20px] group-hover:bg-green-500 group-hover:text-white transition-css group-disabled:text-gray-400 group-disabled:bg-gray-200">
+          <i className="sm:p-2 p-1 rounded bg-green-100 text-green-500 sm:text-[20px] text-[16px] group-hover:bg-green-500 group-hover:text-white transition-css group-disabled:text-gray-400 group-disabled:bg-gray-200">
             <MdOutlineSave />
           </i>
           Save

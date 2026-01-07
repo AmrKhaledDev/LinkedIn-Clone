@@ -36,7 +36,7 @@ function ButtonsAction({
     <div className="flex justify-between items-center p-2">
       <button
         onClick={handleDeleteImage}
-        className="text-slate-600 font-bold cursor-pointer py-2 px-4 rounded hover:bg-gray-100 transition-css hover:text-black"
+        className="text-slate-600 font-bold cursor-pointer sm:text-[15px] text-[13px] py-1.5 sm:px-4 px-3 rounded hover:bg-gray-100 transition-css hover:text-black"
       >
         Delete photo
       </button>

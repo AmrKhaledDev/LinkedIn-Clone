@@ -69,13 +69,13 @@ function Form({
   };
 
   return (
-    <div className="py-12 px-4">
+    <div className="bg-red-500 ">
       <form
         onSubmit={handleSubmit}
-        className="max-w-3xl mx-auto bg-white shadow-2xl overflow-hidden transition-css"
+        className="w-full bg-white shadow-2xl overflow-hidden transition-css"
       >
         {/* Header */}
-        <div className="relative bg-linear-to-r from-blue-600 to-indigo-700 px-8 py-10 text-white">
+        <div className="relative bg-linear-to-r sm:block hidden from-blue-600 to-indigo-700 md:px-8 px-3 md:py-10 py-5 text-white">
           <h2 className="text-3xl font-extrabold tracking-tight">
             Edit Profile
           </h2>
@@ -87,14 +87,14 @@ function Form({
           </div>
         </div>
 
-        <div className="p-8 space-y-12">
+        <div className="md:p-8 p-3 md:space-y-7 space-y-3">
           {/* Basic Info */}
           <section>
-            <h3 className="font-bold text-xl text-gray-800 mb-6">
+            <h3 className="font-bold text-xl sm:block hidden text-gray-800 sm:mb-6 mb-2">
               Basic Information
             </h3>
 
-            <div className="space-y-6 px-2">
+            <div className="sm:space-y-6 space-y-3 px-2">
               {/* Name */}
               <div className="flex flex-col gap-2">
                 <label className="text-sm font-semibold text-gray-700 ml-1">
@@ -107,7 +107,11 @@ function Form({
                   type="text"
                   placeholder="e.g. John Doe"
                   className={`w-full px-4 py-3 rounded-xl border outline-none transition-all bg-white
-                    ${errors.name ? "border-red-500 focus:border-red-500 focus:ring-red-500/10" : "border-gray-200 focus:border-blue-500 focus:ring-blue-500/10"}
+                    ${
+                      errors.name
+                        ? "border-red-500 focus:border-red-500 focus:ring-red-500/10"
+                        : "border-gray-200 focus:border-blue-500 focus:ring-blue-500/10"
+                    }
                   `}
                 />
                 {errors.name && (
@@ -127,7 +131,11 @@ function Form({
                   rows={4}
                   placeholder="Write a short catchy bio about what you do..."
                   className={`w-full px-4 py-3 rounded-xl border outline-none transition-all bg-white resize-none
-                    ${errors.headline ? "border-red-500 focus:border-red-500 focus:ring-red-500/10" : "border-gray-200 focus:border-blue-500 focus:ring-blue-500/10"}
+                    ${
+                      errors.headline
+                        ? "border-red-500 focus:border-red-500 focus:ring-red-500/10"
+                        : "border-gray-200 focus:border-blue-500 focus:ring-blue-500/10"
+                    }
                   `}
                 />
                 {errors.headline && (
@@ -139,9 +147,7 @@ function Form({
 
           {/* Education */}
           <section>
-            <h3 className="font-bold text-xl text-gray-800 mb-6">
-              Education
-            </h3>
+            <h3 className="font-bold sm:text-xl text-gray-800 sm:mb-6 mb-2">Education</h3>
 
             <div className="px-2">
               <div className="flex flex-col gap-2">
@@ -155,7 +161,11 @@ function Form({
                   type="text"
                   placeholder="e.g. Harvard University"
                   className={`w-full px-4 py-3 rounded-xl border outline-none transition-all bg-white
-                    ${errors.school ? "border-red-500 focus:border-red-500 focus:ring-red-500/10" : "border-gray-200 focus:border-indigo-500 focus:ring-indigo-500/10"}
+                    ${
+                      errors.school
+                        ? "border-red-500 focus:border-red-500 focus:ring-red-500/10"
+                        : "border-gray-200 focus:border-indigo-500 focus:ring-indigo-500/10"
+                    }
                   `}
                 />
                 {errors.school && (
@@ -167,9 +177,7 @@ function Form({
 
           {/* Location */}
           <section>
-            <h3 className="font-bold text-xl text-gray-800 mb-6">
-              Location
-            </h3>
+            <h3 className="font-bold sm:text-xl text-gray-800 sm:mb-6 mb-2">Location</h3>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 px-2">
               <div className="flex flex-col gap-2">
@@ -183,7 +191,11 @@ function Form({
                   type="text"
                   placeholder="United States"
                   className={`w-full px-4 py-3 rounded-xl border outline-none transition-all bg-white
-                    ${errors.country ? "border-red-500 focus:border-red-500 focus:ring-red-500/10" : "border-gray-200 focus:border-emerald-500 focus:ring-emerald-500/10"}
+                    ${
+                      errors.country
+                        ? "border-red-500 focus:border-red-500 focus:ring-red-500/10"
+                        : "border-gray-200 focus:border-emerald-500 focus:ring-emerald-500/10"
+                    }
                   `}
                 />
                 {errors.country && (
@@ -202,7 +214,11 @@ function Form({
                   type="text"
                   placeholder="New York"
                   className={`w-full px-4 py-3 rounded-xl border outline-none transition-all bg-white
-                    ${errors.city ? "border-red-500 focus:border-red-500 focus:ring-red-500/10" : "border-gray-200 focus:border-emerald-500 focus:ring-emerald-500/10"}
+                    ${
+                      errors.city
+                        ? "border-red-500 focus:border-red-500 focus:ring-red-500/10"
+                        : "border-gray-200 focus:border-emerald-500 focus:ring-emerald-500/10"
+                    }
                   `}
                 />
                 {errors.city && (
@@ -214,15 +230,15 @@ function Form({
         </div>
 
         {/* Footer */}
-        <div className="flex justify-end gap-4 bg-gray-50 px-8 py-6">
+        <div className="flex justify-end gap-4 bg-gray-50 px-8 sm:py-6 py-3">
           <button
             type="button"
             disabled={loading}
             onClick={() => {
-              router.refresh()
-              setShowBoxEdit(false)
+              router.refresh();
+              setShowBoxEdit(false);
             }}
-            className="flex items-center disabled:cursor-default cursor-pointer disabled:hover:bg-transparent disabled:text-gray-400 gap-1 text-sm font-bold text-gray-500 hover:text-red-600 px-4 py-2 hover:bg-red-100 rounded-lg transition-all"
+            className="flex sm:text-[15px] text-[13px] items-center disabled:cursor-default cursor-pointer disabled:hover:bg-transparent disabled:text-gray-400 gap-1 text-sm font-bold text-gray-500 hover:text-red-600 px-4 py-2 hover:bg-red-100 rounded-lg transition-all"
           >
             <IoMdClose size={18} />
             Cancel
@@ -230,11 +246,13 @@ function Form({
 
           <button
             disabled={loading}
-            className="flex items-center disabled:bg-blue-100 cursor-pointer disabled:hover:bg-transparent disabled:cursor-wait gap-2 bg-blue-600 hover:bg-blue-700 text-white px-10 py-3 rounded-xl font-bold shadow-xl transition-all"
+            className="flex items-center sm:text-[15px] text-[13px] disabled:bg-blue-100 cursor-pointer disabled:hover:bg-transparent disabled:cursor-wait gap-2 bg-blue-600 hover:bg-blue-700 text-white sm:px-10 px-5 py-3 rounded-xl font-bold shadow-xl transition-all"
           >
-            {loading ? <Loader /> : (
+            {loading ? (
+              <Loader />
+            ) : (
               <>
-                <FaSave size={18} />
+                <FaSave  />
                 Save Changes
               </>
             )}

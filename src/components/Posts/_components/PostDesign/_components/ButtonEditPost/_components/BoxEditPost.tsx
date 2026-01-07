@@ -83,39 +83,38 @@ function BoxEditPost({
       return toast.error("Failed edit your post", { className: "toast-font" });
     }
   };
-  console.log(mediaFile);
   return (
     <div
-      className={`w-full h-screen bg-black/45 backdrop-blur inset-0 flex pt-20 justify-center z-50 ${
+      className={`w-full h-screen bg-black/45 backdrop-blur inset-0 flex lg:pt-5 justify-center z-999 ${
         editPost ? "fixed" : "hidden"
       }`}
     >
-      <div className="bg-white rounded-xl w-190 max-h-fit z-50 overflow-hidden">
-        <div className=" bg-linear-to-l to-primary from-blue-600 p-5 text-white flex items-center justify-between">
-          <h2 className="text-3xl font-semibold">Edit Post</h2>
-          <i className="text-[50px] opacity-20">
+      <div className="bg-white rounded-xl lg:w-190 w-full lg:max-h-fit max-h-fit z-50 overflow-hidden">
+        <div className=" bg-linear-to-l to-primary from-blue-600 sm:p-5 p-3 text-white flex items-center justify-between">
+          <h2 className="lg:text-3xl text-2xl font-semibold">Edit Post</h2>
+          <i className="lg:text-[50px] text-[40px] opacity-20">
             <FaEdit />
           </i>
         </div>
-        <div className="flex justify-between p-5">
+        <div className="flex justify-between sm:p-5 p-2">
           <div className="flex items-center gap-2">
             <Image
               src={user.image || "/user.svg"}
               alt="Your image"
               width={80}
               height={80}
-              className="w-17 h-17 rounded-full object-cover shrink-0 border-2 border-gray-200"
+              className="sm:w-17 sm:h-17 w-13 h-13 rounded-full object-cover shrink-0 border-2 border-gray-200"
             />
             <div>
-              <h2 className="capitalize font-semibold text-[20px]">
+              <h2 className="capitalize font-semibold sm:text-[20px] text-[16px]">
                 {user.name}
               </h2>
-              <h3 className="font-normal text-[14px]">Posted to Anyone</h3>
+              <h3 className="font-normal sm:text-[14px] text-[13px]">Posted to Anyone</h3>
             </div>
           </div>
           <button
             onClick={() => setEditPost(!editPost)}
-            className="text-3xl cursor-pointer"
+            className="sm:text-3xl text-xl cursor-pointer"
           >
             <IoClose />
           </button>
@@ -126,7 +125,7 @@ function BoxEditPost({
             defaultValue={content}
             onChange={(e) => setContent(e.target.value)}
             placeholder="what do you want to talk about?"
-            className="rounded p-2 md:min-h-50 sm:min-h-40 max-h-45 w-full outline-none resize-none md:text-xl sm:text-[17px]"
+            className="rounded p-2 md:min-h-45 sm:min-h-35 max-h-50 w-full outline-none resize-none md:text-xl sm:text-[17px]"
           />
           <div className="relative">
             {showImage && (

@@ -36,23 +36,23 @@ function EditBigImage({ user }: { user: User }) {
           showBoxEdit ? "flex" : "hidden"
         }`}
       >
-        <div className="w-[40%] div h-fit overflow-y-auto shadow rounded bg-white space-y-3">
+        <div className="md:w-175 sm:w-137.5 w-full div h-fit overflow-y-auto shadow rounded bg-white space-y-3">
           <div className="flex items-center justify-between border-b border-b-gray-200 px-5 py-2">
-            <h2 className="text-xl font-semibold">Cover image</h2>
+            <h2 className="sm:text-xl font-semibold">Cover image</h2>
             <button
               onClick={() => setShowBoxEdit(false)}
-              className="text-3xl cursor-pointer p-2 rounded-full hover:bg-gray-100 transition-css"
+              className="sm:text-3xl text-2xl cursor-pointer p-2 rounded-full hover:bg-gray-100 transition-css"
             >
               <IoCloseOutline />
             </button>
           </div>
-          <div className="bg-black h-100 flex items-center justify-center">
+          <div className="bg-black sm:h-100 h-70 flex items-center justify-center">
             <Image
               src={bigImage || user.imageProfile || "/card-bg.svg"}
               alt="Image Profile"
               width={800}
               height={800}
-              className="w-full max-h-70 object-cover border border-white"
+              className="w-full sm:max-h-70 max-h-50 object-cover border border-white"
             />
           </div>
           <ButtonsAction user={user} setShowBoxEdit={setShowBoxEdit} />

@@ -27,7 +27,7 @@ function ButtonDelete({ user }: { user: User }) {
     <button
       onClick={handleClick}
       disabled={loading || !user.image}
-      className={`flex disabled:cursor-default disabled:text-gray-400 disabled:hover:bg-transparent items-center gap-2 button group cursor-pointer py-2 px-3 rounded-xl text-red-500 hover:bg-gray-100 shadow transition-css font-semibold ${
+      className={`flex disabled:cursor-default sm:text-[15px] text-[13px] disabled:text-gray-400 disabled:hover:bg-transparent items-center gap-2 button group cursor-pointer py-2 px-3 rounded-xl text-red-500 hover:bg-gray-100 shadow transition-css font-semibold ${
         loading && "justify-center"
       }`}
     >
@@ -35,7 +35,7 @@ function ButtonDelete({ user }: { user: User }) {
         <Loader />
       ) : (
         <>
-          <i className="p-2 group-disabled:bg-gray-100 group-disabled:text-gray-400 rounded bg-red-100 text-red-500 text-[20px] group-hover:bg-red-500 group-hover:text-white transition-css">
+          <i className="sm:p-2 p-1 group-disabled:bg-gray-100 group-disabled:text-gray-400 rounded bg-red-100 text-red-500 sm:text-[20px] text-[16px] group-hover:bg-red-500 group-hover:text-white transition-css">
             <RiDeleteBinLine />
           </i>
           Delete photo

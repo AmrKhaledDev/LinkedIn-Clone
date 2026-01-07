@@ -30,7 +30,7 @@ function EditProfileBox({ user }: { user: UserWithRelationType }) {
           showBoxEdit ? "flex" : "hidden"
         }`}
       >
-        <div className="w-[40%] h-fit div overflow-y-auto shadow rounded space-y-6">
+        <div className="lg:w-[50%] md:w-[70%] sm:w-[85%] w-full h-fit div overflow-y-auto shadow rounded space-y-6">
           <Form user={user} setShowBoxEdit={setShowBoxEdit}/>
         </div>
       </div>

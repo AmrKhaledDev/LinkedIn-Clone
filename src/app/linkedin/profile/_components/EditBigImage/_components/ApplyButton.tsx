@@ -38,7 +38,7 @@ function ApplyButton({
     <button
       disabled={loading}
       onClick={handleApply}
-      className="text-white disabled:bg-blue-100 disabled:text-gray-300 font-bold bg-primary rounded-full cursor-pointer py-1.5 px-4 hover:bg-blue-800 transition-css
+      className="text-white disabled:bg-blue-100 disabled:text-gray-300 font-bold bg-primary rounded-full cursor-pointer sm:text-[15px] text-[13px] py-1.5 sm:px-4 px-3 hover:bg-blue-800 transition-css
               "
     >
       {loading ? <Loader /> : "Apply"}

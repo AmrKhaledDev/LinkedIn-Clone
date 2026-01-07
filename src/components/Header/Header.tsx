@@ -8,7 +8,7 @@ import { GetUser } from "@/lib/GetUser";
 async function Header() {
   const user = await GetUser()
   return (
-    <header className="border-b-2 border-b-gray-100 w-full fixed top-0 lg:pb-0 pb-20 bg-white z-50">
+    <header className="border-b-2 border-b-gray-100 w-full fixed top-0 lg:pb-0 pb-20 bg-white z-20">
       <div className="container-css px-3 flex items-center justify-between h-15">
         <div className="flex items-center gap-3">
           <Link href={"/linkedin"}>

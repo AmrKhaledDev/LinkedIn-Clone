@@ -28,9 +28,9 @@ function ButtonDeletePost({
     <button
       disabled={loadingDelete}
       onClick={handleDeletePost}
-      className="flex items-center disabled:cursor-wait disabled:text-gray-600 disabled:bg-gray-200 gap-3 cursor-pointer py-2 px-4 rounded hover:bg-gray-100 text-[14px] font-semibold"
+      className="flex items-center disabled:cursor-wait disabled:text-gray-600 disabled:bg-gray-200 gap-3 cursor-pointer py-2 px-4 rounded hover:bg-gray-100 sm:text-[14px] text-[13px] font-semibold"
     >
-      <i className="text-[18px]">
+      <i className="sm:text-[18px]">
         <RiDeleteBin4Line />
       </i>
       {loadingDelete ? " Deleting" : " Delete"}

@@ -17,7 +17,7 @@ function ChangeImageButton() {
   return (
     <div>
       <label
-        className="border border-primary py-1.5 px-4 hover:bg-blue-50 text-primary rounded-full cursor-pointer font-semibold"
+        className="border border-primary sm:text-[15px] text-[13px] py-1.5 sm:px-4 px-3 hover:bg-blue-50 text-primary rounded-full cursor-pointer font-semibold"
         htmlFor="photo"
       >
         Change photo

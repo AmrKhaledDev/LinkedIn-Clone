@@ -19,9 +19,9 @@ function ButtonChangeImage() {
     <div>
       <label
         htmlFor="image"
-        className="flex items-center gap-2 button group cursor-pointer py-2 px-3 rounded-xl hover:bg-gray-100 shadow hover:text-primary transition-css font-semibold"
+        className="flex sm:text-[15px] text-[13px] items-center gap-2 button group cursor-pointer py-2 px-3 rounded-xl hover:bg-gray-100 shadow hover:text-primary transition-css font-semibold"
       >
-        <i className="p-2 rounded bg-blue-100 text-primary text-[20px] group-hover:bg-blue-500 group-hover:text-white transition-css">
+        <i className="sm:p-2 p-1 rounded bg-blue-100 text-primary sm:text-[20px] text-[16px] group-hover:bg-blue-500 group-hover:text-white transition-css">
           <MdOutlineFlipCameraIos />
         </i>
         Change photo

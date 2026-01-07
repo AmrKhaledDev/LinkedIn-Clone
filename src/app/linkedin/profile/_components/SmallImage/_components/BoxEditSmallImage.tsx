@@ -32,7 +32,7 @@ function BoxEditSmallImage({ user }: { user: User }) {
         </button>
       </div>
       <div
-        className={`absolute -bottom-47 -right-25 shadow bg-white rounded-2xl flex-col gap-2 z-30 p-2 w-55 transition-css box
+        className={`absolute sm:-bottom-47 -bottom-38 -right-25 shadow bg-white rounded-2xl flex-col gap-2 z-15 p-2 w-55 transition-css box
            ${showBoxEditImage ? "flex" : "hidden"}`}
       >
         <ButtonChangeImage />

@@ -63,7 +63,6 @@ function BoxPost({
       setMediaFile(null);
       setMediaUrl("");
       setShowBoxPost(false);
-      toast.success("Done Post");
     } catch (error) {
       console.log(error);
       return { error: "Failed fetch" };
@@ -104,7 +103,7 @@ function BoxPost({
             value={contentTxt}
             onChange={(e) => setContentTxt(e.target.value)}
             placeholder="what do you want to talk about?"
-            className="rounded p-2 md:min-h-62.5 sm:min-h-52 min-h-45 outline-none resize-none md:text-xl sm:text-[17px]"
+            className="rounded p-2 md:min-h-62.5 sm:min-h-52 min-h-22 outline-none resize-none md:text-xl sm:text-[17px]"
           />
           {mediaUrl && (
             <div className="relative div">

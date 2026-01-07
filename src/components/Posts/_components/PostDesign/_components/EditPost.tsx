@@ -49,21 +49,21 @@ function EditPost({ post, user }: EditPostProps) {
           />
         </div>
         {isOpen && (
-          <div className="shadow div z-20 bg-white border border-gray-200 rounded-xl absolute right-0 w-60 p-3 flex flex-col gap-3">
+          <div className="shadow div z-15 bg-white border border-gray-200 rounded-xl absolute right-0 sm:w-65 w-58 sm:p-3 p-1 flex flex-col gap-3">
             {post.userId === user.id && (
               <>
-                <button className="flex items-center gap-3 cursor-pointer py-2 px-4 rounded hover:bg-gray-100 text-[14px] font-semibold">
-                  <i className="text-[18px]">
+                <button className="flex items-center gap-3 cursor-pointer py-2 px-4 rounded hover:bg-gray-100 sm:text-[14px] text-[13px] font-semibold">
+                  <i className="sm:text-[18px]">
                     <FaRegBookmark />
                   </i>
                   Save
                 </button>
                 <ButtonDeletePost userId={user.id} post={post} />
-                <ButtonEditPost post={post} user={user}/>
+                <ButtonEditPost post={post} user={user} />
               </>
             )}
-            <button className="flex items-center gap-3 cursor-pointer py-2 px-4 rounded hover:bg-gray-100 text-[14px] font-semibold">
-              <i className="text-[21px]">
+            <button className="flex items-center gap-3 cursor-pointer py-2 px-4 rounded hover:bg-gray-100 sm:text-[14px] text-[13px] font-semibold">
+              <i className="sm:text-[22px] text-[18px]">
                 <IoCloseCircleOutline />
               </i>
               Unfollow Amr Khaled

@@ -30,23 +30,22 @@ export const EditPostAction = async (
     if (!post) return { error: "This post not exsit" };
     if (post.userId !== user.id)
       return { error: "You do not own this post, failed edit" };
+    const isImage = dataValidation.mediaType === "image";
+    const isVideo = dataValidation.mediaType === "video";
+
     await prisma.post.update({
-      where: {
-        id: post.id,
-      },
+      where: { id: post.id },
       data: {
         contentText:
           dataValidation.contentTxt.trim().length < 1
             ? null
             : dataValidation.contentTxt,
-        image:
-          (dataValidation.mediaType == "image" && dataValidation.mediaUrl) ||
-          post.image,
-        video:
-          (dataValidation.mediaType == "video" && dataValidation.mediaUrl) ||
-          post.video,
+
+        image: isImage ? dataValidation.mediaUrl : isVideo ? null : post.image,
+        video: isVideo ? dataValidation.mediaUrl : isImage ? null : post.video,
       },
     });
+
     revalidatePath("/linkedin");
   } catch (error) {
     console.log(error);
