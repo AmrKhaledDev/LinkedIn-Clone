@@ -59,7 +59,7 @@ function EditReplayBox({
         }`}
       />
       <div
-        className={`sm:p-3 p-1 rounded-xl box shadow z-15 bg-white flex-col absolute right-0 ${
+        className={`sm:p-3 p-1 rounded-xl box shadow z-10 bg-white flex-col absolute right-0 ${
           replay.userId !== user.id ? "min-w-50" : "min-w-fit"
         } sm:gap-2 mt-1 ${showBoxEditReplay ? "flex" : "hidden"}`}
       >

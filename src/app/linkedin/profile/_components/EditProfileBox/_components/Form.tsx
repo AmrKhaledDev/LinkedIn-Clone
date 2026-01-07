@@ -74,18 +74,7 @@ function Form({
         onSubmit={handleSubmit}
         className="w-full bg-white shadow-2xl overflow-hidden transition-css"
       >
-        {/* Header */}
-        <div className="relative bg-linear-to-r sm:block hidden from-blue-600 to-indigo-700 md:px-8 px-3 md:py-10 py-5 text-white">
-          <h2 className="text-3xl font-extrabold tracking-tight">
-            Edit Profile
-          </h2>
-          <p className="text-blue-100 mt-2 text-sm opacity-90">
-            Update your public information to increase visibility
-          </p>
-          <div className="absolute top-0 right-0 p-4 opacity-10">
-            <FaUserCircle size={120} />
-          </div>
-        </div>
+       
 
         <div className="md:p-8 p-3 md:space-y-7 space-y-3">
           {/* Basic Info */}

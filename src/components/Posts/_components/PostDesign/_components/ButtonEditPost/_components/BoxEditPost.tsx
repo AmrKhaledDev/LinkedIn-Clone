@@ -109,7 +109,9 @@ function BoxEditPost({
               <h2 className="capitalize font-semibold sm:text-[20px] text-[16px]">
                 {user.name}
               </h2>
-              <h3 className="font-normal sm:text-[14px] text-[13px]">Posted to Anyone</h3>
+              <h3 className="font-normal sm:text-[14px] text-[13px]">
+                Posted to Anyone
+              </h3>
             </div>
           </div>
           <button
@@ -127,43 +129,45 @@ function BoxEditPost({
             placeholder="what do you want to talk about?"
             className="rounded p-2 md:min-h-45 sm:min-h-35 max-h-50 w-full outline-none resize-none md:text-xl sm:text-[17px]"
           />
-          <div className="relative">
-            {showImage && (
-              <Image
-                src={media || post.image || ""}
-                alt="Post Image"
-                width={900}
-                height={900}
-                className="w-full max-h-100 object-cover rounded"
-              />
-            )}
-            {showVideo && (
-              <video
-                src={media || post.video || ""}
-                controls
-                className="w-full max-h-100 object-cover rounded"
-              />
-            )}
-            <div className="absolute top-3 right-3 flex items-center gap-3">
-              <label
-                htmlFor="media"
-                className="bg-white shadow rounded-full p-2 text-primary cursor-pointer text-xl hover:scale-105"
-              >
-                <IoCameraReverse />
-              </label>
-              <input
-                onChange={handleChangeMedia}
-                type="file"
-                id="media"
-                hidden
-                className="hidden"
-                accept="image/*,video/*,.mkv"
-              />
-              <button className="bg-white shadow rounded-full p-2 text-red-500  cursor-pointer text-xl hover:scale-105">
-                <RiDeleteBin7Fill />
-              </button>
+          {(showImage || showVideo) && (
+            <div className="relative">
+              {showImage && (
+                <Image
+                  src={media || post.image || ""}
+                  alt="Post Image"
+                  width={900}
+                  height={900}
+                  className="w-full max-h-100 object-cover rounded"
+                />
+              )}
+              {showVideo && (
+                <video
+                  src={media || post.video || ""}
+                  controls
+                  className="w-full max-h-100 object-cover rounded"
+                />
+              )}
+              <div className="absolute top-3 right-3 flex items-center gap-3">
+                <label
+                  htmlFor="media"
+                  className="bg-white shadow rounded-full p-2 text-primary cursor-pointer text-xl hover:scale-105"
+                >
+                  <IoCameraReverse />
+                </label>
+                <input
+                  onChange={handleChangeMedia}
+                  type="file"
+                  id="media"
+                  hidden
+                  className="hidden"
+                  accept="image/*,video/*,.mkv"
+                />
+                <button className="bg-white shadow rounded-full p-2 text-red-500  cursor-pointer text-xl hover:scale-105">
+                  <RiDeleteBin7Fill />
+                </button>
+              </div>
             </div>
-          </div>
+          )}
         </div>
         <div
           className={`w-full flex items-center ${

@@ -59,7 +59,7 @@ function EditCommentBox({
         }`}
       />
       <div
-        className={`sm:p-3 p-1 rounded-xl box shadow z-15 bg-white flex-col absolute right-0 ${
+        className={`sm:p-3 p-1 rounded-xl box shadow z-10 bg-white flex-col absolute right-0 ${
           comment.userId !== user.id ? "min-w-70" : "min-w-fit"
         } gap-2 mt-1 ${showBoxEditComment ? "flex" : "hidden"}`}
       >

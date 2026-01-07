@@ -21,7 +21,7 @@ function BoxEditSmallImage({ user }: { user: User }) {
   });
   return (
     <div>
-      <div className="absolute sm:bottom-5 bottom-2 sm:right-0 -right-2  z-20">
+      <div className="absolute sm:bottom-5 bottom-2 sm:right-0 -right-2  z-10">
         <button
           onClick={() => {
             setShowBoxEditImage(!showBoxEditImage);
