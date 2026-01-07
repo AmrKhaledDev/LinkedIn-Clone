@@ -2,18 +2,17 @@ import { PostType } from "@/lib/types/types";
 import Image from "next/image";
 import PostDetails from "./_components/PostDetails";
 import OwnerPostDetails from "./_components/OwnerPostDetails";
-import { GetUser } from "@/lib/GetUser";
 import EditPost from "./_components/EditPost";
 import PostFooter from "./_components/PostFooter/PostFooter";
+import { User } from "@prisma/client";
 // =====================================================================
-async function PostDesign({ post }: { post: PostType }) {
-  const user = await GetUser();
+ function PostDesign({ post,user }: { post: PostType,user:User }) {
   if (!user) return;
   const isLike = post.likes.find((like) => like.userId === user.id);
   const isDisLike = post.disLikes.find((like) => like.userId === user.id);
   return (
     <li className="rounded shadow bg-white">
-      <EditPost postId={post.id} />
+      <EditPost post={post} user={user} />
       <div className="flex flex-col">
         <OwnerPostDetails post={post} user={user} />
         <PostDetails post={post} />
@@ -63,7 +62,7 @@ async function PostDesign({ post }: { post: PostType }) {
                     )
                   ) : (
                     <>{post.disLikes.length}</>
-                  )}{" "}
+                  )}
                 </span>
               </div>
             )}
