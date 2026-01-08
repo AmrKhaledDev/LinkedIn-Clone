@@ -25,7 +25,7 @@ function UserInfo({ user }: { user: UserWithRelationType }) {
         (info) =>
           info.info && (
             <div
-              className="flex items-center gap-3 group cursor-default"
+              className="flex items-center gap-3 group cursor-default break-all"
               key={info.id}
             >
               <div className="p-2 bg-gray-50 rounded-lg group-hover:bg-blue-50 transition-colors">

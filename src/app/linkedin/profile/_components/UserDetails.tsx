@@ -16,7 +16,7 @@ function UserDetails({ user }: { user: UserWithRelationType }) {
         {/* Name and Join Date */}
         <div className="flex items-center gap-3 justify-between">
           <div className="flex items-center gap-2">
-            <h2 className="sm:text-3xl capitalize text-2xl font-bold text-slate-900 tracking-tight">
+            <h2 className="sm:text-3xl capitalize text-2xl font-bold text-slate-900 tracking-tight break-all line-clamp-1">
               {user.name}
             </h2>
             {user.role === "SUPER_ADMIN" && (
@@ -25,7 +25,7 @@ function UserDetails({ user }: { user: UserWithRelationType }) {
               </i>
             )}
           </div>
-          <span className="px-4 py-1.5 sm:block hidden bg-blue-50 text-blue-600 text-xs font-bold rounded-full uppercase tracking-wider">
+          <span className="px-4 py-1.5 text-center sm:block hidden bg-blue-50 text-blue-600 text-xs font-bold rounded-full uppercase tracking-wider">
             Joined In {formatted}
           </span>
         </div>

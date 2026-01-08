@@ -18,7 +18,7 @@ export const EditProfileSchema = z.object({
     .string({ message: "Education must be a valid text" })
     .trim()
     .min(3, { message: "Education name is too short" })
-    .max(100, { message: "Education name is too long" }),
+    .max(40, { message: "Education name is too long" }),
 
   country: z
     .string({ message: "Country must be a valid text" })

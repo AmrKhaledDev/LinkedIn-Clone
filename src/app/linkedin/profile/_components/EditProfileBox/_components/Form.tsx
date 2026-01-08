@@ -1,5 +1,6 @@
 "use client";
 import Loader from "@/components/Loader/Loader";
+import ServerErrorMessage from "@/components/ServerErrorMessage/ServerErrorMessage";
 import { EditProfileAction } from "@/lib/actions/EditActions/EditProfileAction";
 import { FormEditProfileErrors } from "@/lib/interfaces/interfaces";
 import { EditProfileSchema } from "@/lib/schemas/EditProfileSchema";
@@ -7,7 +8,7 @@ import { User } from "@prisma/client";
 import { useRouter } from "next/navigation";
 import { FormEvent, useState } from "react";
 import toast from "react-hot-toast";
-import { FaUserCircle, FaSave } from "react-icons/fa";
+import { FaSave, FaEdit } from "react-icons/fa";
 import { IoMdClose } from "react-icons/io";
 // ============================================================================================
 function Form({
@@ -74,16 +75,20 @@ function Form({
         onSubmit={handleSubmit}
         className="w-full bg-white shadow-2xl overflow-hidden transition-css"
       >
-       
-
-        <div className="md:p-8 p-3 md:space-y-7 space-y-3">
+        <div className="md:p-4 p-3 bg-primary text-white flex items-center justify-between">
+          <h2 className="md:text-2xl text-xl font-semibold">Edit Profile</h2>
+          <i className="text-5xl opacity-30">
+            <FaEdit />
+          </i>
+        </div>
+        <div className="md:p-4 p-3 md:space-y-5 space-y-3 xl:h-137.5 lg:h-125 h-120 overflow-y-auto">
           {/* Basic Info */}
           <section>
-            <h3 className="font-bold text-xl sm:block hidden text-gray-800 sm:mb-6 mb-2">
+            <h3 className="font-bold text-xl sm:block hidden text-gray-800 sm:mb-4 mb-2">
               Basic Information
             </h3>
 
-            <div className="sm:space-y-6 space-y-3 px-2">
+            <div className="sm:space-y-4 space-y-3 px-2">
               {/* Name */}
               <div className="flex flex-col gap-2">
                 <label className="text-sm font-semibold text-gray-700 ml-1">
@@ -103,9 +108,7 @@ function Form({
                     }
                   `}
                 />
-                {errors.name && (
-                  <p className="text-sm text-red-500 ml-1">{errors.name}</p>
-                )}
+                {errors.name && <ServerErrorMessage message={errors.name} />}
               </div>
 
               {/* Headline */}
@@ -128,7 +131,7 @@ function Form({
                   `}
                 />
                 {errors.headline && (
-                  <p className="text-sm text-red-500 ml-1">{errors.headline}</p>
+                  <ServerErrorMessage message={errors.headline} />
                 )}
               </div>
             </div>
@@ -136,7 +139,9 @@ function Form({
 
           {/* Education */}
           <section>
-            <h3 className="font-bold sm:text-xl text-gray-800 sm:mb-6 mb-2">Education</h3>
+            <h3 className="font-bold sm:text-xl text-gray-800 sm:mb-4 mb-2">
+              Education
+            </h3>
 
             <div className="px-2">
               <div className="flex flex-col gap-2">
@@ -158,7 +163,7 @@ function Form({
                   `}
                 />
                 {errors.school && (
-                  <p className="text-sm text-red-500 ml-1">{errors.school}</p>
+                  <ServerErrorMessage message={errors.school} />
                 )}
               </div>
             </div>
@@ -166,7 +171,9 @@ function Form({
 
           {/* Location */}
           <section>
-            <h3 className="font-bold sm:text-xl text-gray-800 sm:mb-6 mb-2">Location</h3>
+            <h3 className="font-bold sm:text-xl text-gray-800 sm:mb-4 mb-2">
+              Location
+            </h3>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 px-2">
               <div className="flex flex-col gap-2">
@@ -188,7 +195,7 @@ function Form({
                   `}
                 />
                 {errors.country && (
-                  <p className="text-sm text-red-500 ml-1">{errors.country}</p>
+                  <ServerErrorMessage message={errors.country} />
                 )}
               </div>
 
@@ -210,24 +217,28 @@ function Form({
                     }
                   `}
                 />
-                {errors.city && (
-                  <p className="text-sm text-red-500 ml-1">{errors.city}</p>
-                )}
+                {errors.city && <ServerErrorMessage message={errors.city} />}
               </div>
             </div>
           </section>
         </div>
 
         {/* Footer */}
-        <div className="flex justify-end gap-4 bg-gray-50 px-8 sm:py-6 py-3">
+        <div className="flex justify-end sm:gap-4 gap-1 bg-gray-50 sm:px-8 px-3 sm:py-4 py-3">
           <button
             type="button"
             disabled={loading}
             onClick={() => {
-              router.refresh();
               setShowBoxEdit(false);
+              setName(user.name ?? "");
+              setHeadline(user.headline ?? "");
+              setCity(user.city ?? "");
+              setCountry(user.country ?? "");
+              setSchool(user.school ?? "");
+              setErrors({})
+              router.refresh()
             }}
-            className="flex sm:text-[15px] text-[13px] items-center disabled:cursor-default cursor-pointer disabled:hover:bg-transparent disabled:text-gray-400 gap-1 text-sm font-bold text-gray-500 hover:text-red-600 px-4 py-2 hover:bg-red-100 rounded-lg transition-all"
+            className="flex sm:text-[15px] text-[12px] items-center disabled:cursor-default cursor-pointer disabled:hover:bg-transparent disabled:text-gray-400 gap-1 text-sm font-bold text-gray-500 hover:text-red-600 px-4 py-2 hover:bg-red-100 rounded-lg transition-all"
           >
             <IoMdClose size={18} />
             Cancel
@@ -235,13 +246,13 @@ function Form({
 
           <button
             disabled={loading}
-            className="flex items-center sm:text-[15px] text-[13px] disabled:bg-blue-100 cursor-pointer disabled:hover:bg-transparent disabled:cursor-wait gap-2 bg-blue-600 hover:bg-blue-700 text-white sm:px-10 px-5 py-3 rounded-xl font-bold shadow-xl transition-all"
+            className="flex items-center sm:text-[15px] text-[12px] disabled:bg-blue-100 cursor-pointer disabled:hover:bg-transparent disabled:cursor-wait gap-2 bg-blue-600 hover:bg-blue-700 text-white sm:px-10 px-4 sm:py-3 py-2 rounded-xl font-bold shadow-xl transition-all"
           >
             {loading ? (
               <Loader />
             ) : (
               <>
-                <FaSave  />
+                <FaSave />
                 Save Changes
               </>
             )}

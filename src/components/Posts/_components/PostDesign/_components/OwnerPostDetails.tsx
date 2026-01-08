@@ -47,7 +47,7 @@ function OwnerPostDetails({ post, user }: { post: PostType; user: User }) {
               </i>
             )}
           </div>
-          <h2 className="sm:text-[13px] text-[12px] text-slate-700 line-clamp-1 ">
+          <h2 className="sm:text-[13px] text-[12px] text-slate-700 line-clamp-1 break-all">
             {post.user.headline}
           </h2>
           <p className="text-[11px] text-slate-700 line-clamp-1">{formatted}</p>

@@ -18,9 +18,9 @@ function PostDetails({ post }: { post: PostType }) {
     : text.substring(0, CHARACTER_LIMIT) + "...";
 
   return (
-    <div className="w-full flex flex-col gap-1">
+    <div className="w-full flex flex-col gap-1 p-3">
       <div className="px-3 pb-2">
-        <p className="text-slate-800 sm:text-[15px] text-[14px] whitespace-pre-line">
+        <p className="text-slate-800 sm:text-[15px] text-[14px] whitespace-pre-line break-all">
           {displayText}
         </p>
         
@@ -40,7 +40,7 @@ function PostDetails({ post }: { post: PostType }) {
           alt="Post Image"
           width={900}
           height={600}
-          className="object-cover max-h-150 w-full"
+          className="object-cover max-h-150 w-full rounded"
         />
       )}
       {post.video && <video src={post.video} controls className="w-full" />}
