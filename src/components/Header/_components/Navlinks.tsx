@@ -86,7 +86,7 @@ function Navlinks() {
           >
             <i
               className={`md:text-2xl sm:text-xl text-2xl ${
-                pathname == link.url ? " text-black" : "text-blackLight"
+                pathname == link.url ? " text-black" : "text-[#666666]"
               } group-hover:text-black`}
             >
               {link.icon}

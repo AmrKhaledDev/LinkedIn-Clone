@@ -74,7 +74,7 @@ function BoxPost({
   const isVideo = mediaFile?.type.startsWith("video");
   return (
     <div
-      className={`w-full h-screen bg-black/45 backdrop-blur inset-0 flex items-center justify-center z-50 ${
+      className={`w-full min-h-screen bg-black/45 backdrop-blur inset-0 flex items-center justify-center z-50 ${
         showBoxPost ? "fixed" : "hidden"
       }`}
     >
@@ -98,35 +98,37 @@ function BoxPost({
               </h3>
             </div>
           </div>
-          <textarea
-            ref={textareaRef}
-            value={contentTxt}
-            onChange={(e) => setContentTxt(e.target.value)}
-            placeholder="what do you want to talk about?"
-            className="rounded p-2 md:min-h-62.5 sm:min-h-52 min-h-22 outline-none resize-none md:text-xl sm:text-[17px]"
-          />
-          {mediaUrl && (
-            <div className="relative div">
-              {isVideo ? (
-                <video controls src={mediaUrl} />
-              ) : (
-                <Image
-                  src={mediaUrl}
-                  alt="Post Image"
-                  width={500}
-                  height={500}
-                  className="w-full rounded object-cover max-h-100"
-                />
-              )}
-              <button
-                type="button"
-                onClick={() => setMediaUrl("")}
-                className="absolute top-3 right-3 cursor-pointer text-red-500 text-xl p-2 rounded-full bg-white shadow hover:scale-105 transition-css "
-              >
-                <MdDelete />
-              </button>
-            </div>
-          )}
+          <div className="h-105 overflow-y-auto">
+            <textarea
+              ref={textareaRef}
+              value={contentTxt}
+              onChange={(e) => setContentTxt(e.target.value)}
+              placeholder="what do you want to talk about?"
+              className="rounded p-2 md:min-h-40 sm:min-h-52 min-h-22 outline-none resize-none md:text-xl sm:text-[17px] w-full"
+            />
+            {mediaUrl && (
+              <div className="relative div">
+                {isVideo ? (
+                  <video controls src={mediaUrl} />
+                ) : (
+                  <Image
+                    src={mediaUrl}
+                    alt="Post Image"
+                    width={500}
+                    height={500}
+                    className="w-full rounded object-cover max-h-full"
+                  />
+                )}
+                <button
+                  type="button"
+                  onClick={() => setMediaUrl("")}
+                  className="absolute top-3 right-3 cursor-pointer text-red-500 text-xl p-2 rounded-full bg-white shadow hover:scale-105 transition-css "
+                >
+                  <MdDelete />
+                </button>
+              </div>
+            )}
+          </div>
           <div className="flex items-center justify-between border-t pt-2 border-t-gray-200">
             <Icons setMediaUrl={setMediaUrl} setMediaFile={setMediaFile} />
             <ButtonPost
