@@ -4,7 +4,7 @@ import { EditPostAction } from "@/lib/actions/EditActions/EditPostAction";
 import { PostType } from "@/lib/types/types";
 import { User } from "@prisma/client";
 import { useRouter } from "next/navigation";
-import {  Dispatch, SetStateAction, useState } from "react";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import Content from "./Content";
 import HeaderEditPost from "./HeaderEditPost";
@@ -26,6 +26,13 @@ function BoxEditPost({
   const [media, setMedia] = useState("");
   const [mediaFile, setMediaFile] = useState<File | null>(null);
   const router = useRouter();
+  useEffect(() => {
+    const handle = (e: MouseEvent) => {
+      if (!(e.target instanceof Element)) return;
+      if (!e.target.closest(".box, .button")) setEditPost(false);
+    };
+    document.addEventListener("click", handle);
+  });
   const handleEditPost = async () => {
     if (content.trim().length < 1 && !media)
       return toast.error("You cannot leave the post blank", {
@@ -70,11 +77,11 @@ function BoxEditPost({
 
   return (
     <div
-      className={`w-full h-screen flex items-center justify-center bg-black/45  backdrop-blur inset-0 lg:pt-15 z-999 ${
+      className={`w-full min-h-screen flex items-center justify-center bg-black/45  backdrop-blur inset-0 lg:pt-20 md:pt-30 pt-30 z-999 ${
         editPost ? "fixed" : "hidden"
       }`}
     >
-      <div className="bg-white rounded-xl lg:w-190 w-full lg:max-h-fit max-h-fit  overflow-hidden">
+      <div className="bg-white box lg:rounded-xl lg:w-190 w-full lg:max-h-fit max-h-fit  overflow-hidden">
         <HeaderEditPost
           setEditPost={setEditPost}
           editPost={editPost}

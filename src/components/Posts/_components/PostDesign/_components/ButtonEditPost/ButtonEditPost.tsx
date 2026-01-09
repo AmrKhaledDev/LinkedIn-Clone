@@ -12,7 +12,7 @@ function ButtonEditPost({ post, user }: { post: PostType; user: User }) {
     <>
       <button
         onClick={() => setEditPost(true)}
-        className="flex items-center gap-3 cursor-pointer py-2 px-4 rounded hover:bg-gray-100 sm:text-[14px] text-[13px] font-semibold w-full"
+        className="flex button items-center gap-3 cursor-pointer py-2 px-4 rounded hover:bg-gray-100 sm:text-[14px] text-[13px] font-semibold w-full"
       >
         <i className="sm:text-[18px]">
           <BiEditAlt />

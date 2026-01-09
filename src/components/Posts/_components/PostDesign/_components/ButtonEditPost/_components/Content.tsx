@@ -42,7 +42,7 @@ function Content({
   return (
     <div
       className={`p-3 overflow-y-auto ${
-        showImage || showVideo ? "h-125 " : "h-fit"
+        showImage || showVideo ? "sm:h-90 h-100 " : "h-fit"
       }`}
     >
       <textarea
@@ -50,7 +50,7 @@ function Content({
         defaultValue={content}
         onChange={(e) => setContent(e.target.value)}
         placeholder="what do you want to talk about?"
-        className="rounded p-2 md:min-h-45 sm:min-h-35 max-h-50 w-full outline-none resize-none md:text-xl sm:text-[17px]"
+        className="rounded p-2 md:min-h-50 sm:min-h-40 max-h-50 w-full outline-none resize-none md:text-xl sm:text-[17px]"
       />
       {(showImage || showVideo) && (
         <div className="relative">
