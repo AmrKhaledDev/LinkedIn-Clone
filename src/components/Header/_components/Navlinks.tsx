@@ -66,12 +66,12 @@ function Navlinks() {
         alt="Menu"
         width={100}
         height={100}
-        className={`w-9 sm:hidden block button rounded-full p-2 ${
+        className={`w-6 sm:hidden block button rounded-full p-1 ${
           openNav && "bg-gray-100"
         }`}
       />
       <nav
-        className={`sm:flex div items-center sm:h-full sm:relative sm:left-0 sm:translate-x-0 sm:top-0 fixed left-1/2 -translate-x-1/2 top-20 sm:border-b-0 border-b-2 border-b-gray-200 bg-white sm:px-0 px-3 sm:w-fit w-full sm:py-0 py-2 sm:justify-start justify-center sm:gap-0 gap-4 sm:flex-row flex-col ${
+        className={`sm:flex div items-center sm:h-full sm:relative sm:left-0 sm:translate-x-0 sm:top-0 fixed left-1/2 -translate-x-1/2 top-18 sm:border-b-0 border-b-2 border-b-gray-200 bg-white sm:px-0 px-3 sm:w-fit w-full sm:py-0 py-2 sm:justify-start justify-center sm:gap-0 gap-4 sm:flex-row flex-col ${
           openNav ? "flex" : "hidden"
         } border-r border-r-gray-100`}
       >
@@ -81,7 +81,7 @@ function Navlinks() {
             key={link.id}
             className={`flex items-center sm:justify-center flex-col md:px-5 sm:px-3 px-5 pt-1 h-full ${
               pathname == link.url &&
-              "border-black sm:border-b-2 sm:border-l-0 border-l-2"
+              "border-black sm:border-b-2"
             } group link`}
           >
             <i

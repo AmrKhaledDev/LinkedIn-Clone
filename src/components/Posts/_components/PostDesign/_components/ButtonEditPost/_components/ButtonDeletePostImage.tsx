@@ -41,8 +41,9 @@ function ButtonDeletePostImage({
         <AlertDialogHeader>
           <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
           <AlertDialogDescription>
-            This action cannot be undone. This will permanently delete your
-            account and remove your data from our servers.
+            The post image will be permanently deleted from our servers. If the
+            post contains only an image without a title, the entire post will be
+            deleted.
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>

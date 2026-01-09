@@ -22,12 +22,7 @@ function ShowDisLikers({
       }`}
     >
       <div className="rounded-xl shadow md:w-150 sm:w-120 w-[90%] bg-white h-fit flex flex-col">
-        <div className="flex items-center justify-between border-b border-b-gray-100 p-5">
-          <div>
-            <h2 className="text-2xl md:text-3xl font-extrabold text-slate-800 tracking-tight border-l-6 border-red-500 pl-3 transition-all duration-500">
-              Dis<span className="text-red-500">Like</span>
-            </h2>
-          </div>
+        <div className="flex items-center justify-end border-b border-b-gray-100 p-2">
           <button
             onClick={() => setShowDisLikers(false)}
             className="md:text-2xl text-xl text-slate-600 cursor-pointer p-2 hover:bg-gray-100 rounded-full"
@@ -35,7 +30,7 @@ function ShowDisLikers({
             <IoCloseSharp />
           </button>
         </div>
-        <div className="flex flex-col gap-3 h-fit max-h-125 overflow-y-auto p-5 ">
+        <div className="flex flex-col gap-3 h-fit max-h-125 overflow-y-auto p-3 ">
           {post.disLikes.map((dislike) => (
             <div
               key={dislike.id}
@@ -54,7 +49,7 @@ function ShowDisLikers({
                   alt="Like"
                   width={20}
                   height={20}
-                  className="absolute right-1 bottom-1"
+                  className="absolute sm:right-1 sm:bottom-1 right-0 bottom-0.5 sm:w-5 sm:h-5 w-4.5 h-4.5"
                 />
               </div>
 

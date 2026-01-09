@@ -8,6 +8,7 @@ function loading() {
         alt="Logo"
         width={200}
         height={200}
+        priority
         className="lg:w-37.5 w-27.5 h-fit "
       />
       <div className="flex space-x-1 items-center justify-center">

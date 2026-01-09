@@ -35,7 +35,7 @@
 
 @media (max-width: 1024px) {
   .space-section {
-    padding-top: 150px;
+    padding-top: 120px;
   }
 }
 
@@ -54,7 +54,11 @@
     display: none;
   }
 }
+/* Post Footer */
 @media (max-width: 520px) {
+  .container-actions{
+    padding: 10px 16px;
+  }
   .like {
     font-size: 23px;
   }
@@ -68,7 +72,24 @@
     font-size: 23px;
   }
 }
-
+/* Post Footer */
+@media (max-width: 520px) {
+  .container-actions{
+    padding: 8px 13px;
+  }
+  .like {
+    font-size: 21px;
+  }
+  .dislike {
+    font-size: 21px;
+  }
+  .comment {
+    font-size: 21px;
+  }
+  .send {
+    font-size: 21px;
+  }
+}
 @theme inline {
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);

@@ -53,7 +53,7 @@ function EditPost({ post, user }: EditPostProps) {
             {post.userId === user.id && (
               <>
                 <button className="flex items-center gap-3 cursor-pointer py-2 px-4 rounded hover:bg-gray-100 sm:text-[14px] text-[13px] font-semibold">
-                  <i className="sm:text-[18px]">
+                  <i className="sm:text-[18px] text-[17px]">
                     <FaRegBookmark />
                   </i>
                   Save

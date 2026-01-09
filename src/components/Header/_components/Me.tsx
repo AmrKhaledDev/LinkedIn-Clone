@@ -34,9 +34,9 @@ function Me({ user }: { user: User | null }) {
           height={100}
           className="w-8 h-8 shrink-0 rounded-full border-2 object-cover border-gray-200"
         />
-        <div className="flex items-center gap-1">
-          <span className="group-hover:text-blackLight text-[14px]">Me</span>
-          <i className="text-[17px]">
+        <div className="flex items-center ">
+          <span className="group-hover:text-blackLight text-[12px]">Me</span>
+          <i className="text-[15px]">
             <IoMdArrowDropdown />
           </i>
         </div>

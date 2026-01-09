@@ -14,7 +14,7 @@ function PostFooter({ user, post }: { user: User; post: PostType }) {
   return (
     <div>
       <div
-        className={`flex items-center md:gap-12 sm:gap-5 gap-2 py-3 justify-between sm:px-5 px-7  ${
+        className={`flex items-center md:gap-12 sm:gap-5 gap-2 py-3 justify-between sm:px-5 px-7 container-actions  ${
           (post.likes.length > 0 ||
             post.disLikes.length > 0 ||
             post.comments.length > 0) &&
