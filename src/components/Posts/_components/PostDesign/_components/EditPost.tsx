@@ -43,8 +43,8 @@ function EditPost({ post, user }: EditPostProps) {
             onClick={toggle}
             src={"/ellipsis.svg"}
             alt="Icon"
-            width={30}
-            height={30}
+            width={25}
+            height={25}
             className="cursor-pointer button hover:bg-gray-100 rounded-full p-1 transition-css"
           />
         </div>

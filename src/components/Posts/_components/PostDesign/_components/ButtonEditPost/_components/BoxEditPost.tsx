@@ -88,6 +88,7 @@ function BoxEditPost({
           user={user}
         />
         <Content
+          user={user}
           post={post}
           media={media}
           setMedia={setMedia}
@@ -97,7 +98,6 @@ function BoxEditPost({
           mediaFile={mediaFile}
         />
         <FooterEditPost
-          post={post}
           handleEditPost={handleEditPost}
           loading={loading}
         />

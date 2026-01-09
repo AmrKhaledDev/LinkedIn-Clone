@@ -4,6 +4,8 @@ import Image from "next/image";
 import { ChangeEvent, Dispatch, SetStateAction, useRef } from "react";
 import { IoCameraReverse } from "react-icons/io5";
 import { RiDeleteBin7Fill } from "react-icons/ri";
+import ButtonDeletePostImage from "./ButtonDeletePostImage";
+import { User } from "@prisma/client";
 
 // =======================================================================
 function Content({
@@ -14,6 +16,7 @@ function Content({
   setMedia,
   setMediaFile,
   setContent,
+  user
 }: {
   content: string;
   mediaFile: File | null;
@@ -22,6 +25,7 @@ function Content({
   setMedia: Dispatch<SetStateAction<string>>;
   setMediaFile: Dispatch<SetStateAction<File | null>>;
   setContent: Dispatch<SetStateAction<string>>;
+  user:User
 }) {
   const handleChangeMedia = (e: ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files && e.target.files[0];
@@ -85,9 +89,7 @@ function Content({
               className="hidden"
               accept="image/*,video/*,.mkv"
             />
-            <button className="bg-white shadow rounded-full p-2 text-red-500  cursor-pointer text-xl hover:scale-105">
-              <RiDeleteBin7Fill />
-            </button>
+          <ButtonDeletePostImage postId={post.id} userId={user.id}/>
           </div>
         </div>
       )}

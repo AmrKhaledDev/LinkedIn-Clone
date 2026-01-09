@@ -17,7 +17,7 @@ function OwnerPostDetails({ post, user }: { post: PostType; user: User }) {
   const formatted = date.toLocaleDateString("en-GB", options);
   if (!post) return;
   return (
-    <div className="flex gap-2 p-3">
+    <div className="flex gap-2 px-3 pb-3">
       <Image
         src={post.user.image ? post.user.image : "/user.svg"}
         alt="Your Image"

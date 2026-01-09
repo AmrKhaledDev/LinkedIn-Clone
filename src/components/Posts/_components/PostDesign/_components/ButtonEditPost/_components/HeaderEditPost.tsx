@@ -35,7 +35,7 @@ function HeaderEditPost({
       </div>
       <button
         onClick={() => setEditPost(!editPost)}
-        className="sm:text-3xl text-xl cursor-pointer"
+        className="sm:text-2xl text-xl cursor-pointer h-fit"
       >
         <IoClose />
       </button>

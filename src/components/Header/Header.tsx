@@ -17,7 +17,7 @@ async function Header() {
               alt="Linkedin logo"
               width={150}
               height={150}
-              className="md:w-10 w-8"
+              className="md:w-9 w-8"
             />
           </Link>
           <InputSearch />
