@@ -13,6 +13,14 @@ enum Role {
   SUPER_ADMIN
 }
 
+enum TypeNotification {
+  LIKE
+  DISLIKE
+  COMMENT
+  REPLAY
+  MESSAGE
+}
+
 // Models
 model Account {
   id                String  @id @default(cuid())
@@ -70,22 +78,26 @@ model User {
   replays         Replay[]
   likeForReplays  LikeForReplay[]
 
+  sentNotifications     Notification[] @relation("ActorNotifications")
+  receivedNotifications Notification[] @relation("RecipientNotifications")
+
   @@map("users")
 }
 
 model Post {
-  id          String    @id @default(cuid())
-  contentText String?
-  image       String?
-  video       String?
-  createdAt   DateTime  @default(now())
-  updatedAt   DateTime  @updatedAt
-  userId      String
-  user        User      @relation(fields: [userId], references: [id], onDelete: Cascade)
-  comments    Comment[]
-  likes       Like[]
-  disLikes    DisLike[]
-  replays     Replay[]
+  id            String         @id @default(cuid())
+  contentText   String?
+  image         String?
+  video         String?
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
+  userId        String
+  user          User           @relation(fields: [userId], references: [id], onDelete: Cascade)
+  comments      Comment[]
+  likes         Like[]
+  disLikes      DisLike[]
+  replays       Replay[]
+  notifications Notification[]
 }
 
 model Like {
@@ -190,6 +202,24 @@ model Article {
   user      User     @relation(fields: [userId], references: [id])
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+}
+
+model Notification {
+  id          String           @id @default(cuid())
+  title       String
+  body        String?
+  route       String
+  type        TypeNotification
+  actorId     String
+  actor       User             @relation("ActorNotifications", fields: [actorId], references: [id])
+  postTitle   String?
+  recipientId String
+  recipient   User             @relation("RecipientNotifications", fields: [recipientId], references: [id])
+
+  postId    String?
+  post      Post?     @relation(fields: [postId], references: [id])
+  createdAt DateTime  @default(now())
+  readAt    DateTime?
 }
 
 model VerificationToken {

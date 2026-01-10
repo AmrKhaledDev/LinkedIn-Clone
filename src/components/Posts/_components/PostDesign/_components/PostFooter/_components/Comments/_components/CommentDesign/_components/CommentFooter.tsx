@@ -18,8 +18,13 @@ function CommentFooter({
   postId: string;
 }) {
   const router = useRouter();
+  const [showBoxReplay, setShowBoxReplay] = useState(false);
+  const [loadingLike, setLoadingLike] = useState(false);
+  const [loading, setLoading] = useState(false);
   const handleClickLikeForComment = async () => {
+    setLoadingLike(true);
     const result = await CreateLikeForComment(comment.id, user.id);
+    setLoadingLike(false);
     if (result?.error)
       return toast.error(result.error, { className: "toast-font" });
     router.refresh();
@@ -31,8 +36,6 @@ function CommentFooter({
     comment.user.name.charAt(0).toUpperCase() +
       comment.user.name.slice(1).toLowerCase()
   );
-  const [showBoxReplay, setShowBoxReplay] = useState(false);
-  const [loading, setLoading] = useState(false);
   const handleCreateReplay = async () => {
     setLoading(true);
     const result = await CreateReplayAction(
@@ -63,23 +66,38 @@ function CommentFooter({
       <div className="flex items-center gap-1 font-bold text-slate-600">
         <div className="flex items-center gap-1">
           <button
+            disabled={loadingLike}
             onClick={handleClickLikeForComment}
-            className={`hover:bg-gray-100 rounded cursor-pointer py-1 sm:text-[14px] text-[13px] px-1 transition-css ${
+            className={`hover:bg-gray-100 disabled:cursor-default disabled:hover:bg-transparent rounded cursor-pointer py-1 sm:text-[14px] text-[13px] px-1 transition-css ${
               isLikeForComment ? "text-primary" : ""
             }`}
           >
-            Like
+            {loadingLike ? (
+              <div className="flex space-x-1 items-center justify-center">
+                <div className="size-1 bg-primary rounded-full animate-[bounce_1s_infinite_0ms]"></div>
+                <div className="size-1 bg-primary rounded-full animate-[bounce_1s_infinite_200ms]"></div>
+                <div className="size-1 bg-primary rounded-full animate-[bounce_1s_infinite_400ms]"></div>
+              </div>
+            ) : (
+              "Like"
+            )}
           </button>
           {comment.likeForComments.length > 0 && (
             <>
               <span className="size-0.5 rounded-full bg-gray-500" />
               <div className="flex items-center gap-1">
-                <Image src={"/like.svg"} alt="Like" width={18} height={18} className="sm:w-[18px] sm:h-[18px] w-[16px] h-[16px]"/>
+                <Image
+                  src={"/like.svg"}
+                  alt="Like"
+                  width={18}
+                  height={18}
+                  className="sm:w-4.5 sm:h-4.5 w-4 h-4"
+                />
                 <h4 className="text-[13px] font-normal text-gray-500">
                   {isLikeForComment ? (
                     comment.likeForComments.length > 1 ? (
                       <span className="flex items-center gap-1 sm:text-[15px] text-[14px]">
-                        you, 
+                        you,
                         <span>{comment.likeForComments.length - 1}</span>
                       </span>
                     ) : (

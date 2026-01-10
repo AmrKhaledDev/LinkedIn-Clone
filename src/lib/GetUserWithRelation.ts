@@ -62,6 +62,14 @@ export const GetUserWithRelation = async () => {
               },
             },
           },
+          receivedNotifications: {
+            include: {
+              actor: true,
+            },
+            orderBy: {
+              createdAt: "desc",
+            },
+          },
         },
       });
       user = userDB;

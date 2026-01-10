@@ -40,11 +40,21 @@ export const CreateLikeAction = async (userId: string, postId: string) => {
           id: isDisLike.id,
         },
       });
+      await prisma.notification.deleteMany({
+        where: {
+          postId: post.id,
+        },
+      });
     }
     if (isLike) {
       await prisma.like.delete({
         where: {
           id: isLike.id,
+        },
+      });
+      await prisma.notification.deleteMany({
+        where: {
+          postId: post.id,
         },
       });
     } else {
@@ -54,6 +64,19 @@ export const CreateLikeAction = async (userId: string, postId: string) => {
           postId,
         },
       });
+      if (post.userId !== user.id) {
+        await prisma.notification.create({
+          data: {
+            type: "LIKE",
+            actorId: user.id,
+            recipientId: post.userId,
+            route: `/linkedin/#${post.id}`,
+            title: `${user.name.split(" ")[0]} liked your post`,
+            postTitle: post.contentText,
+            postId: post.id,
+          },
+        });
+      }
     }
     revalidatePath("/linkedin");
   } catch (error) {

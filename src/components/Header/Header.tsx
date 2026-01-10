@@ -3,10 +3,18 @@ import Link from "next/link";
 import InputSearch from "./_components/InputSearch";
 import Navlinks from "./_components/Navlinks";
 import Me from "./_components/Me";
-import { GetUser } from "@/lib/GetUser";
+import { GetUserWithRelation } from "@/lib/GetUserWithRelation";
+import { prisma } from "@/lib/prisma";
 // ======================================================================
 async function Header() {
-  const user = await GetUser()
+  const user = await GetUserWithRelation();
+  if (!user) return;
+  const notificationNotRead = await prisma.notification.findMany({
+    where: {
+      recipientId: user.id,
+      readAt: null,
+    },
+  });
   return (
     <header className="border-b-2 border-b-gray-100 w-full fixed top-0 lg:pb-0 pb-15 bg-white z-15">
       <div className="container-css px-3 flex items-center justify-between h-15">
@@ -23,9 +31,9 @@ async function Header() {
           <InputSearch />
         </div>
         <div className="h-full flex items-center md:gap-10 gap-5 sm:flex-row flex-row-reverse">
-          <Navlinks />
+          <Navlinks notificationNotRead={notificationNotRead} />
           <div className="h-full flex items-center gap-3">
-            <Me user={user}/>
+            <Me user={user} />
           </div>
         </div>
       </div>

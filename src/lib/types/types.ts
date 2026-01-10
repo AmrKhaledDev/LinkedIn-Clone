@@ -105,6 +105,16 @@ export type UserWithRelationType = Prisma.UserGetPayload<{
         };
       };
     };
+    receivedNotifications: {
+      include: {
+        actor: true;
+      };
+    };
+  };
+}>;
+export type NotificationWithRelations = Prisma.NotificationGetPayload<{
+  include: {
+    actor: true;
   };
 }>;
 

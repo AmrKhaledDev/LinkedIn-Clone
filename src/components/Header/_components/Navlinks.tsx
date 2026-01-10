@@ -8,9 +8,14 @@ import { HiUsers } from "react-icons/hi";
 import { MdOutlineWork } from "react-icons/md";
 import { BiSolidMessageDots } from "react-icons/bi";
 import { IoNotificationsSharp } from "react-icons/io5";
+import { Notification } from "@prisma/client";
 
 // ======================================================================
-function Navlinks() {
+function Navlinks({
+  notificationNotRead,
+}: {
+  notificationNotRead: Notification[] | null;
+}) {
   const links = [
     {
       id: crypto.randomUUID(),
@@ -35,12 +40,6 @@ function Navlinks() {
       linkName: "Messaging",
       icon: <BiSolidMessageDots />,
       url: "/messaging",
-    },
-    {
-      id: crypto.randomUUID(),
-      linkName: "Notifications",
-      icon: <IoNotificationsSharp />,
-      url: "/notifications",
     },
   ];
   const pathname = usePathname();
@@ -80,8 +79,7 @@ function Navlinks() {
             href={link.url}
             key={link.id}
             className={`flex items-center sm:justify-center flex-col md:px-5 sm:px-3 px-5 pt-1 h-full ${
-              pathname == link.url &&
-              "border-black sm:border-b-2"
+              pathname == link.url && "border-black sm:border-b-2"
             } group link`}
           >
             <i
@@ -100,6 +98,38 @@ function Navlinks() {
             </span>
           </Link>
         ))}
+        <Link
+          href={"/linkedin/notifications"}
+          className={`flex items-center  sm:justify-center flex-col md:px-5 sm:px-3 px-5 pt-1 h-full ${
+            pathname == "/notifications" && "border-black sm:border-b-2"
+          } group link`}
+        >
+          <div className="relative">
+            <i
+              className={`md:text-2xl sm:text-xl text-2xl ${
+                pathname == "/linkedin/notifications"
+                  ? " text-black rotate-14 block"
+                  : "text-[#666666]"
+              } group-hover:text-black`}
+            >
+              <IoNotificationsSharp />
+            </i>
+            {notificationNotRead && notificationNotRead.length > 0 && (
+              <span className="absolute -right-1 -top-1 size-4.5 shadow font-semibold pt-0.5 rounded-full flex items-center justify-center text-white bg-red-500 text-[12px]">
+                {notificationNotRead.length}
+              </span>
+            )}
+          </div>
+          <span
+            className={`md:text-[12px]  sm:text-[11px] text-[14px] group-hover:text-black  ${
+              pathname == "/linkedin/notifications"
+                ? "text-black"
+                : "text-blackLight"
+            }`}
+          >
+            Notifications
+          </span>
+        </Link>
       </nav>
     </>
   );

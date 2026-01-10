@@ -32,6 +32,20 @@ export const CreateCommentAction = async (
         isAuthor: post.userId === user.id ? true : false,
       },
     });
+    if (post.userId !== user.id) {
+      await prisma.notification.create({
+        data: {
+          type: "COMMENT",
+          actorId: user.id,
+          recipientId: post.userId,
+          route: `/linkedin/#${post.id}`,
+          postTitle: post.contentText,
+          title: `${user.name.split(" ")[0]} commented on your post`,
+          body: content,
+          postId: post.id,
+        },
+      });
+    }
     revalidatePath("/linkedin");
   } catch (error) {
     console.log(error);

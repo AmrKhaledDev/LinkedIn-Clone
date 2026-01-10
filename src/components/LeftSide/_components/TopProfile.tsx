@@ -43,12 +43,14 @@ async function TopProfile() {
           <h3 className="xl:text-[13px] lg:text-[14px] sm:text-[13px] text-[12px]  text-blackLight line-clamp-1 capitalize">
             {user.city}
           </h3>
-          <h3 className="xl:text-[11px] lg:text-[12px] flex items-center gap-1 sm:text-[12px] text-[12px] line-clamp-1 font-semibold">
-            <i className="text-[17px] pb-0.5 text-hoverColor">
-              <PiCityDuotone />
-            </i>
-            {user.school}
-          </h3>
+          {user.school && (
+            <h3 className="xl:text-[11px] lg:text-[12px] flex items-center gap-1 sm:text-[12px] text-[12px] line-clamp-1 font-semibold">
+              <i className="text-[17px] pb-0.5 text-hoverColor">
+                <PiCityDuotone />
+              </i>
+              {user.school}
+            </h3>
+          )}
         </div>
       </Link>
     </div>

@@ -17,8 +17,11 @@ function ReplayDesign({
   replay: ReplayWithRelations;
 }) {
   const router = useRouter();
+  const [loading, setLoading] = useState(false);
   const handleLikeForReplay = async () => {
+    setLoading(true);
     const result = await CreateLikeForReplayAction(replay.id, user.id);
+    setLoading(false);
     if (result?.error)
       return toast.error(result.error, { className: "toast-font" });
     router.refresh();
@@ -58,31 +61,50 @@ function ReplayDesign({
                   author
                 </p>
               )}
-                {replay.isEdited && (
-                  <p className="inline-block rounded-md bg-white px-2 py-0.5 sm:text-[10px] text-[9px] font-semibold tracking-wide text-gray-600">
-                    Edited
-                  </p>
-                )}
+              {replay.isEdited && (
+                <p className="inline-block rounded-md bg-white px-2 py-0.5 sm:text-[10px] text-[9px] font-semibold tracking-wide text-gray-600">
+                  Edited
+                </p>
+              )}
             </div>
-            <EditReplayBox setEditReplayText={setEditReplayText} user={user} replay={replay} />
+            <EditReplayBox
+              setEditReplayText={setEditReplayText}
+              user={user}
+              replay={replay}
+            />
           </div>
           <h3 className="line-clamp-1 sm:text-[11px] text-[10px] text-blackLight font-normal">
             {replay.user.headline}
           </h3>
         </div>
         {editReplayText ? (
-          <EditReplayContent setEditReplayText={setEditReplayText} editReplayText replay={replay} user={user}/>
+          <EditReplayContent
+            setEditReplayText={setEditReplayText}
+            editReplayText
+            replay={replay}
+            user={user}
+          />
         ) : (
-          <p className="sm:text-[14px] text-[13px] break-all">{replay.content}</p>
+          <p className="sm:text-[14px] text-[13px] break-all">
+            {replay.content}
+          </p>
         )}
         <div className="flex items-center gap-1">
-          <button
+          <button disabled={loading}
             onClick={handleLikeForReplay}
-            className={`hover:bg-gray-100 rounded cursor-pointer py-1 text-[12px] px-1 transition-css font-bold  ${
+            className={`hover:bg-gray-100  disabled:hover:bg-transparent disabled:cursor-default rounded cursor-pointer py-1 text-[12px] px-1 transition-css font-bold  ${
               isLikeForReplay ? "text-primary" : "text-slate-600"
             }`}
           >
-            Like
+            {loading ? (
+              <div className="flex space-x-0.5 items-center justify-center">
+                <div className="size-0.75 bg-primary rounded-full animate-[bounce_1s_infinite_0ms]"></div>
+                <div className="size-0.75 bg-primary rounded-full animate-[bounce_1s_infinite_200ms]"></div>
+                <div className="size-0.75 bg-primary rounded-full animate-[bounce_1s_infinite_400ms]"></div>
+              </div>
+            ) : (
+              "Like"
+            )}
           </button>
 
           {replay.likeForReplays.length > 0 && (
