@@ -14,7 +14,8 @@ function Context({ children }: { children: React.ReactNode }) {
   // State Text
   const [titleArticle, setTitleArticle] = useState<string | null>(null);
   const [contentArticle, setContentArticle] = useState<string | null>(null);
-
+  const [openPostEdit, setOpenPostEdit] = useState<string | null>(null);
+  const [openEditComment, setOpenEditComment] = useState<string | null>(null);
   return (
     <ContextStates.Provider
       value={{
@@ -36,7 +37,10 @@ function Context({ children }: { children: React.ReactNode }) {
         setTitleArticle,
         contentArticle,
         setContentArticle,
-        
+        openPostEdit,
+        setOpenPostEdit,
+        openEditComment,
+        setOpenEditComment
       }}
     >
       {children}

@@ -5,6 +5,7 @@ import { CreatePostSchema } from "../schemas/CreatePostSchema";
 import { Prisma } from "@prisma/client";
 import { EditProfileSchema } from "../schemas/EditProfileSchema";
 import { CreateArticleSchema } from "../schemas/CreateArticleSchema";
+import { Dispatch, SetStateAction } from "react";
 // ===================================================================
 // Actions types
 export type RegisterActionDataType = z.infer<typeof RegisterSchema>;
@@ -178,4 +179,8 @@ export type ContextStatesType = {
   setTitleArticle: React.Dispatch<React.SetStateAction<string | null>>;
   contentArticle: string | null;
   setContentArticle: React.Dispatch<React.SetStateAction<string | null>>;
+  openPostEdit: string | null;
+  setOpenPostEdit: Dispatch<SetStateAction<string | null>>;
+  openEditComment: string | null;
+  setOpenEditComment: Dispatch<SetStateAction<string | null>>;
 };

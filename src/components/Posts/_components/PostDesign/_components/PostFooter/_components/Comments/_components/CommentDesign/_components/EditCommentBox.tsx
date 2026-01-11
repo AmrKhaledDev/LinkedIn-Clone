@@ -3,12 +3,13 @@ import Image from "next/image";
 import { MdModeEdit } from "react-icons/md";
 import { FaPlus } from "react-icons/fa6";
 import { MdDeleteSweep } from "react-icons/md";
-import React, { Dispatch, useEffect, useState } from "react";
+import React, { Dispatch, useContext, useEffect, useState } from "react";
 import { User } from "@prisma/client";
 import { DeleteCommentAction } from "@/lib/actions/DeleteActions/DeleteCommentAction";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import { CommentDBWithRelations } from "@/lib/types/types";
+import { ContextStates } from "@/context/Context";
 // ====================================================
 function EditCommentBox({
   user,
@@ -20,21 +21,22 @@ function EditCommentBox({
   comment: CommentDBWithRelations;
 }) {
   const [loading, setLoading] = useState(false);
-  const [showBoxEditComment, setShowBoxEditComment] = useState(false);
-  const router = useRouter();
+  const context = useContext(ContextStates);
+  if (!context) return null;
+  const { openEditComment, setOpenEditComment } = context;
   useEffect(() => {
     const handle = (e: MouseEvent) => {
-      if (e.target instanceof Element) {
-        if (!e.target.closest(".button, .box")) setShowBoxEditComment(false);
-      }
+      if (!(e.target instanceof Element)) return;
+      if (!e.target.closest(".box, .button")) setOpenEditComment(null);
     };
     document.addEventListener("click", handle);
     return () => {
       removeEventListener("click", handle);
     };
   });
+  const router = useRouter();
   const handleEditComment = () => {
-    setShowBoxEditComment(false);
+    setOpenEditComment(null);
     setEditCommentText(true);
   };
   const handleDeleteComment = async () => {
@@ -44,24 +46,24 @@ function EditCommentBox({
     if (result?.error)
       return toast.error(result.error, { className: "toast-font" });
     router.refresh();
-    setShowBoxEditComment(false);
+    setOpenEditComment(null);
   };
   return (
     <div className="relative">
       <Image
-        onClick={() => setShowBoxEditComment(!showBoxEditComment)}
+        onClick={() => setOpenEditComment(comment.id)}
         src={"/ellipsis.svg"}
         alt="Menu"
         width={50}
         height={50}
         className={`sm:w-8.25 w-7 sm:h-8.25 h-7 button rounded-full cursor-pointer p-2 hover:bg-gray-100 ${
-          showBoxEditComment && "bg-gray-100"
+          openEditComment === comment.id && "bg-gray-100"
         }`}
       />
       <div
         className={`sm:p-3 p-1 rounded-xl box shadow z-10 bg-white flex-col absolute right-0 ${
           comment.userId !== user.id ? "min-w-70" : "min-w-fit"
-        } gap-2 mt-1 ${showBoxEditComment ? "flex" : "hidden"}`}
+        } gap-2 mt-1 ${openEditComment === comment.id ? "flex" : "hidden"}`}
       >
         {comment.userId !== user.id && (
           <button
