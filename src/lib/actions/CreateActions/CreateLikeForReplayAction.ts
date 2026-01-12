@@ -4,6 +4,7 @@ import { revalidatePath } from "next/cache";
 // ==============================================================
 export const CreateLikeForReplayAction = async (
   replayId: string,
+  postId: string,
   userId: string
 ) => {
   if (!replayId) return { error: "This Replay does not exist" };
@@ -29,17 +30,37 @@ export const CreateLikeForReplayAction = async (
         },
       },
     });
+
     if (isLikeForReplayExist) {
       await prisma.likeForReplay.delete({
         where: {
           id: isLikeForReplayExist.id,
         },
       });
+      if (user.id !== replay.userId) {
+        await prisma.notification.deleteMany({
+          where: {
+            actorId: userId,
+            replayId: replay.id,
+          },
+        });
+      }
     } else {
       await prisma.likeForReplay.create({
         data: {
           userId,
           replayId,
+        },
+      });
+      await prisma.notification.create({
+        data: {
+          actorId: userId,
+          type: "LIKE",
+          replayContent: replay.content,
+          recipientId: replay.userId,
+          title: `${user.name.split(" ")[0]} Liked Your Replay`,
+          route: `/linkedin/post/${postId}`,
+          replayId: replay.id,
         },
       });
     }

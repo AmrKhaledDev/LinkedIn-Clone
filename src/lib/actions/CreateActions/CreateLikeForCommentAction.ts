@@ -4,6 +4,7 @@ import { revalidatePath } from "next/cache";
 // =================================================================================
 export const CreateLikeForComment = async (
   commentId: string,
+  postId: string,
   userId: string
 ) => {
   if (!commentId) return { error: "This Comment does not exist" };
@@ -35,6 +36,14 @@ export const CreateLikeForComment = async (
           id: isLikeForCommentExist.id,
         },
       });
+      if (user.id !== comment.id) {
+        await prisma.notification.deleteMany({
+          where: {
+            actorId: userId,
+            commentId: comment.id,
+          },
+        });
+      }
     } else {
       await prisma.likeForComment.create({
         data: {
@@ -42,6 +51,20 @@ export const CreateLikeForComment = async (
           commentId,
         },
       });
+      if (user.id !== comment.userId) {
+        await prisma.notification.create({
+          data: {
+            type: "LIKE",
+            postId: postId,
+            title: `${user.name.split(" ")[0]} Liked Your Comment`,
+            actorId: user.id,
+            recipientId: comment.userId,
+          route: `/linkedin/post/${postId}`,
+            commentContent: comment.content,
+            commentId: comment.id,
+          },
+        });
+      }
     }
     revalidatePath("/linkedin");
   } catch (error) {

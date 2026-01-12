@@ -32,7 +32,7 @@ export const CreateReplayAction = async (
       },
     });
     if (!post) return;
-    await prisma.replay.create({
+    const replay = await prisma.replay.create({
       data: {
         userId,
         commentId,
@@ -41,6 +41,21 @@ export const CreateReplayAction = async (
         isAuthor: post.userId === userId,
       },
     });
+    if (userId !== comment.userId) {
+      await prisma.notification.create({
+        data: {
+          type: "REPLAY",
+          actorId: user.id,
+          recipientId: comment.userId,
+          title: `${user.name.split(" ")[0]} Replied to your Comment`,
+          commentContent: comment.content,
+          body: content,
+          postId: postId,
+          replayId: replay.id,
+          route: `/linkedin/post/${post.id}`,
+        },
+      });
+    }
     revalidatePath("/linkedin");
   } catch (error) {
     console.log(error);

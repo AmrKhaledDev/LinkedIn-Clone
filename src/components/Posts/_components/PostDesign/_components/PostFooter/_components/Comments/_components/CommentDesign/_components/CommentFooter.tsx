@@ -23,7 +23,7 @@ function CommentFooter({
   const [loading, setLoading] = useState(false);
   const handleClickLikeForComment = async () => {
     setLoadingLike(true);
-    const result = await CreateLikeForComment(comment.id, user.id);
+    const result = await CreateLikeForComment(comment.id, postId, user.id);
     setLoadingLike(false);
     if (result?.error)
       return toast.error(result.error, { className: "toast-font" });

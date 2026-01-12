@@ -10,7 +10,7 @@ import DisLikeDetails from "./_components/DisLikeDetails/DisLikeDetails";
 function PostDesign({ post, user }: { post: PostType; user: User }) {
   if (!user) return;
   return (
-    <li id={post.id} className="rounded shadow bg-white">
+    <li id={post.id} className="rounded shadow bg-white list-none">
       <div className="flex flex-col">
         <EditPost post={post} user={user} />
         <OwnerPostDetails post={post} user={user} />

@@ -24,7 +24,7 @@ export const CreateCommentAction = async (
       },
     });
     if (!post) return;
-    await prisma.comment.create({
+    const comment = await prisma.comment.create({
       data: {
         userId: user.id,
         postId: post.id,
@@ -38,11 +38,12 @@ export const CreateCommentAction = async (
           type: "COMMENT",
           actorId: user.id,
           recipientId: post.userId,
-          route: `/linkedin/#${post.id}`,
+          route: `/linkedin/post/${post.id}`,
           postTitle: post.contentText,
           title: `${user.name.split(" ")[0]} commented on your post`,
           body: content,
           postId: post.id,
+          commentId: comment.id,
         },
       });
     }

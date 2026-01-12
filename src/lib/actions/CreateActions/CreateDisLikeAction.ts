@@ -42,7 +42,8 @@ export const CreateDisLikeAction = async (userId: string, postId: string) => {
       });
       await prisma.notification.deleteMany({
         where: {
-          postId: post.id,
+          actorId: userId,
+          postId: postId,
         },
       });
     }
@@ -54,7 +55,8 @@ export const CreateDisLikeAction = async (userId: string, postId: string) => {
       });
       await prisma.notification.deleteMany({
         where: {
-          postId: post.id,
+          actorId: userId,
+          postId: postId,
         },
       });
     } else {
@@ -70,7 +72,7 @@ export const CreateDisLikeAction = async (userId: string, postId: string) => {
             type: "DISLIKE",
             actorId: user.id,
             recipientId: post.userId,
-            route: `/linkedin/#${post.id}`,
+          route: `/linkedin/post/${post.id}`,
             title: `${user.name.split(" ")[0]} didn’t like your post`,
             postTitle: post.contentText,
             postId: post.id,

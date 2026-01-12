@@ -11,16 +11,18 @@ import EditReplayContent from "./_components/EditReplayContent";
 // =====================================================================
 function ReplayDesign({
   user,
+  postId,
   replay,
 }: {
   user: User;
+  postId: string;
   replay: ReplayWithRelations;
 }) {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
   const handleLikeForReplay = async () => {
     setLoading(true);
-    const result = await CreateLikeForReplayAction(replay.id, user.id);
+    const result = await CreateLikeForReplayAction(replay.id, postId, user.id);
     setLoading(false);
     if (result?.error)
       return toast.error(result.error, { className: "toast-font" });
@@ -90,7 +92,8 @@ function ReplayDesign({
           </p>
         )}
         <div className="flex items-center gap-1">
-          <button disabled={loading}
+          <button
+            disabled={loading}
             onClick={handleLikeForReplay}
             className={`hover:bg-gray-100  disabled:hover:bg-transparent disabled:cursor-default rounded cursor-pointer py-1 text-[12px] px-1 transition-css font-bold  ${
               isLikeForReplay ? "text-primary" : "text-slate-600"

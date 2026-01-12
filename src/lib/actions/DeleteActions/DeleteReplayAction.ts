@@ -2,10 +2,7 @@
 import { prisma } from "@/lib/prisma";
 import { revalidatePath } from "next/cache";
 // ===================================================================================
-export const DeleteReplayAction = async (
-  userId: string,
-  replayId: string
-) => {
+export const DeleteReplayAction = async (userId: string, replayId: string) => {
   if (!userId) return;
   if (!replayId) return;
   try {
@@ -28,7 +25,13 @@ export const DeleteReplayAction = async (
         id: replay.id,
       },
     });
-    revalidatePath("/linkedin")
+    await prisma.notification.deleteMany({
+      where: {
+        actorId: user.id,
+        replayId: replayId,
+      },
+    });
+    revalidatePath("/linkedin");
   } catch (error) {
     console.log(error);
     return;

@@ -28,7 +28,13 @@ export const DeleteCommentAction = async (
         id: comment.id,
       },
     });
-    revalidatePath("/linkedin")
+    await prisma.notification.deleteMany({
+      where: {
+        actorId: userId,
+        commentId: comment.id,
+      },
+    });
+    revalidatePath("/linkedin");
   } catch (error) {
     console.log(error);
     return;
