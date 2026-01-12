@@ -47,9 +47,9 @@ function CommentFooter({
     setLoading(false);
     if (result?.error)
       return toast.error(result.error, { className: "toast-font" });
-    router.refresh();
     setShowBoxReplay(false);
     setReplayContent("");
+    router.refresh();
   };
   const textareaRef = useRef<HTMLTextAreaElement | null>(null);
   useEffect(() => {
@@ -123,7 +123,7 @@ function CommentFooter({
             <>
               <span className="size-0.5 rounded-full bg-gray-500" />
               <div className="text-[13px] text-gray-500 font-normal">
-                <h4 className="sm:text-[15px] text-[12px]">
+                <h4 className="sm:text-[11px] text-[10px]">
                   <span>{comment.replays.length}</span>{" "}
                   {comment.replays.length > 1 ? "replays" : "replay"}
                 </h4>
@@ -145,10 +145,7 @@ function CommentFooter({
             e.target.style.height = "auto";
             e.target.style.height = e.target.scrollHeight + "px";
           }}
-          defaultValue={
-            comment.user.name.charAt(0).toUpperCase() +
-            comment.user.name.slice(1).toLowerCase()
-          }
+          defaultValue={replayContent}
           className="w-full py-3 px-4  
              outline-none transition-all duration-300 ease-in-out
              placeholder:text-gray-300

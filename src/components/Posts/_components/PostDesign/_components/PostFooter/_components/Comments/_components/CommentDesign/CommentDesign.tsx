@@ -5,7 +5,6 @@ import { BsFillPatchCheckFill } from "react-icons/bs";
 import CommentFooter from "./_components/CommentFooter";
 import { User } from "@prisma/client";
 import ReplayDesign from "./_components/ReplayDesign/ReplayDesign";
-import EditComment from "./_components/EditCommentBox";
 import { useState } from "react";
 import EditCommentContent from "./_components/EditCommentContent";
 import EditCommentBox from "./_components/EditCommentBox";

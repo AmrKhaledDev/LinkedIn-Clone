@@ -16,6 +16,7 @@ function Context({ children }: { children: React.ReactNode }) {
   const [contentArticle, setContentArticle] = useState<string | null>(null);
   const [openPostEdit, setOpenPostEdit] = useState<string | null>(null);
   const [openEditComment, setOpenEditComment] = useState<string | null>(null);
+  const [openEditReplay, setOpenEditReplay] = useState<string | null>(null);
   return (
     <ContextStates.Provider
       value={{
@@ -40,7 +41,9 @@ function Context({ children }: { children: React.ReactNode }) {
         openPostEdit,
         setOpenPostEdit,
         openEditComment,
-        setOpenEditComment
+        setOpenEditComment,
+        openEditReplay,
+        setOpenEditReplay,
       }}
     >
       {children}

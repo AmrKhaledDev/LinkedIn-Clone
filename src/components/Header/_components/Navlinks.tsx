@@ -115,7 +115,7 @@ function Navlinks({
               <IoNotificationsSharp />
             </i>
             {notificationNotRead && notificationNotRead.length > 0 && (
-              <span className="absolute -right-1 -top-1 size-4.5 shadow font-semibold pt-0.5 rounded-full flex items-center justify-center text-white bg-red-500 text-[12px]">
+              <span className="absolute -right-1 -top-1 md:size-4.5 sm:size-4 size-4.5 shadow font-semibold pt-0.5 rounded-full flex items-center justify-center text-white bg-red-500 md:text-[12px] sm:text-[10px] text-[12px]">
                 {notificationNotRead.length}
               </span>
             )}

@@ -15,7 +15,7 @@ async function page() {
         {user.receivedNotifications.length > 0 ? (
           <ul className="flex-1 flex flex-col gap-3">
             {user.receivedNotifications.map((notification) => (
-              <NotificationDesign notification={notification} />
+              <NotificationDesign notification={notification} key={notification.id}/>
             ))}
           </ul>
         ) : (

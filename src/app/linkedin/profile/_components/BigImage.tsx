@@ -35,7 +35,7 @@ function BigImage({ user }: { user: User }) {
       >
         <div className="lg:bg-black box bg-black/45 relative lg:w-260 w-full lg:h-fit h-full lg:p-11 p-2 rounded flex items-center justify-center">
           <Image
-            src={user.imageProfile || "/user.svg"}
+            src={user.imageProfile || "/card-bg.svg"}
             alt="User Image"
             width={500}
             height={500}

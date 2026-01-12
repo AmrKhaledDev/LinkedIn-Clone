@@ -183,4 +183,6 @@ export type ContextStatesType = {
   setOpenPostEdit: Dispatch<SetStateAction<string | null>>;
   openEditComment: string | null;
   setOpenEditComment: Dispatch<SetStateAction<string | null>>;
+  openEditReplay: string | null;
+  setOpenEditReplay: Dispatch<SetStateAction<string | null>>;
 };
