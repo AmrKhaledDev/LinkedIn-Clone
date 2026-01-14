@@ -14,21 +14,10 @@ interface EditPostProps {
   user: User;
   post: PostType;
 }
-
 function EditPost({ post, user }: EditPostProps) {
   const context = useContext(ContextStates);
   if (!context) return null;
-  const { openPostEdit, setOpenPostEdit } = context;
-  useEffect(() => {
-    const handle = (e: MouseEvent) => {
-      if (!(e.target instanceof Element)) return;
-      if (!e.target.closest(".box, .button")) setOpenPostEdit(null);
-    };
-    document.addEventListener("click", handle);
-    return () => {
-      removeEventListener("click", handle);
-    };
-  });
+  const { dropDownMenu, setDropDownMenu } = context;
   return (
     <div
       id={`edit-post-${post.id}`}
@@ -37,7 +26,7 @@ function EditPost({ post, user }: EditPostProps) {
       <div className="w-fit relative">
         <div>
           <Image
-            onClick={() => setOpenPostEdit(post.id)}
+            onClick={() => setDropDownMenu(post.id)}
             src={"/ellipsis.svg"}
             alt="Icon"
             width={25}
@@ -45,7 +34,7 @@ function EditPost({ post, user }: EditPostProps) {
             className="cursor-pointer button hover:bg-gray-100 rounded-full p-1 transition-css"
           />
         </div>
-        {openPostEdit === post.id && (
+        {dropDownMenu === post.id && (
           <div className="shadow box z-10 bg-white border border-gray-200 rounded-xl absolute right-0 sm:w-65 w-58 sm:p-3 p-1 flex flex-col gap-3">
             {post.userId === user.id && (
               <>

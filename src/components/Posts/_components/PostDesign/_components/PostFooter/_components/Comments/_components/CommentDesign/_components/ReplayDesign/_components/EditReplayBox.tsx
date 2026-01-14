@@ -3,7 +3,7 @@ import Image from "next/image";
 import { MdModeEdit } from "react-icons/md";
 import { FaPlus } from "react-icons/fa6";
 import { MdDeleteSweep } from "react-icons/md";
-import React, { Dispatch, useContext, useEffect, useState } from "react";
+import React, { Dispatch, useContext, useState } from "react";
 import { User } from "@prisma/client";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
@@ -23,31 +23,10 @@ function EditReplayBox({
   const [loading, setLoading] = useState(false);
   const context = useContext(ContextStates);
   if (!context) return null;
-  const { openEditReplay, setOpenEditReplay } = context;
-  useEffect(() => {
-    const handle = (e: MouseEvent) => {
-      if (!(e.target instanceof Element)) return;
-      if (!e.target.closest(".box, .button")) setOpenEditReplay(null);
-    };
-    document.addEventListener("click", handle);
-    return () => {
-      removeEventListener("click", handle);
-    };
-  });
+  const { dropDownMenu, setDropDownMenu } = context;
   const router = useRouter();
-  useEffect(() => {
-    const handle = (e: MouseEvent) => {
-      if (e.target instanceof Element) {
-        if (!e.target.closest(".button, .box")) setOpenEditReplay(null);
-      }
-    };
-    document.addEventListener("click", handle);
-    return () => {
-      removeEventListener("click", handle);
-    };
-  });
   const handleEditReplay = () => {
-    setOpenEditReplay(null);
+    setDropDownMenu(null);
     setEditReplayText(true);
   };
   const handleDeleteReplay = async () => {
@@ -57,24 +36,24 @@ function EditReplayBox({
     if (result?.error)
       return toast.error(result.error, { className: "toast-font" });
     router.refresh();
-    setOpenEditReplay(null);
+    setDropDownMenu(null);
   };
   return (
     <div className="relative">
       <Image
-        onClick={() => setOpenEditReplay(replay.id)}
+        onClick={() => setDropDownMenu(replay.id)}
         src={"/ellipsis.svg"}
         alt="Menu"
         width={50}
         height={50}
         className={`w-5 h-5 button rounded-full cursor-pointer p-1 hover:bg-white ${
-          openEditReplay === replay.id && "bg-white"
+          dropDownMenu === replay.id && "bg-white"
         }`}
       />
       <div
         className={`sm:p-3 p-1 rounded-xl box shadow z-10 bg-white flex-col absolute right-0 ${
           replay.userId !== user.id ? "min-w-50" : "min-w-fit"
-        } sm:gap-2 mt-1 ${openEditReplay === replay.id ? "flex" : "hidden"}`}
+        } sm:gap-2 mt-1 ${dropDownMenu === replay.id ? "flex" : "hidden"}`}
       >
         {replay.userId !== user.id && (
           <button

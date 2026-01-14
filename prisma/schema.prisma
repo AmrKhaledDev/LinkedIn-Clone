@@ -211,14 +211,14 @@ model Notification {
   route          String
   type           TypeNotification
   actorId        String
-  actor          User             @relation("ActorNotifications", fields: [actorId], references: [id])
+  actor          User             @relation("ActorNotifications", fields: [actorId], references: [id], onDelete: Cascade)
   postTitle      String?
   commentContent String?
   replayContent  String?
   recipientId    String
-  recipient      User             @relation("RecipientNotifications", fields: [recipientId], references: [id])
+  recipient      User             @relation("RecipientNotifications", fields: [recipientId], references: [id], onDelete: Cascade)
   postId         String?
-  post           Post?            @relation(fields: [postId], references: [id])
+  post           Post?            @relation(fields: [postId], references: [id], onDelete: Cascade)
   commentId      String?
   replayId       String?
   createdAt      DateTime         @default(now())

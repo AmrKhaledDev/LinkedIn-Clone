@@ -13,9 +13,9 @@ async function page() {
           <LeftSide />
         </div>
         {user.receivedNotifications.length > 0 ? (
-          <ul className="flex-1 flex flex-col gap-3">
+          <ul className="flex-1 flex flex-col gap-1">
             {user.receivedNotifications.map((notification) => (
-              <NotificationDesign notification={notification} key={notification.id}/>
+              <NotificationDesign notification={notification} key={notification.id} user={user}/>
             ))}
           </ul>
         ) : (

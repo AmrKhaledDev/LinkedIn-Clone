@@ -57,11 +57,11 @@ function MeProfile({
 }) {
   return (
     <div
-      className={`absolute sm:-left-50 -left-40 -bottom-50.5 shadow  rounded-xl bg-white w-62.5  ${
-        openProfile ? "opacity-100 translate-y-0" : "opacity-0 translate-x-70"
+      className={`absolute sm:-left-50 -left-40 -bottom-50.5 shadow rounded-xl bg-white w-62.5  ${
+        openProfile ? "block" : "hidden"
       } transition-css div overflow-hidden`}
     >
-      <div className="flex flex-col gap-5 border-b border-b-gray-200  p-4">
+      <div className="flex flex-col gap-3 border-b border-b-gray-200  p-4">
         <div className="flex items-center gap-3">
           <Image
             src={user && user.image ? user.image : "/user.svg"}

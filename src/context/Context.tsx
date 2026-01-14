@@ -1,6 +1,6 @@
 "use client";
 import { ContextStatesType } from "@/lib/types/types";
-import { createContext, useState, ReactNode } from "react";
+import { createContext, useEffect, useState } from "react";
 // ===========================================================================
 export const ContextStates = createContext<ContextStatesType | null>(null);
 function Context({ children }: { children: React.ReactNode }) {
@@ -14,9 +14,18 @@ function Context({ children }: { children: React.ReactNode }) {
   // State Text
   const [titleArticle, setTitleArticle] = useState<string | null>(null);
   const [contentArticle, setContentArticle] = useState<string | null>(null);
-  const [openPostEdit, setOpenPostEdit] = useState<string | null>(null);
-  const [openEditComment, setOpenEditComment] = useState<string | null>(null);
-  const [openEditReplay, setOpenEditReplay] = useState<string | null>(null);
+  const [dropDownMenu, setDropDownMenu] = useState<string | null>(null);
+  // Use Effect
+  useEffect(() => {
+    const handle = (e: MouseEvent) => {
+      if (!(e.target instanceof Element)) return;
+      if (!e.target.closest(".box, .button")) setDropDownMenu(null);
+    };
+    document.addEventListener("click", handle);
+    return () => {
+      removeEventListener("click", handle);
+    };
+  });
   return (
     <ContextStates.Provider
       value={{
@@ -38,12 +47,8 @@ function Context({ children }: { children: React.ReactNode }) {
         setTitleArticle,
         contentArticle,
         setContentArticle,
-        openPostEdit,
-        setOpenPostEdit,
-        openEditComment,
-        setOpenEditComment,
-        openEditReplay,
-        setOpenEditReplay,
+        dropDownMenu,
+        setDropDownMenu,
       }}
     >
       {children}

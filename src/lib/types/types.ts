@@ -179,10 +179,7 @@ export type ContextStatesType = {
   setTitleArticle: React.Dispatch<React.SetStateAction<string | null>>;
   contentArticle: string | null;
   setContentArticle: React.Dispatch<React.SetStateAction<string | null>>;
-  openPostEdit: string | null;
-  setOpenPostEdit: Dispatch<SetStateAction<string | null>>;
-  openEditComment: string | null;
-  setOpenEditComment: Dispatch<SetStateAction<string | null>>;
-  openEditReplay: string | null;
-  setOpenEditReplay: Dispatch<SetStateAction<string | null>>;
+  dropDownMenu: string | null;
+  setDropDownMenu: Dispatch<SetStateAction<string | null>>;
+ 
 };
