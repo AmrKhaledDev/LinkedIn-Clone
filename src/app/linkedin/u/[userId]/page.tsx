@@ -67,6 +67,7 @@ async function page({ params }: { params: Promise<{ userId: string }> }) {
               post: true,
             },
           },
+          saveItems: true,
         },
       },
       receivedNotifications: {
@@ -80,12 +81,12 @@ async function page({ params }: { params: Promise<{ userId: string }> }) {
     },
   });
   if (!user) return;
-  const currentUser = await GetUser()
-  if(!currentUser) return
+  const currentUser = await GetUser();
+  if (!currentUser) return;
   return (
     <main className="space-section min-h-screen bg-[#F4F2EE]">
       <div className="container-css p-3">
-        <Profile user={user} currentUser={currentUser}/>
+        <Profile user={user} currentUser={currentUser} />
       </div>
     </main>
   );

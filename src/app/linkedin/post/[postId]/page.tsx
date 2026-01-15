@@ -55,6 +55,7 @@ async function page({ params }: { params: Promise<{ postId: string }> }) {
           post: true,
         },
       },
+      saveItems:true
     },
   });
   if (!post) return;
