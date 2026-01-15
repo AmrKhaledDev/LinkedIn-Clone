@@ -57,7 +57,7 @@ export type PostType = Prisma.PostGetPayload<{
         post: true;
       };
     };
-    saveItems:true
+    saveItems: true;
   };
 }>;
 export type UserWithRelationType = Prisma.UserGetPayload<{
@@ -105,6 +105,7 @@ export type UserWithRelationType = Prisma.UserGetPayload<{
             post: true;
           };
         };
+        saveItems: true;
       };
     };
     receivedNotifications: {
@@ -182,5 +183,4 @@ export type ContextStatesType = {
   setContentArticle: React.Dispatch<React.SetStateAction<string | null>>;
   dropDownMenu: string | null;
   setDropDownMenu: Dispatch<SetStateAction<string | null>>;
- 
 };
