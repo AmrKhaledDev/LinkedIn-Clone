@@ -19,7 +19,7 @@ interface EditPostProps {
   post: PostType;
 }
 function EditPost({ post, user }: EditPostProps) {
-  const isSaved = post.saveItems.find((item) => item.postId === post.id);
+  const isSaved = post.saveItems?.find((item) => item.postId === post.id);
   const context = useContext(ContextStates);
   if (!context) return null;
   const { dropDownMenu, setDropDownMenu } = context;
