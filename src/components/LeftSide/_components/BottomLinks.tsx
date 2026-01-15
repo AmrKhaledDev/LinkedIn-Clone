@@ -10,7 +10,7 @@ function BottomLinks() {
       id: crypto.randomUUID(),
       linkName: "Saved items",
       icon: <FaBookmark />,
-      url: "/",
+      url: "/linkedin/save-items",
     },
     {
       id: crypto.randomUUID(),

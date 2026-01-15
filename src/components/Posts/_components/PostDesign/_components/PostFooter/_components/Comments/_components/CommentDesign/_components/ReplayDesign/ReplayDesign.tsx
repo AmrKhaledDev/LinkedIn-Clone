@@ -8,6 +8,7 @@ import EditReplayBox from "./_components/EditReplayBox";
 import { useState } from "react";
 import EditReplayContent from "./_components/EditReplayContent";
 import { FaLinkedin } from "react-icons/fa";
+import Link from "next/link";
 // =====================================================================
 function ReplayDesign({
   user,
@@ -46,9 +47,9 @@ function ReplayDesign({
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
               <div className="flex items-center gap-1">
-                <h2 className="line-clamp-1 font-semibold capitalize sm:text-[15px] text-[14px]">
+                <Link href={user.id == replay.userId ? "/linkedin/profile" : `/linkedin/u/${replay.userId}`} className="line-clamp-1 font-semibold capitalize sm:text-[15px] text-[14px] hover:underline hover:text-primary">
                   {replay.user.name}
-                </h2>
+                </Link>
                 {replay.user.role === "SUPER_ADMIN" && (
                   <i
                     className="text-primary pb-0.5 sm:text-[15px] text-[14px]"

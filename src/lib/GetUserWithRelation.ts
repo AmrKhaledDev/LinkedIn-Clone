@@ -60,7 +60,7 @@ export const GetUserWithRelation = async () => {
                   post: true,
                 },
               },
-              saveItems:true
+              saveItems: true,
             },
           },
           receivedNotifications: {
@@ -70,6 +70,18 @@ export const GetUserWithRelation = async () => {
             orderBy: {
               createdAt: "desc",
             },
+          },
+          saveItems: {
+            include: {
+              post: {
+                include: {
+                  user: true,
+                },
+              },
+            },
+            orderBy:{
+              createdAt:"desc"
+            }
           },
         },
       });

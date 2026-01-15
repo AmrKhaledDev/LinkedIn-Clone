@@ -108,6 +108,15 @@ export type UserWithRelationType = Prisma.UserGetPayload<{
         saveItems: true;
       };
     };
+    saveItems: {
+      include: {
+        post: {
+          include: {
+            user: true;
+          };
+        };
+      };
+    };
     receivedNotifications: {
       include: {
         actor: true;
@@ -155,6 +164,15 @@ export type ReplayWithRelations = Prisma.ReplayGetPayload<{
     comment: true;
     post: true;
     likeForReplays: {
+      include: {
+        user: true;
+      };
+    };
+  };
+}>;
+export type SaveItemType = Prisma.SaveItemGetPayload<{
+  include: {
+    post: {
       include: {
         user: true;
       };

@@ -7,7 +7,7 @@ import { BiSolidUserPlus } from "react-icons/bi";
 import { FaLinkedin } from "react-icons/fa";
 // ==============================================================
 function OwnerPostDetails({ post, user }: { post: PostType; user: User }) {
-  const date = new Date(user.createdAt);
+  const date = new Date(post.createdAt);
 
   const options = {
     day: "numeric",

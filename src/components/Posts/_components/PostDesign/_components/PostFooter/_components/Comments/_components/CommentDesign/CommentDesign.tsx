@@ -8,6 +8,7 @@ import { useState } from "react";
 import EditCommentContent from "./_components/EditCommentContent";
 import EditCommentBox from "./_components/EditCommentBox";
 import { FaLinkedin } from "react-icons/fa";
+import Link from "next/link";
 // ===============================================================================
 function CommentDesign({
   comment,
@@ -34,9 +35,16 @@ function CommentDesign({
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2">
                 <div className="flex items-center gap-1">
-                  <h2 className="line-clamp-1 font-semibold sm:text-[18px] capitalize">
+                  <Link
+                    href={
+                      user.id === comment.userId
+                        ? `/linkedin/profile`
+                        : `/linkedin/u/${comment.userId}`
+                    }
+                    className="line-clamp-1 hover:underline hover:text-primary font-semibold sm:text-[18px] capitalize"
+                  >
                     {comment.user.name}
-                  </h2>
+                  </Link>
                   {comment.user.role === "SUPER_ADMIN" && (
                     <i
                       className="text-primary pb-0.5 sm:text-[17px]"
