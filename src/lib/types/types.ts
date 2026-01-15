@@ -57,6 +57,7 @@ export type PostType = Prisma.PostGetPayload<{
         post: true;
       };
     };
+    saveItems:true
   };
 }>;
 export type UserWithRelationType = Prisma.UserGetPayload<{

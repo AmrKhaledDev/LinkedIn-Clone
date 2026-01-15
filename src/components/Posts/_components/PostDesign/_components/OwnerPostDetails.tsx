@@ -3,8 +3,8 @@ import { PostType } from "@/lib/types/types";
 import { User } from "@prisma/client";
 import Image from "next/image";
 import Link from "next/link";
-import { BsFillPatchCheckFill } from "react-icons/bs";
-import { FaPlus } from "react-icons/fa6";
+import { BiSolidUserPlus } from "react-icons/bi";
+import { FaLinkedin } from "react-icons/fa";
 // ==============================================================
 function OwnerPostDetails({ post, user }: { post: PostType; user: User }) {
   const date = new Date(user.createdAt);
@@ -19,7 +19,7 @@ function OwnerPostDetails({ post, user }: { post: PostType; user: User }) {
   return (
     <div className="flex gap-2 px-3 pb-3">
       <Image
-        src={post.user.image ? post.user.image : "/user.svg"}
+        src={post.user.image ? post.user.image : "/user.svg"} 
         alt="Your Image"
         width={70}
         height={70}
@@ -40,10 +40,10 @@ function OwnerPostDetails({ post, user }: { post: PostType; user: User }) {
             </Link>
             {post.user.role === "SUPER_ADMIN" && (
               <i
-                className="text-blue-500 text pb-0.5 sm:text-[14px] text-[13px]"
-                title="Super Admin"
+                className="text-primary pb-0.5 sm:text-[17px]"
+                title="Linkedin Developer"
               >
-                <BsFillPatchCheckFill />
+                <FaLinkedin />
               </i>
             )}
           </div>
@@ -53,11 +53,11 @@ function OwnerPostDetails({ post, user }: { post: PostType; user: User }) {
           <p className="text-[11px] text-slate-700 line-clamp-1">{formatted}</p>
         </div>
         {user.id !== post.user.id && (
-          <button className="sm:text-[17px] text-[14px] cursor-pointer gap-1 flex items-center text-primary font-bold hover:bg-blue-50 rounded px-2 py-2 transition-css hover:text-blue-800 h-fit">
-            <i className="sm:text-[20px] -translate-y-[0.6px]">
-              <FaPlus />
+          <button className="sm:text-[14px] text-[13px] cursor-pointer gap-1 flex items-center text-primary font-bold hover:bg-blue-50 rounded px-2 py-2 transition-css hover:text-blue-800 h-fit">
+            <i className="text-[22px] -translate-y-[0.6px]">
+              <BiSolidUserPlus />
             </i>
-            Follow
+            Connect
           </button>
         )}
       </div>

@@ -60,6 +60,7 @@ export const GetUserWithRelation = async () => {
                   post: true,
                 },
               },
+              saveItems:true
             },
           },
           receivedNotifications: {

@@ -48,6 +48,7 @@ export const GetAllPosts = Cache(
             post: true,
           },
         },
+        saveItems: true,
       },
       orderBy: {
         createdAt: "desc",

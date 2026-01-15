@@ -1,13 +1,13 @@
 "use client";
 import { CommentDBWithRelations } from "@/lib/types/types";
 import Image from "next/image";
-import { BsFillPatchCheckFill } from "react-icons/bs";
 import CommentFooter from "./_components/CommentFooter";
 import { User } from "@prisma/client";
 import ReplayDesign from "./_components/ReplayDesign/ReplayDesign";
 import { useState } from "react";
 import EditCommentContent from "./_components/EditCommentContent";
 import EditCommentBox from "./_components/EditCommentBox";
+import { FaLinkedin } from "react-icons/fa";
 // ===============================================================================
 function CommentDesign({
   comment,
@@ -39,10 +39,10 @@ function CommentDesign({
                   </h2>
                   {comment.user.role === "SUPER_ADMIN" && (
                     <i
-                      className="text-blue-500 sm:text-[14px] text-[13px]"
-                      title="Super Admin"
+                      className="text-primary pb-0.5 sm:text-[17px]"
+                      title="Linkedin Developer"
                     >
-                      <BsFillPatchCheckFill />
+                      <FaLinkedin />
                     </i>
                   )}
                 </div>
@@ -85,7 +85,12 @@ function CommentDesign({
       <div className="ml-13.5 mt-2 flex flex-col gap-2">
         {comment.replays.length > 0 &&
           comment.replays.map((replay) => (
-            <ReplayDesign replay={replay} key={replay.id} user={user} postId={postId}/>
+            <ReplayDesign
+              replay={replay}
+              key={replay.id}
+              user={user}
+              postId={postId}
+            />
           ))}
       </div>
     </li>

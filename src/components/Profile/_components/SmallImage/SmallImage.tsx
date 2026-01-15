@@ -6,7 +6,7 @@ import { useContext, useEffect, useState } from "react";
 import { ContextStates } from "@/context/Context";
 import { IoMdClose } from "react-icons/io";
 // ===================================================
-function SmallImage({ user }: { user: User }) {
+function SmallImage({ user, currentUser }: { user: User; currentUser: User }) {
   const context = useContext(ContextStates);
   if (!context) return null;
   const { smallImage } = context;
@@ -40,7 +40,7 @@ function SmallImage({ user }: { user: User }) {
           height={200}
           className="rounded-full button cursor-pointer md:w-37 sm:w-30 md:h-37 sm:h-30 w-25 h-25 object-cover sm:border-5 border-3 border-white "
         />
-        <BoxEditSmallImage user={user} />
+        {user.id === currentUser.id && <BoxEditSmallImage user={user} />}
       </div>
       <span className="px-4 py-1.5 sm:hidden block bg-blue-50 text-blue-600 sm:text-xs text-[10px] font-bold rounded-full uppercase tracking-wider">
         Joined In {formatted}

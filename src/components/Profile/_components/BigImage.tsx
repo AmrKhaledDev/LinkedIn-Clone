@@ -5,7 +5,7 @@ import EditBigImage from "./EditBigImage/EditBigImage";
 import { useEffect, useState } from "react";
 import { IoMdClose } from "react-icons/io";
 // =========================================================
-function BigImage({ user }: { user: User }) {
+function BigImage({ user, currentUser }: { user: User; currentUser: User }) {
   const [showBigImage, setShowBigImage] = useState(false);
   useEffect(() => {
     const handle = (e: MouseEvent) => {
@@ -27,7 +27,7 @@ function BigImage({ user }: { user: User }) {
         height={900}
         className="w-full button sm:object-cover sm:h-60 h-50 cursor-pointer"
       />
-      <EditBigImage user={user} />
+      {user.id === currentUser.id && <EditBigImage user={user} />}
       <div
         className={`fixed z-20 inset-0 bg-black/45 w-full min-h-screen flex lg:pt-10 justify-center ${
           showBigImage ? "flex" : "hidden"

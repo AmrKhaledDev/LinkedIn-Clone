@@ -8,6 +8,7 @@ import { signIn } from "@/auth";
 export const RegisterAction = async (data: RegisterActionDataType) => {
   const validation = RegisterSchema.safeParse(data);
   if (!validation.success) return { error: validation.error.issues[0].message };
+  if(validation.data.name.trim().toLowerCase() === "linkedin") return {error:"This name is reserved, please change it"}
   try {
     const user = await prisma.user.findUnique({
       where: {
