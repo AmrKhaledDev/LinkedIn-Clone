@@ -78,6 +78,15 @@ async function page({ params }: { params: Promise<{ userId: string }> }) {
           createdAt: "desc",
         },
       },
+      saveItems: {
+        include: {
+          post: {
+            include: {
+              user: true,
+            },
+          },
+        },
+      },
     },
   });
   if (!user) return;
