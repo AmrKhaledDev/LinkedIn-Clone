@@ -1,6 +1,7 @@
 import Profile from "@/components/Profile/Profile";
 import { GetUser } from "@/lib/GetUser";
 import { prisma } from "@/lib/prisma";
+import { UserWithRelationType } from "@/lib/types/types";
 import { Metadata } from "next";
 import { redirect } from "next/navigation";
 // ==========================================================================
@@ -15,7 +16,7 @@ export const metadata: Metadata = {
 async function page({ params }: { params: Promise<{ userId: string }> }) {
   const { userId } = await params;
   if (!userId) redirect("/login");
-  const user = await prisma.user.findUnique({
+  const user: UserWithRelationType | null = await prisma.user.findUnique({
     where: {
       id: userId,
     },
@@ -95,7 +96,10 @@ async function page({ params }: { params: Promise<{ userId: string }> }) {
   return (
     <main className="space-section min-h-screen bg-[#F4F2EE]">
       <div className="container-css p-3">
-        <Profile user={user} currentUser={currentUser} />
+        <Profile
+          user={user as UserWithRelationType}
+          currentUser={currentUser}
+        />
       </div>
     </main>
   );
