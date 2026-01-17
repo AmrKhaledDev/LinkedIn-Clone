@@ -9,6 +9,7 @@ import { MdOutlineWork } from "react-icons/md";
 import { BiSolidMessageDots } from "react-icons/bi";
 import { IoNotificationsSharp } from "react-icons/io5";
 import { Notification } from "@prisma/client";
+import { IoEllipsisHorizontal } from "react-icons/io5";
 
 // ======================================================================
 function Navlinks({
@@ -59,16 +60,14 @@ function Navlinks({
   }, [pathname]);
   return (
     <>
-      <Image
+      <button
         onClick={() => setOpenNave(!openNav)}
-        src={"/ellipsis.svg"}
-        alt="Menu"
-        width={100}
-        height={100}
         className={`w-6 sm:hidden block button rounded-full p-1 ${
           openNav && "bg-gray-100"
         }`}
-      />
+      >
+        <IoEllipsisHorizontal />
+      </button>
       <nav
         className={`sm:flex div items-center sm:h-full sm:relative sm:left-0 sm:translate-x-0 sm:top-0 fixed left-1/2 -translate-x-1/2 top-18 sm:border-b-0 border-b-2 border-b-gray-200 bg-white sm:px-0 px-3 sm:w-fit w-full sm:py-0 py-2 sm:justify-start justify-center sm:gap-0 gap-4 sm:flex-row flex-col ${
           openNav ? "flex" : "hidden"

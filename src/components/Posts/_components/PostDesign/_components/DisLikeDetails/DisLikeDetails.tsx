@@ -1,5 +1,4 @@
 "use client";
-
 import { PostType } from "@/lib/types/types";
 import { User } from "@prisma/client";
 import Image from "next/image";
@@ -31,6 +30,7 @@ function DisLikeDetails({ post, user }: { post: PostType; user: User }) {
             )}
           </span>
           <ShowDisLikers
+            user={user}
             post={post}
             setShowDisLikers={setDisShowLikers}
             showDisLikers={showDisLikers}

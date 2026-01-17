@@ -10,12 +10,14 @@ function ItemSavedDesign({ item, user }: { item: SaveItemType; user: User }) {
   const router = useRouter();
   return (
     <div
-      onClick={() => router.push(`/linkedin/post/${item.post.id}`)}
-      className="border-b hover:bg-gray-50 transition-css hover:cursor-pointer border-b-gray-200 last:border-b-transparent sm:p-5 p-3 flex flex-col gap-3"
+      className="border-b  border-b-gray-200 last:border-b-transparent sm:p-5 p-3 flex flex-col gap-3"
       key={item.id}
     >
       <UserPostDetails user={user} item={item} />
-      <div className="flex sm:gap-4 gap-2">
+      <div
+        onClick={() => router.push(`/linkedin/post/${item.post.id}`)}
+        className="flex sm:gap-4 gap-2 cursor-pointer hover:bg-gray-100 transition-css"
+      >
         {item.post.image && (
           <Image
             src={item.post.image}

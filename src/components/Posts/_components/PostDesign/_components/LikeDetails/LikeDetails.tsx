@@ -32,11 +32,11 @@ function LikeDetails({ post, user }: { post: PostType; user: User }) {
             )}
           </span>
           <ShowLikers
+            user={user}
             post={post}
             setShowLikers={setShowLikers}
             showLikers={showLikers}
           />
-          
         </div>
       )}
     </>

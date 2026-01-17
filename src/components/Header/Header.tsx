@@ -28,7 +28,7 @@ async function Header() {
               className="md:w-9 w-8"
             />
           </Link>
-          <InputSearch />
+          <InputSearch userSession={user}/>
         </div>
         <div className="h-full flex items-center md:gap-10 gap-5 sm:flex-row flex-row-reverse">
           <Navlinks notificationNotRead={notificationNotRead} />

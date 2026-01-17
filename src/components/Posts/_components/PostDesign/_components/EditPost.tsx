@@ -1,7 +1,6 @@
 "use client";
 import Image from "next/image";
 import { FaRegBookmark } from "react-icons/fa";
-import { IoCloseCircleOutline } from "react-icons/io5";
 import { useContext, useEffect, useState } from "react";
 import { PostType } from "@/lib/types/types";
 import ButtonDeletePost from "./ButtonDeletePost";
@@ -12,6 +11,7 @@ import { FaBookmark } from "react-icons/fa";
 import { CreateSaveItemAction } from "@/lib/actions/CreateActions/CreateSaveItemAction";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
+import { IoEllipsisHorizontal } from "react-icons/io5";
 
 // ============================================================
 interface EditPostProps {
@@ -40,14 +40,12 @@ function EditPost({ post, user }: EditPostProps) {
     >
       <div className="w-fit relative">
         <div>
-          <Image
+          <button
             onClick={() => setDropDownMenu(post.id)}
-            src={"/ellipsis.svg"}
-            alt="Icon"
-            width={25}
-            height={25}
-            className="cursor-pointer button hover:bg-gray-100 rounded-full p-1 transition-css"
-          />
+            className="cursor-pointer button hover:bg-gray-100 p-1 rounded-full transition-css"
+          >
+            <IoEllipsisHorizontal />
+          </button>
         </div>
         {dropDownMenu === post.id && (
           <div
