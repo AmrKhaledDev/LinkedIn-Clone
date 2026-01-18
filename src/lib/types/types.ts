@@ -129,7 +129,6 @@ export type NotificationWithRelations = Prisma.NotificationGetPayload<{
     actor: true;
   };
 }>;
-
 export type CommentDBWithRelations = Prisma.CommentGetPayload<{
   include: {
     user: true;

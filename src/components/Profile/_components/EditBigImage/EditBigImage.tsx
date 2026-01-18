@@ -27,7 +27,7 @@ function EditBigImage({ user }: { user: User }) {
     <div>
       <button
         onClick={() => setShowBoxEdit(true)}
-        className="absolute button top-5 right-5 text-xl text-primary p-2 rounded-full bg-white cursor-pointer hover:scale-105"
+        className="absolute button md:top-5 md:right-5 sm:top-3 sm:right-3 top-1 right-1 md:text-xl sm:text-[15px] text-sm text-primary md:p-2 p-1.5 rounded-full bg-white cursor-pointer hover:scale-105"
       >
         <RiPencilFill />
       </button>

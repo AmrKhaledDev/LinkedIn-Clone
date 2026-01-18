@@ -139,7 +139,7 @@ function FormRegister() {
               setStates((prev) => ({ ...prev, password: e.target.value }))
             }
             className={`border border-black py-4 px-3 rounded disabled:border-gray-200 ${
-              states.errors.password && "border-re border-2d-500"
+              states.errors.password && "border-red-500 border-2"
             }`}
             placeholder="Enter your password"
           />

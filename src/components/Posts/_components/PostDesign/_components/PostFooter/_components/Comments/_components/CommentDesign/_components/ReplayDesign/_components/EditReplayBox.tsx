@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 import { MdModeEdit } from "react-icons/md";
-import { FaPlus } from "react-icons/fa6";
+import { FaEllipsis, FaPlus } from "react-icons/fa6";
 import { MdDeleteSweep } from "react-icons/md";
 import React, { Dispatch, useContext, useState } from "react";
 import { User } from "@prisma/client";
@@ -40,16 +40,14 @@ function EditReplayBox({
   };
   return (
     <div className="relative">
-      <Image
+      <i
         onClick={() => setDropDownMenu(replay.id)}
-        src={"/ellipsis.svg"}
-        alt="Menu"
-        width={50}
-        height={50}
-        className={`w-5 h-5 button rounded-full cursor-pointer p-1 hover:bg-white ${
+        className={`button sm:text-sm text-[13px] rounded-full cursor-pointer block p-1 hover:bg-white ${
           dropDownMenu === replay.id && "bg-white"
         }`}
-      />
+      >
+        <FaEllipsis />
+      </i>
       <div
         className={`sm:p-3 p-1 rounded-xl box shadow z-10 bg-white flex-col absolute right-0 ${
           replay.userId !== user.id ? "min-w-50" : "min-w-fit"

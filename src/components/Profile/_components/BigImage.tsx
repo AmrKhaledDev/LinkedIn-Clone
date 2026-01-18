@@ -25,7 +25,7 @@ function BigImage({ user, currentUser }: { user: User; currentUser: User }) {
         alt="Profile Image"
         width={900}
         height={900}
-        className="w-full button sm:object-cover sm:h-60 h-50 cursor-pointer"
+        className="w-full button sm:object-cover sm:h-40 h-30 cursor-pointer"
       />
       {user.id === currentUser.id && <EditBigImage user={user} />}
       <div

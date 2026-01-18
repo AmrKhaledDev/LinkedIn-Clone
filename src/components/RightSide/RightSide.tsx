@@ -22,7 +22,7 @@ function RightSide() {
           <UsersRecommendations />
           <UsersRecommendations />
           <Link
-            href={"/"}
+            href={"/linkedin/mynetwork"}
             className="flex items-center gap-3 text-[14px] text-blackLight px-2 hover:bg-gray-100 rounded w-fit font-semibold hover:text-black transition-css"
           >
             View all recommendations

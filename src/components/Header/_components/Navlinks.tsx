@@ -28,7 +28,7 @@ function Navlinks({
       id: crypto.randomUUID(),
       linkName: "My Network",
       icon: <HiUsers />,
-      url: "/network",
+      url: "/linkedin/mynetwork",
     },
     {
       id: crypto.randomUUID(),

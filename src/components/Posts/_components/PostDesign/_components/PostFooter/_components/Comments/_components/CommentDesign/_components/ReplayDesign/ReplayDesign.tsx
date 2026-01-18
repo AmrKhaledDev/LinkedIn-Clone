@@ -30,11 +30,11 @@ function ReplayDesign({
     router.refresh();
   };
   const isLikeForReplay = replay.likeForReplays.find(
-    (like) => like.userId === user.id
+    (like) => like.userId === user.id,
   );
   const [editReplayText, setEditReplayText] = useState(false);
   return (
-    <div className="flex gap-2 w-full bg-gray-100 p-3 rounded-xl">
+    <div className="flex gap-2 w-full bg-gray-100 sm:p-3 p-2 rounded-xl">
       <Image
         src={replay.user.image || "/user.svg"}
         alt="User Image"
@@ -45,9 +45,16 @@ function ReplayDesign({
       <div className="flex flex-col gap-1 w-full">
         <div>
           <div className="flex items-center justify-between">
-            <div className="flex items-center gap-2">
+            <div className="flex items-center sm:gap-2 gap-1">
               <div className="flex items-center gap-1">
-                <Link href={user.id == replay.userId ? "/linkedin/profile" : `/linkedin/u/${replay.userId}`} className="line-clamp-1 font-semibold capitalize sm:text-[15px] text-[14px] hover:underline hover:text-primary">
+                <Link
+                  href={
+                    user.id == replay.userId
+                      ? "/linkedin/profile"
+                      : `/linkedin/u/${replay.userId}`
+                  }
+                  className="line-clamp-1 font-semibold capitalize sm:text-[15px] text-[14px] hover:underline hover:text-primary"
+                >
                   {replay.user.name}
                 </Link>
                 {replay.user.role === "SUPER_ADMIN" && (

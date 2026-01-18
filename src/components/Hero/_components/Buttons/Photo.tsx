@@ -1,10 +1,11 @@
 "use client";
 import Image from "next/image";
 import { useState } from "react";
-import BoxAddMedia from "../BoxAddMedia";
+import BoxAddMedia from "../BoxAddMedia/BoxAddMedia";
+import { User } from "@prisma/client";
 
 // ========================================================
-function Photo() {
+function Photo({ user }: { user: User }) {
   const [showAddPhotoBox, setShowAddPhotoBox] = useState(false);
   return (
     <div>
@@ -22,8 +23,10 @@ function Photo() {
         <span className="sm:block hidden">Photo</span>
       </button>
       <BoxAddMedia
+        user={user}
         setShowAddMediaBox={setShowAddPhotoBox}
-        showAddMediaBox={showAddPhotoBox} type="image"
+        showAddMediaBox={showAddPhotoBox}
+        type="image"
       />
     </div>
   );

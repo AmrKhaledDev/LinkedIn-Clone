@@ -30,8 +30,8 @@ async function Hero() {
           <ButtonAddPost user={user} />
         </div>
         <ul className="flex items-center justify-between w-full">
-          <Photo />
-          <Video />
+          <Photo user={user}/>
+          <Video user={user}/>
           <Event />
           <Article />
         </ul>

@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 import { MdModeEdit } from "react-icons/md";
-import { FaPlus } from "react-icons/fa6";
+import { FaEllipsis, FaPlus } from "react-icons/fa6";
 import { MdDeleteSweep } from "react-icons/md";
 import React, { Dispatch, useContext, useState } from "react";
 import { User } from "@prisma/client";
@@ -40,16 +40,14 @@ function EditCommentBox({
   };
   return (
     <div className="relative">
-      <Image
+      <i
         onClick={() => setDropDownMenu(comment.id)}
-        src={"/ellipsis.svg"}
-        alt="Menu"
-        width={50}
-        height={50}
-        className={`sm:w-8.25 w-7 sm:h-8.25 h-7 button rounded-full cursor-pointer p-2 hover:bg-gray-100 ${
+        className={`button rounded-full cursor-pointer p-2 block hover:bg-gray-100 ${
           dropDownMenu === comment.id && "bg-gray-100"
         }`}
-      />
+      >
+        <FaEllipsis />
+      </i>
       <div
         className={`sm:p-3 p-1 rounded-xl box shadow z-10 bg-white flex-col absolute right-0 ${
           comment.userId !== user.id ? "min-w-70" : "min-w-fit"

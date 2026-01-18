@@ -21,7 +21,7 @@ function EditProfileBox({ user }: { user: UserWithRelationType }) {
     <div>
       <button
         onClick={() => setShowBoxEdit(true)}
-        className="absolute button right-2 top-2 text-xl text-blackLight p-2 rounded-full hover:bg-gray-100 hover:text-black cursor-pointer transition-css"
+        className="absolute button md:right-2 md:top-2 right-1 top-1 md:text-xl sm:text-[15px] text-sm  text-blackLight p-2 rounded-full hover:bg-gray-100 hover:text-black cursor-pointer transition-css"
       >
         <HiPencil />
       </button>
@@ -30,7 +30,7 @@ function EditProfileBox({ user }: { user: UserWithRelationType }) {
           showBoxEdit ? "flex" : "hidden"
         }`}
       >
-        <div className="lg:w-[50%] md:w-[70%] sm:w-[85%] w-full h-fit div overflow-y-auto shadow rounded space-y-6">
+        <div className="lg:w-[50%] md:w-[70%] sm:w-[85%] w-[98%] h-fit div overflow-y-auto shadow rounded space-y-6">
           <Form user={user} setShowBoxEdit={setShowBoxEdit}/>
         </div>
       </div>

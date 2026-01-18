@@ -30,7 +30,7 @@ function SmallImage({ user, currentUser }: { user: User; currentUser: User }) {
     };
   });
   return (
-    <div className="absolute sm:-bottom-10 -bottom-7 sm:left-7 left-4 flex items-center gap-2">
+    <div className="absolute sm:-bottom-10 -bottom-7 sm:left-7 left-4 flex items-center sm:gap-2">
       <div className="flex items-center gap-1 relative">
         <Image
           onClick={() => setShowSmallImage(true)}
@@ -38,11 +38,11 @@ function SmallImage({ user, currentUser }: { user: User; currentUser: User }) {
           alt="Your Image"
           width={200}
           height={200}
-          className="rounded-full button cursor-pointer md:w-37 sm:w-30 md:h-37 sm:h-30 w-25 h-25 object-cover sm:border-5 border-3 border-white "
+          className="rounded-full button cursor-pointer md:w-30 sm:w-25 md:h-30 sm:h-25 w-23 h-23 object-cover sm:border-3 border-2 border-white "
         />
         {user.id === currentUser.id && <BoxEditSmallImage user={user} />}
       </div>
-      <span className="px-4 py-1.5 sm:hidden block bg-blue-50 text-blue-600 sm:text-xs text-[10px] font-bold rounded-full uppercase tracking-wider">
+      <span className="sm:px-4 px-3 sm:py-1.5 py-1 sm:hidden block bg-blue-50 text-blue-600 sm:text-xs text-[9px] font-black rounded-full uppercase tracking-wider">
         Joined In {formatted}
       </span>
       <div

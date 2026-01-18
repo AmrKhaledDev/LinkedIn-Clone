@@ -23,11 +23,15 @@ function PostFooter({ user, post }: { user: User; post: PostType }) {
       >
         <LikeButton post={post} user={user} />
         <DisLikeButton post={post} user={user} />
-        <CommentButton setAddComment={setAddComment} addComment={addComment}/>
+        <CommentButton
+          setAddComment={setAddComment}
+          addComment={addComment}
+          postId={post.id}
+        />
         <SendButton />
       </div>
       <AddComment user={user} postId={post.id} addComment={addComment} />
-      <Comments post={post} addComment={addComment} user={user}/>
+      <Comments post={post} addComment={addComment} user={user} />
     </div>
   );
 }

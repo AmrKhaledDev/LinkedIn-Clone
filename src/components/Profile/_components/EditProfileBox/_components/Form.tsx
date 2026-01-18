@@ -106,7 +106,7 @@ function Form({
                         ? "border-red-500 focus:border-red-500 focus:ring-red-500/10"
                         : "border-gray-200 focus:border-blue-500 focus:ring-blue-500/10"
                     }
-                  `}
+                  sm:text-[15px] text-[13px]`}
                 />
                 {errors.name && <ServerErrorMessage message={errors.name} />}
               </div>
@@ -128,7 +128,7 @@ function Form({
                         ? "border-red-500 focus:border-red-500 focus:ring-red-500/10"
                         : "border-gray-200 focus:border-blue-500 focus:ring-blue-500/10"
                     }
-                  `}
+                  sm:text-[15px] text-[13px]`}
                 />
                 {errors.headline && (
                   <ServerErrorMessage message={errors.headline} />
@@ -160,7 +160,7 @@ function Form({
                         ? "border-red-500 focus:border-red-500 focus:ring-red-500/10"
                         : "border-gray-200 focus:border-indigo-500 focus:ring-indigo-500/10"
                     }
-                  `}
+                  sm:text-[15px] text-[13px]`}
                 />
                 {errors.school && (
                   <ServerErrorMessage message={errors.school} />
@@ -192,7 +192,7 @@ function Form({
                         ? "border-red-500 focus:border-red-500 focus:ring-red-500/10"
                         : "border-gray-200 focus:border-emerald-500 focus:ring-emerald-500/10"
                     }
-                  `}
+                  sm:text-[15px] text-[13px]`}
                 />
                 {errors.country && (
                   <ServerErrorMessage message={errors.country} />
@@ -215,7 +215,7 @@ function Form({
                         ? "border-red-500 focus:border-red-500 focus:ring-red-500/10"
                         : "border-gray-200 focus:border-emerald-500 focus:ring-emerald-500/10"
                     }
-                  `}
+                  sm:text-[15px] text-[13px]`}
                 />
                 {errors.city && <ServerErrorMessage message={errors.city} />}
               </div>

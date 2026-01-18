@@ -90,7 +90,7 @@ function CommentDesign({
           <CommentFooter user={user} comment={comment} postId={postId} />
         </div>
       </div>
-      <div className="ml-13.5 mt-2 flex flex-col gap-2">
+      <div className="sm:ml-13.5 ml-10 mt-2 flex flex-col gap-2">
         {comment.replays.length > 0 &&
           comment.replays.map((replay) => (
             <ReplayDesign
