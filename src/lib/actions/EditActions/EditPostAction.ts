@@ -6,7 +6,7 @@ import { revalidatePath } from "next/cache";
 // ===================================================
 export const EditPostAction = async (
   data: CreatePostActionDataType,
-  postId: string
+  postId: string,
 ) => {
   try {
     if (!postId) return;
@@ -14,7 +14,11 @@ export const EditPostAction = async (
     if (!validation.success)
       return { error: validation.error.issues[0].message };
     const dataValidation = validation.data;
-    if (dataValidation.contentTxt.trim().length < 1 && !dataValidation.mediaUrl)
+    if (
+      dataValidation.contentTxt &&
+      dataValidation.contentTxt.trim().length < 1 &&
+      !dataValidation.mediaUrl
+    )
       return { error: "You cannot leave the post blank" };
     const user = await prisma.user.findUnique({
       where: {
@@ -37,6 +41,7 @@ export const EditPostAction = async (
       where: { id: post.id },
       data: {
         contentText:
+          dataValidation.contentTxt &&
           dataValidation.contentTxt.trim().length < 1
             ? null
             : dataValidation.contentTxt,
