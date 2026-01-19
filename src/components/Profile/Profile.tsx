@@ -26,7 +26,7 @@ function Profile({
             user.id !== currentUser.id && "pb-4"
           }`}
         >
-          <UserDetails user={user} currentUser={currentUser}/>
+          <UserDetails user={user} currentUser={currentUser} />
           {user.id === currentUser.id && <UserInfo user={user} />}
           {user.id === currentUser.id && <EditProfileBox user={user} />}
         </div>
@@ -35,7 +35,9 @@ function Profile({
         <Posts posts={user.posts} />
       ) : (
         <p className="text-center font-bold tracking-widest p-3 shadow bg-white text-red-400 uppercase sm:text-[15px] text-[13px]">
-          Your posts will be displayed here
+          {user.id === currentUser.id
+            ? "Your posts will be displayed here"
+            : "  This user has no posts yet"}
         </p>
       )}
     </div>

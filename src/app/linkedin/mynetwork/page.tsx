@@ -2,8 +2,8 @@ import { GetUser } from "@/lib/GetUser";
 import { redirect } from "next/navigation";
 import { prisma } from "@/lib/prisma";
 import LeftSide from "@/components/LeftSide/LeftSide";
+import UsersDesign from "./_components/UsersDesign";
 import Image from "next/image";
-import Link from "next/link";
 // =======================================================
 async function page() {
   const userSession = await GetUser();
@@ -13,71 +13,59 @@ async function page() {
       country: {
         equals: userSession.country,
         mode: "insensitive",
+        not: null,
       },
+      id: { not: userSession.id },
     },
     take: 9,
     orderBy: {
       createdAt: "desc",
     },
   });
-
+  const usersFromAroundTheWorld = await prisma.user.findMany({
+    where: {
+      id: { not: userSession.id },
+    },
+    take: 9,
+  });
   return (
     <main className="space-section min-h-screen bg-[#F4F2EE]">
       <div className="container-css p-3 flex gap-5 lg:flex-row flex-col">
         <div className="lg:block hidden">
           <LeftSide />
         </div>
-        <div className="px-3 py-5 flex-1 shadow bg-white rounded">
-          <p className="font-semibold md:text-[15px] sm:text-sm text-[13px] text-gray-900 mb-5">
-            There are also people in {userSession.country} you can follow
-          </p>
-          <div className="grid md:grid-cols-3 grid-cols-2 lg:gap-4 sm:gap-2 gap-0.5">
-            {usersInNetWork.map(
-              (user) =>
-                user.id !== userSession.id && (
-                  <div
-                    key={user.id}
-                    className="rounded overflow-hidden border border-gray-200 hover:shadow-2xl transition-css"
-                  >
-                    <div>
-                      <Image
-                        src={user.imageProfile || "/card-bg.svg"}
-                        alt="User Profile"
-                        width={400}
-                        height={400}
-                        className="w-full sm:h-17.5 h-15 object-cover"
-                      />
-                      <Image
-                        src={user.image || "/user.svg"}
-                        alt="User Profile"
-                        width={400}
-                        height={400}
-                        className="sm:w-17 sm:h-17 w-14 h-14 sm:-mt-14 -mt-9 rounded-full object-cover shrink-0 sm:ml-4 ml-2"
-                      />
-                    </div>
-                    <div className="sm:px-3 px-1.5 pb-2 mt-2 flex flex-col gap-1">
-                      <Link
-                        href={`/linkedin/u/${user.id}`}
-                        className="font-semibold hover:underline capitalize sm:text-[17px] line-clamp-1 break-all w-fit"
-                      >
-                        {user.name}
-                      </Link>
-                      <Link
-                        href={`/linkedin/u/${user.id}`}
-                        className="font-normal sm:text-sm text-[12px] text-gray-600 line-clamp-2 break-all w-fit"
-                      >
-                        {user.headline}
-                      </Link>
-                      <span className="sm:text-[12px] text-[11px] font-normal text-gray-600">
-                        35,146 followers
-                      </span>
-                      <button className="text-primary border sm:text-[15px] text-sm hover:bg-blue-50 mt-1 border-primary rounded-full sm:py-1 font-bold py-0.5 px-3 cursor-pointer">
-                        Follow
-                      </button>
-                    </div>
-                  </div>
-                ),
+        <div className="flex flex-col gap-5">
+          <div className="px-3 py-5 flex-1 shadow bg-white rounded">
+            {userSession.country !== null && (
+              <p className="font-semibold md:text-[15px] sm:text-sm text-[13px] text-gray-900 mb-5">
+                There are also people in {userSession.country} you can follow
+              </p>
             )}
+            {usersInNetWork.length < 1 ? (
+              <div className="w-full flex flex-col gap-2 items-center justify-center">
+                <Image
+                  src={"/photo-no-users.svg"}
+                  alt="Photo"
+                  width={500}
+                  height={500}
+                  className="sm:w-60 w-45"
+                />
+                <h2 className="font-semibold text-gray-700">No users found</h2>
+                <p className="font-normal text-gray-600 text-sm text-center">
+                  {userSession.country
+                    ? " Unfortunately, no one from your country was found"
+                    : " Please select your country to help you find people"}
+                </p>
+              </div>
+            ) : (
+              <UsersDesign users={usersInNetWork} />
+            )}
+          </div>
+          <div className="px-3 py-5 flex-1 shadow bg-white rounded">
+            <p className="font-semibold md:text-[15px] sm:text-sm text-[13px] text-gray-900 mb-5">
+              These users are from around the world
+            </p>
+            <UsersDesign users={usersFromAroundTheWorld} />
           </div>
         </div>
       </div>
