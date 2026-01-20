@@ -21,7 +21,6 @@ function CommentButton({
       setAddComment(true);
     }
   }, [pathname, postId, addComment, setAddComment]);
-console.log(pathname)
   return (
     <div
       onClick={handleClick}

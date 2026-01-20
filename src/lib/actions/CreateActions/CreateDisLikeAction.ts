@@ -42,6 +42,7 @@ export const CreateDisLikeAction = async (userId: string, postId: string) => {
       });
       await prisma.notification.deleteMany({
         where: {
+          type:"LIKE",
           actorId: userId,
           postId: postId,
         },
@@ -55,6 +56,7 @@ export const CreateDisLikeAction = async (userId: string, postId: string) => {
       });
       await prisma.notification.deleteMany({
         where: {
+          type:"DISLIKE",
           actorId: userId,
           postId: postId,
         },

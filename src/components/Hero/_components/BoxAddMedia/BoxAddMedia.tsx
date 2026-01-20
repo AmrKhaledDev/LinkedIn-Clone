@@ -20,7 +20,6 @@ function BoxAddMedia({
   const [loading, setLoading] = useState(false);
   const [media, setMedia] = useState("");
   const [mediaFile, setMediaFile] = useState<File | null>(null);
-  console.log(mediaFile);
   const handleAddMedia = (e: ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files && e.target.files[0];
     if (file) {

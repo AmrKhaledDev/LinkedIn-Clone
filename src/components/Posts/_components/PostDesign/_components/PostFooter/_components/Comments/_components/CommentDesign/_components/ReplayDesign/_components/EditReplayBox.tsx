@@ -40,32 +40,21 @@ function EditReplayBox({
   };
   return (
     <div className="relative">
-      <i
-        onClick={() => setDropDownMenu(replay.id)}
-        className={`button sm:text-sm text-[13px] rounded-full cursor-pointer block p-1 hover:bg-white ${
-          dropDownMenu === replay.id && "bg-white"
-        }`}
-      >
-        <FaEllipsis />
-      </i>
+      {replay.userId === user.id && (
+        <i
+          onClick={() => setDropDownMenu(replay.id)}
+          className={`button sm:text-sm text-[13px] rounded-full cursor-pointer block p-1 hover:bg-white ${
+            dropDownMenu === replay.id && "bg-white"
+          }`}
+        >
+          <FaEllipsis />
+        </i>
+      )}
       <div
         className={`sm:p-3 p-1 rounded-xl box shadow z-10 bg-white flex-col absolute right-0 ${
           replay.userId !== user.id ? "min-w-50" : "min-w-fit"
         } sm:gap-2 mt-1 ${dropDownMenu === replay.id ? "flex" : "hidden"}`}
       >
-        {replay.userId !== user.id && (
-          <button
-            className="text-start text-[13px] flex gap-2 items-center text-slate-600 hover:bg-primary hover:text-white transition-css
-           cursor-pointer font-semibold bg-gray-50 rounded shadow py-2 px-3"
-          >
-            <i>
-              <FaPlus />
-            </i>
-            <span className="line-clamp-1 capitalize">
-              {`Follow ${replay.user.name}`}
-            </span>
-          </button>
-        )}
         {replay.userId === user.id && (
           <>
             <button

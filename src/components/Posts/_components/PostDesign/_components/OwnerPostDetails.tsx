@@ -3,23 +3,40 @@ import { PostType } from "@/lib/types/types";
 import { User } from "@prisma/client";
 import Image from "next/image";
 import Link from "next/link";
-import { BiSolidUserPlus } from "react-icons/bi";
+import { MdAdd } from "react-icons/md";
 import { FaLinkedin } from "react-icons/fa";
+import { CreateFollowAction } from "@/lib/actions/CreateActions/CreateFollowAction";
+import toast from "react-hot-toast";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
+import { FaCheck } from "react-icons/fa6";
 // ==============================================================
 function OwnerPostDetails({ post, user }: { post: PostType; user: User }) {
   const date = new Date(post.createdAt);
-
   const options = {
     day: "numeric",
     month: "short",
     year: "numeric",
   } as const;
   const formatted = date.toLocaleDateString("en-GB", options);
+  const [loading, setLoading] = useState(false);
+  const router = useRouter();
   if (!post) return;
+  const handleFollow = async () => {
+    setLoading(true);
+    const result = await CreateFollowAction(user.id, post.user.id);
+    setLoading(false);
+    if (result?.error)
+      return toast.error(result.error, { className: "toast-font" });
+    router.refresh();
+  };
+  const isFollow = post.user.followers.find(
+    (follower) => follower.followerId == user.id,
+  );
   return (
     <div className="flex gap-2 px-3 pb-3">
       <Image
-        src={post.user.image ? post.user.image : "/user.svg"} 
+        src={post.user.image ? post.user.image : "/user.svg"}
         alt="Your Image"
         width={70}
         height={70}
@@ -53,11 +70,26 @@ function OwnerPostDetails({ post, user }: { post: PostType; user: User }) {
           <p className="text-[11px] text-slate-700 line-clamp-1">{formatted}</p>
         </div>
         {user.id !== post.user.id && (
-          <button className="sm:text-[14px] text-[13px] cursor-pointer gap-1 flex items-center text-primary font-bold hover:bg-blue-50 rounded px-2 py-2 transition-css hover:text-blue-800 h-fit">
-            <i className="text-[22px] -translate-y-[0.6px]">
-              <BiSolidUserPlus />
-            </i>
-            Connect
+          <button
+            onClick={handleFollow}
+            disabled={loading}
+            className={`sm:text-[16px] disabled:text-gray-500 disabled:cursor-default disabled:hover:bg-transparent text-[13px] cursor-pointer flex items-center gap-1  font-bold  rounded px-2 py-1 pr-4 transition-css h-fit ${isFollow ? "bg-gray-100 text-slate-800" : "text-primary hover:text-blue-900 hover:bg-blue-50"}`}
+          >
+            {isFollow ? (
+              <>
+                <i>
+                  <FaCheck />
+                </i>
+                Following
+              </>
+            ) : (
+              <>
+                <i className="text-[19px] -translate-y-[0.6px]">
+                  <MdAdd />
+                </i>
+                Follow
+              </>
+            )}
           </button>
         )}
       </div>

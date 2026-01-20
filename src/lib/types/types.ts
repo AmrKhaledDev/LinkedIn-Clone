@@ -16,7 +16,11 @@ export type CreateArticleActionDataType = z.infer<typeof CreateArticleSchema>;
 // Db Types
 export type PostType = Prisma.PostGetPayload<{
   include: {
-    user: true;
+    user: {
+      include: {
+        followers: true;
+      };
+    };
     comments: {
       include: {
         user: true;
@@ -64,7 +68,11 @@ export type UserWithRelationType = Prisma.UserGetPayload<{
   include: {
     posts: {
       include: {
-        user: true;
+        user: {
+          include: {
+            followers: true;
+          };
+        };
         comments: {
           include: {
             user: true;
@@ -108,6 +116,7 @@ export type UserWithRelationType = Prisma.UserGetPayload<{
         saveItems: true;
       };
     };
+    followers: true;
     saveItems: {
       include: {
         post: {
@@ -122,6 +131,11 @@ export type UserWithRelationType = Prisma.UserGetPayload<{
         actor: true;
       };
     };
+  };
+}>;
+export type UserWithFollower = Prisma.UserGetPayload<{
+  include: {
+    followers: true;
   };
 }>;
 export type NotificationWithRelations = Prisma.NotificationGetPayload<{

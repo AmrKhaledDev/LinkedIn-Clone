@@ -27,6 +27,7 @@ export const DeleteReplayAction = async (userId: string, replayId: string) => {
     });
     await prisma.notification.deleteMany({
       where: {
+        type:"REPLAY",
         actorId: user.id,
         replayId: replayId,
       },

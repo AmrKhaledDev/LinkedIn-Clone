@@ -18,7 +18,11 @@ export const GetUserWithRelation = async () => {
               createdAt: "desc",
             },
             include: {
-              user: true,
+              user: {
+                include: {
+                  followers: true,
+                },
+              },
               comments: {
                 include: {
                   user: true,
@@ -63,6 +67,7 @@ export const GetUserWithRelation = async () => {
               saveItems: true,
             },
           },
+          followers:true,
           receivedNotifications: {
             include: {
               actor: true,
@@ -79,9 +84,9 @@ export const GetUserWithRelation = async () => {
                 },
               },
             },
-            orderBy:{
-              createdAt:"desc"
-            }
+            orderBy: {
+              createdAt: "desc",
+            },
           },
         },
       });

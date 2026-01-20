@@ -1,30 +1,37 @@
+import { UserWithFollower } from "@/lib/types/types";
+import { User } from "@prisma/client";
 import Image from "next/image";
 import Link from "next/link";
 import { FiPlus } from "react-icons/fi";
+import ButtonFollow from "./ButtonFollow";
 // =====================================================================
-function UsersRecommendations() {
+function UsersRecommendations({
+  user,
+  userSession,
+}: {
+  user: UserWithFollower;
+  userSession: User;
+}) {
   return (
-    <div className="flex gap-5">
+    <div className="flex gap-3">
       <Image
-        src={"/person.jpeg"}
+        src={user.image ? user.image : "/user.svg"}
         alt="User Photo"
         width={100}
         height={100}
-        className="rounded-full object-cover w-13.75 h-13.75 border-2 border-gray-200"
+        className="rounded-full object-cover w-13.75 h-13.75 border-2 border-gray-200 shrink-0"
       />
       <div>
-        <Link href={"/"} className="hover:underline font-bold line-clamp-1">
-          Amr Khaled 
+        <Link
+          href={`/linkedin/u/${user.id}`}
+          className="hover:underline font-bold line-clamp-1 capitalize w-fit"
+        >
+          {user.name}
         </Link>
         <h3 className="text-[13px] text-blackLight line-clamp-1">
-          Company • Professional Training and
+          {user.headline}
         </h3>
-        <button className="flex items-center gap-1 border py-1 font-semibold border-primary text-primary hover:bg-blue-50 cursor-pointer px-4 rounded-full mt-1">
-          <i className="text-[18px]">
-            <FiPlus />
-          </i>
-          Follow
-        </button>
+        <ButtonFollow user={user} userSession={userSession} />
       </div>
     </div>
   );

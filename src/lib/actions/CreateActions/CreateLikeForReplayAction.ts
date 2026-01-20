@@ -40,6 +40,7 @@ export const CreateLikeForReplayAction = async (
       if (user.id !== replay.userId) {
         await prisma.notification.deleteMany({
           where: {
+            type:"LIKE",
             actorId: userId,
             replayId: replay.id,
           },

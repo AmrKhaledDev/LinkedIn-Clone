@@ -14,7 +14,11 @@ async function page({ params }: { params: Promise<{ postId: string }> }) {
       id: postId,
     },
     include: {
-      user: true,
+      user: {
+        include:{
+          followers:true
+        }
+      },
       comments: {
         include: {
           user: true,

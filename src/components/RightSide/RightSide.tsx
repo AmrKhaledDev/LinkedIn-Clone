@@ -2,8 +2,27 @@ import Image from "next/image";
 import UsersRecommendations from "./_components/UsersRecommendations";
 import Link from "next/link";
 import { FaArrowRightLong } from "react-icons/fa6";
+import { prisma } from "@/lib/prisma";
+import { GetUser } from "@/lib/GetUser";
+import { redirect } from "next/navigation";
 // =====================================================
-function RightSide() {
+async function RightSide() {
+  const userSession = await GetUser();
+  if (!userSession) return redirect("/login");
+  const recommendationsUsers = await prisma.user.findMany({
+    orderBy: {
+      followers: {
+        _count: "desc",
+      },
+    },
+    include: {
+      followers: true,
+    },
+    where: {
+      id: { not: userSession.id },
+    },
+    take: 3,
+  });
   return (
     <aside className="w-80 flex-col gap-2 xl:flex hidden">
       <div className="shadow rounded overflow-hidden p-3 flex flex-col gap-5 bg-white">
@@ -17,10 +36,14 @@ function RightSide() {
             className="w-5"
           />
         </div>
-        <div className="flex flex-col gap-4">
-          <UsersRecommendations />
-          <UsersRecommendations />
-          <UsersRecommendations />
+        <div className="flex flex-col gap-3">
+          {recommendationsUsers.map((user) => (
+            <UsersRecommendations
+              key={user.id}
+              user={user}
+              userSession={userSession}
+            />
+          ))}
           <Link
             href={"/linkedin/mynetwork"}
             className="flex items-center gap-3 text-[14px] text-blackLight px-2 hover:bg-gray-100 rounded w-fit font-semibold hover:text-black transition-css"

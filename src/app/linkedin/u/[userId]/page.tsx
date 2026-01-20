@@ -26,7 +26,11 @@ async function page({ params }: { params: Promise<{ userId: string }> }) {
           createdAt: "desc",
         },
         include: {
-          user: true,
+          user: {
+            include: {
+              followers: true,
+            },
+          },
           comments: {
             include: {
               user: true,
@@ -71,6 +75,7 @@ async function page({ params }: { params: Promise<{ userId: string }> }) {
           saveItems: true,
         },
       },
+      followers: true,
       receivedNotifications: {
         include: {
           actor: true,

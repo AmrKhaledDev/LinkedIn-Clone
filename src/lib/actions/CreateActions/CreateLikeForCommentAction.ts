@@ -36,9 +36,10 @@ export const CreateLikeForComment = async (
           id: isLikeForCommentExist.id,
         },
       });
-      if (user.id !== comment.id) {
+      if (user.id !== comment.userId) {
         await prisma.notification.deleteMany({
           where: {
+            type:"LIKE",
             actorId: userId,
             commentId: comment.id,
           },

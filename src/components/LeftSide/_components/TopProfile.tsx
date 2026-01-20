@@ -37,7 +37,7 @@ async function TopProfile() {
           <h2 className="xl:text-xl lg:text-2xl sm:text-xl text-2xl capitalize font-semibold line-clamp-1">
             {user.name}
           </h2>
-          <h3 className="xl:text-[13px] lg:text-[14px] sm:text-[13px] text-[12px]  line-clamp-1">
+          <h3 className="xl:text-[13px] lg:text-[14px] sm:text-[13px] text-[12px]  line-clamp-2">
             {user.headline}
           </h3>
           <h3 className="xl:text-[13px] lg:text-[14px] sm:text-[13px] text-[12px]  text-blackLight line-clamp-1 capitalize">

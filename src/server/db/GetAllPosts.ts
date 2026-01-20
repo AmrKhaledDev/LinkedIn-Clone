@@ -5,7 +5,11 @@ export const GetAllPosts = Cache(
   async () => {
     const posts = await prisma.post.findMany({
       include: {
-        user: true,
+        user: {
+          include: {
+            followers: true,
+          },
+        },
         comments: {
           include: {
             user: true,
@@ -59,5 +63,5 @@ export const GetAllPosts = Cache(
   ["get-posts"],
   {
     revalidate: 3600,
-  }
+  },
 );

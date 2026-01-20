@@ -1,8 +1,9 @@
+"use client";
 import { UserWithRelationType } from "@/lib/types/types";
-import { RiSendPlaneFill } from "react-icons/ri";
-import { PiUserPlusBold } from "react-icons/pi";
 import { FaLinkedin } from "react-icons/fa";
 import { User } from "@prisma/client";
+import ButtonFollow from "./ButtonFollow";
+
 // =====================================================================
 function UserDetails({
   user,
@@ -47,7 +48,8 @@ function UserDetails({
         )}
         <div className="flex items-center gap-5">
           <h4 className="text-[13px] font-bold text-slate-500 flex items-center gap-1">
-            500+ <span className="font-medium"> connections</span>
+            {user.followers.length}{" "}
+            <span className="font-medium"> followers</span>
           </h4>
           <h4 className="text-[13px] font-bold text-slate-600 flex items-center gap-1">
             {user.posts.length}
@@ -59,12 +61,7 @@ function UserDetails({
       </div>
       {user.id !== currentUser.id && (
         <div className="flex items-center gap-3">
-          <button className="text-white border-2 border-transparent bg-primary py-1 px-3 rounded-full cursor-pointer hover:bg-hoverColor font-semibold flex items-center gap-2 text-[14px]">
-            <PiUserPlusBold className="size-4.5" /> Connect
-          </button>
-          <button className=" border-2 border-primary text-primary py-1 px-2 rounded-full cursor-pointer hover:border-blue-900 hover:text-blue-900 font-semibold flex items-center gap-2 text-[14px]">
-            <RiSendPlaneFill className="size-4.5" /> Message
-          </button>
+          <ButtonFollow user={user} currentUser={currentUser} />
         </div>
       )}
     </div>

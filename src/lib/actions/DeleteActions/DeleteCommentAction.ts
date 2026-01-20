@@ -30,6 +30,7 @@ export const DeleteCommentAction = async (
     });
     await prisma.notification.deleteMany({
       where: {
+        type:"COMMENT",
         actorId: userId,
         commentId: comment.id,
       },

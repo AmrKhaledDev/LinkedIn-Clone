@@ -19,6 +19,7 @@ enum TypeNotification {
   COMMENT
   REPLAY
   MESSAGE
+  FOLLOW
 }
 
 // Models
@@ -53,34 +54,35 @@ model Session {
 }
 
 model User {
-  id              String           @id @default(cuid())
-  name            String
-  email           String           @unique
-  password        String?
-  emailVerified   DateTime?        @map("email_verified")
-  image           String?
-  role            Role             @default(USER)
-  headline        String?
-  country         String?
-  city            String?
-  school          String?
-  imageProfile    String?
-  accounts        Account[]
-  sessions        Session[]
-  posts           Post[]
-  createdAt       DateTime         @default(now())
-  updatedAt       DateTime         @updatedAt
-  articles        Article[]
-  comments        Comment[]
-  likes           Like[]
-  disLikes        DisLike[]
-  likeForComments LikeForComment[]
-  replays         Replay[]
-  likeForReplays  LikeForReplay[]
-
-  sentNotifications     Notification[] @relation("ActorNotifications")
-  receivedNotifications Notification[] @relation("RecipientNotifications")
+  id                    String           @id @default(cuid())
+  name                  String
+  email                 String           @unique
+  password              String?
+  emailVerified         DateTime?        @map("email_verified")
+  image                 String?
+  role                  Role             @default(USER)
+  headline              String?
+  country               String?
+  city                  String?
+  school                String?
+  imageProfile          String?
+  accounts              Account[]
+  sessions              Session[]
+  posts                 Post[]
+  createdAt             DateTime         @default(now())
+  updatedAt             DateTime         @updatedAt
+  articles              Article[]
+  comments              Comment[]
+  likes                 Like[]
+  disLikes              DisLike[]
+  likeForComments       LikeForComment[]
+  replays               Replay[]
+  likeForReplays        LikeForReplay[]
+  sentNotifications     Notification[]   @relation("ActorNotifications")
+  receivedNotifications Notification[]   @relation("RecipientNotifications")
   saveItems             SaveItem[]
+  followers             Follow[]         @relation("followers")
+  following             Follow[]         @relation("following")
 
   @@map("users")
 }
@@ -175,6 +177,17 @@ model Comment {
   updatedAt       DateTime         @updatedAt
   likeForComments LikeForComment[]
   replays         Replay[]
+}
+
+model Follow {
+  id          String   @id @default(cuid())
+  followerId  String
+  followingId String
+  follower    User     @relation("following", fields: [followerId], references: [id], onDelete: Cascade)
+  following   User     @relation("followers", fields: [followingId], references: [id],onDelete: Cascade)
+  createAt    DateTime @default(now())
+
+  @@unique([followerId, followingId])
 }
 
 model Replay {

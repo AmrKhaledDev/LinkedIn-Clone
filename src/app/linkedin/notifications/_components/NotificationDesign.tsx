@@ -6,6 +6,7 @@ import { BiSolidDislike } from "react-icons/bi";
 import { FaCommentDots } from "react-icons/fa";
 import ButtonEditNotification from "./ButtonEditNotification";
 import { User } from "@prisma/client";
+import { RiUserFollowFill } from "react-icons/ri";
 // ==========================================================================
 function NotificationDesign({
   notification,
@@ -28,7 +29,7 @@ function NotificationDesign({
       }`}
     >
       <Link href={notification.route} className="p-2 flex-1">
-        <div className="flex gap-3">
+        <div className="flex items-center gap-3">
           <div className="relative h-fit shrink-0">
             <Image
               src={notification.actor.image || "/user.svg"}
@@ -41,18 +42,23 @@ function NotificationDesign({
               <span className="absolute top-0 right-0 block h-3 w-3 rounded-full bg-blue-500 ring-2 ring-white" />
             )}
             {notification.type === "LIKE" && (
-              <i className="absolute -bottom-1 -right-1 p-1 text-[14px] text-primary rounded-full shadow bg-gray-100 border border-white">
+              <i className="absolute bottom-0 right-0 p-0.5 text-[13px] text-primary rounded-full shadow bg-gray-100 border border-white">
                 <BiSolidLike />
               </i>
             )}
             {notification.type === "DISLIKE" && (
-              <i className="absolute -bottom-1 -right-1 p-1 text-[14px] text-red-500 rounded-full shadow bg-gray-100 border border-white">
+              <i className="absolute bottom-0 right-0 p-0.5 text-[13px] text-red-500 rounded-full shadow bg-gray-100 border border-white">
                 <BiSolidDislike />
               </i>
             )}
             {notification.type === "COMMENT" && (
-              <i className="absolute -bottom-1 -right-1 p-1 text-[14px] text-green-600 rounded-full shadow bg-gray-100 border border-white">
+              <i className="absolute bottom-0 right-0 p-0.5 text-[13px] text-green-600 rounded-full shadow bg-gray-100 border border-white">
                 <FaCommentDots />
+              </i>
+            )}
+            {notification.type === "FOLLOW" && (
+              <i className="absolute bottom-0 right-0 p-0.5 text-[13px] text-primary rounded-full shadow bg-gray-100 border border-white">
+                <RiUserFollowFill />
               </i>
             )}
           </div>
@@ -95,7 +101,7 @@ function NotificationDesign({
         <span className="lg:text-xs sm:text-[11px] text-[9px] text-gray-500">
           {formatted}
         </span>
-        <ButtonEditNotification notification={notification} user={user}/>
+        <ButtonEditNotification notification={notification} user={user} />
       </div>
     </li>
   );

@@ -1,18 +1,23 @@
 import { User } from "@prisma/client";
 import Image from "next/image";
 import Link from "next/link";
+import ButtonFollow from "./ButtonFollow";
+import { UserWithFollower } from "@/lib/types/types";
 // =======================================================
+
 function UsersDesign({
+  userSession,
   users,
 }: {
-  users: User[];
+  userSession: User;
+  users: UserWithFollower[];
 }) {
   return (
     <div className="grid md:grid-cols-3 grid-cols-2 lg:gap-4 sm:gap-2 gap-0.5">
       {users.map((user) => (
         <div
           key={user.id}
-          className="rounded overflow-hidden border border-gray-200 hover:shadow-2xl transition-css h-fit"
+          className="rounded overflow-hidden border border-gray-200 hover:shadow transition-css h-fit"
         >
           <div>
             <Image
@@ -44,11 +49,9 @@ function UsersDesign({
               {user.headline}
             </Link>
             <span className="sm:text-[12px] text-[11px] font-normal text-gray-600">
-              35,146 followers
+              {user.followers.length} followers
             </span>
-            <button className="text-primary border sm:text-[15px] text-sm hover:bg-blue-50 mt-1 border-primary rounded-full sm:py-1 font-bold py-0.5 px-3 cursor-pointer">
-              Follow
-            </button>
+            <ButtonFollow user={user} userSession={userSession} />
           </div>
         </div>
       ))}

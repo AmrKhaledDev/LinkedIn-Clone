@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 import { MdModeEdit } from "react-icons/md";
-import { FaEllipsis, FaPlus } from "react-icons/fa6";
+import { FaEllipsis } from "react-icons/fa6";
 import { MdDeleteSweep } from "react-icons/md";
 import React, { Dispatch, useContext, useState } from "react";
 import { User } from "@prisma/client";
@@ -38,34 +38,24 @@ function EditCommentBox({
     router.refresh();
     setDropDownMenu(null);
   };
+
   return (
     <div className="relative">
-      <i
-        onClick={() => setDropDownMenu(comment.id)}
-        className={`button rounded-full cursor-pointer p-2 block hover:bg-gray-100 ${
-          dropDownMenu === comment.id && "bg-gray-100"
-        }`}
-      >
-        <FaEllipsis />
-      </i>
+      {comment.userId === user.id && (
+        <i
+          onClick={() => setDropDownMenu(comment.id)}
+          className={`button rounded-full cursor-pointer p-2 block hover:bg-gray-100 ${
+            dropDownMenu === comment.id && "bg-gray-100"
+          }`}
+        >
+          <FaEllipsis />
+        </i>
+      )}
       <div
         className={`sm:p-3 p-1 rounded-xl box shadow z-10 bg-white flex-col absolute right-0 ${
           comment.userId !== user.id ? "min-w-70" : "min-w-fit"
         } gap-2 mt-1 ${dropDownMenu === comment.id ? "flex" : "hidden"}`}
       >
-        {comment.userId !== user.id && (
-          <button
-            className="text-start flex gap-2 items-center text-slate-600 hover:bg-primary hover:text-white transition-css
-           cursor-pointer font-semibold bg-gray-50 rounded shadow py-2 px-3"
-          >
-            <i className="text-xl">
-              <FaPlus />
-            </i>
-            <span className="line-clamp-1 capitalize">
-              {`Follow ${comment.user.name}`}
-            </span>
-          </button>
-        )}
         {comment.userId === user.id && (
           <>
             <button

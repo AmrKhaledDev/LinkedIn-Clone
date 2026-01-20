@@ -17,6 +17,9 @@ async function page() {
       },
       id: { not: userSession.id },
     },
+    include: {
+      followers: true,
+    },
     take: 9,
     orderBy: {
       createdAt: "desc",
@@ -25,6 +28,9 @@ async function page() {
   const usersFromAroundTheWorld = await prisma.user.findMany({
     where: {
       id: { not: userSession.id },
+    },
+    include: {
+      followers: true,
     },
     take: 9,
   });
@@ -58,14 +64,17 @@ async function page() {
                 </p>
               </div>
             ) : (
-              <UsersDesign users={usersInNetWork} />
+              <UsersDesign users={usersInNetWork} userSession={userSession} />
             )}
           </div>
           <div className="px-3 py-5 flex-1 shadow bg-white rounded">
             <p className="font-semibold md:text-[15px] sm:text-sm text-[13px] text-gray-900 mb-5">
               These users are from around the world
             </p>
-            <UsersDesign users={usersFromAroundTheWorld} />
+            <UsersDesign
+              users={usersFromAroundTheWorld}
+              userSession={userSession}
+            />
           </div>
         </div>
       </div>
