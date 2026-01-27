@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import LeftSide from "@/components/LeftSide/LeftSide";
 import { GetUserWithRelation } from "@/lib/GetUserWithRelation";
 import NotificationDesign from "./_components/NotificationDesign";

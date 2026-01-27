@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import { Metadata } from "next";
 import Article from "./_components/Article";
 import BoxMedia from "./_components/BoxMedia";

@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import { GetUserWithRelation } from "@/lib/GetUserWithRelation";
 import { redirect } from "next/navigation";
 import LeftSide from "./_components/LeftSide";
