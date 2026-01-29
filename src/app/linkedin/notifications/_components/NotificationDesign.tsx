@@ -24,7 +24,7 @@ function NotificationDesign({
   const formatted = date.toLocaleDateString("en-GB", options);
   return (
     <li
-      className={`rounded transition-css relative flex justify-between ${
+      className={`rounded transition-css relative flex justify-between gap-5 ${
         !notification.readAt ? "bg-[#d7e9fb] hover:bg-[#C3DDF8]" : "bg-white "
       }`}
     >
@@ -69,25 +69,25 @@ function NotificationDesign({
               </h2>
             </div>
             {notification.postTitle && (
-              <p className="mt-2 lg:text-[13px] sm:text-[12px] text-[10px] text-gray-700 bg-gray-50/80 border border-gray-100 py-1 px-4 rounded-2xl w-fit line-clamp-1 shadow-sm">
+              <p className="mt-2 lg:text-[13px] sm:text-[12px] text-[10px] text-gray-700 bg-gray-50/80 border border-gray-100 py-1 px-4 rounded-2xl w-fit sm:line-clamp-1 line-clamp-2 shadow-sm">
                 <span className="font-semibold mr-1">Post</span>:{" "}
                 {notification.postTitle}
               </p>
             )}
             {notification.commentContent && (
-              <p className="mt-2 lg:text-[13px] sm:text-[12px] text-[10px] text-gray-700 bg-gray-50/80 border border-gray-100 py-1 px-4 rounded-2xl w-fit line-clamp-1 shadow-sm">
+              <p className="mt-2 lg:text-[13px] sm:text-[12px] text-[10px] text-gray-700 bg-gray-50/80 border border-gray-100 py-1 px-4 rounded-2xl w-fit sm:line-clamp-1 line-clamp-2 shadow-sm">
                 <span className="font-semibold mr-1">Comment</span>:{" "}
                 {notification.commentContent}
               </p>
             )}
             {notification.replayContent && (
-              <p className="mt-2 lg:text-[13px] sm:text-[12px] text-[10px] text-gray-700 bg-gray-50/80 border border-gray-100 py-1 px-4 rounded-2xl w-fit line-clamp-1 shadow-sm">
+              <p className="mt-2 lg:text-[13px] sm:text-[12px] text-[10px] text-gray-700 bg-gray-50/80 border border-gray-100 py-1 px-4 rounded-2xl w-fit sm:line-clamp-1 line-clamp-2 shadow-sm">
                 <span className="font-semibold mr-1">Replay</span>:{" "}
                 {notification.replayContent}
               </p>
             )}
             {notification.body && (
-              <p className="mt-2 lg:text-[13px] sm:text-[12px] border-l-2 border-l-primary text-[10px] text-gray-700 leading-relaxed bg-gray-50/80 border border-gray-100 py-1 px-4 rounded-2xl w-fit  line-clamp-1 shadow-sm">
+              <p className="mt-2 lg:text-[13px] sm:text-[12px] border-l-2 border-l-primary text-[10px] text-gray-700 leading-relaxed bg-gray-50/80 border border-gray-100 py-1 px-4 rounded-2xl w-fit  sm:line-clamp-1 line-clamp-2 shadow-sm">
                 <span className="font-semibold mr-1 capitalize">
                   {notification.actor.name.split(" ")[0]}
                 </span>
@@ -97,7 +97,7 @@ function NotificationDesign({
           </div>
         </div>
       </Link>
-      <div className="flex gap-3 h-fit items-center p-2">
+      <div className="flex sm:gap-3 h-fit items-center p-2 sm:flex-nowrap flex-wrap">
         <span className="lg:text-xs sm:text-[11px] text-[9px] text-gray-500">
           {formatted}
         </span>

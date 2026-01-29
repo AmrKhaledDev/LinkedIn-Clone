@@ -55,13 +55,12 @@ function ShowLikers({
                   className="absolute sm:right-1 sm:bottom-1 right-0 bottom-0.5 sm:w-4 sm:h-4 w-4 h-4"
                 />
               </div>
-
               <div>
                 <Link
                   href={
-                    user.id === post.user.id
+                    user.id === like.user.id
                       ? "/linkedin/profile"
-                      : `/linkedin/u/${post.user.id}`
+                      : `/linkedin/u/${like.user.id}`
                   }
                   className="capitalize hover:text-primary hover:underline font-semibold sm:text-[17px] break-all"
                 >

@@ -36,7 +36,7 @@ function EditPost({ post, user }: EditPostProps) {
   return (
     <div
       id={`edit-post-${post.id}`}
-      className="pt-2 mx-3 flex items-center justify-end relative"
+      className="flex items-center justify-end relative p-3"
     >
       <div className="w-fit relative">
         <div>

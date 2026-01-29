@@ -8,7 +8,7 @@ async function TopProfile() {
   const user = await GetUser();
   if (!user) redirect("/login");
   return (
-    <div className=" rounded overflow-hidden bg-white shadow">
+    <div className=" rounded overflow-hidden bg-white shadow sm:block hidden">
       <Link
         href={"/linkedin/profile"}
         className="flex flex-col sm:gap-10 gap-13 pb-6"

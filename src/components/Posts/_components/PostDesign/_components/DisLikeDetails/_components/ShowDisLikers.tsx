@@ -58,9 +58,9 @@ function ShowDisLikers({
               <div>
                 <Link
                   href={
-                    user.id === post.user.id
+                    user.id === dislike.user.id
                       ? "/linkedin/profile"
-                      : `/linkedin/u/${post.user.id}`
+                      : `/linkedin/u/${dislike.user.id}`
                   }
                   className="capitalize hover:text-primary hover:underline font-bold sm:text-[17px] break-all"
                 >

@@ -39,7 +39,7 @@ function ButtonEditNotification({
     <div className="relative">
       <button
         onClick={() => setDropDownMenu(notification.id)}
-        className="p-1 button z-6 text-[14px] rounded-full text-gray-500 hover:bg-gray-100 cursor-pointer transition-css"
+        className="p-1 button z-6 sm:text-[14px] text-[12px] rounded-full text-gray-500 hover:bg-gray-100 cursor-pointer transition-css"
       >
         <FaEllipsis />
       </button>
