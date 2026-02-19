@@ -215,3 +215,26 @@ export type ContextStatesType = {
   dropDownMenu: string | null;
   setDropDownMenu: Dispatch<SetStateAction<string | null>>;
 };
+// Errors
+export type LoginPageErrors = {
+  email?: string;
+  password?: string;
+};
+export type RegisterPageErrors = {
+  name?:string,
+  email?: string;
+  password?: string;
+};
+// Form Field Type
+export type FormFieldType = {
+  id: string;
+  label: string;
+  placeholder?: string;
+  setState: Dispatch<SetStateAction<string>>;
+  disabled: boolean;
+  value: string | number;
+  error?: string;
+  type: "text" | "password" | "email";
+  showPassword?: boolean;
+  setShowPassword?: Dispatch<SetStateAction<boolean>>;
+};

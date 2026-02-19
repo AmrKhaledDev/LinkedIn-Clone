@@ -24,6 +24,16 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       }
       return session;
     },
+    async signIn({ user, account }) {
+      if (account?.type === "credentials") return true;
+      const userFromDB = await prisma.user.findUnique({
+        where: {
+          id: user.id,
+        },
+      });
+      if (!userFromDB?.emailVerified) return false;
+      return true;
+    },
   },
 
   providers: [
@@ -48,7 +58,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
           if (!user || !user.password) return null;
           const passwordHash = await bcrypt.compare(
             validation.data.password,
-            user.password
+            user.password,
           );
           if (!passwordHash) return null;
           return user;

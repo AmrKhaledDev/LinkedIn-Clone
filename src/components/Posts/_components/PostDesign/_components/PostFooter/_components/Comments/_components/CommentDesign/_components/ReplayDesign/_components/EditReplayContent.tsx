@@ -1,6 +1,6 @@
 "use client";
 
-import ServerErrorMessage from "@/components/ServerErrorMessage/ServerErrorMessage";
+import AlertMessage from "@/components/AlertMessage/AlertMessage";
 import { EditReplayContentAction } from "@/lib/actions/EditActions/EditReplayContentAction";
 import {  ReplayWithRelations } from "@/lib/types/types";
 import {  User } from "@prisma/client";
@@ -79,7 +79,7 @@ function EditReplayContent({
           </button>
         </div>
       </div>
-      {serverError && <ServerErrorMessage message={serverError} />}
+      {serverError && <AlertMessage type="ERROR" message={serverError} />}
     </div>
   );
 }

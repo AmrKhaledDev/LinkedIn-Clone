@@ -1,6 +1,5 @@
 "use client";
 import Loader from "@/components/Loader/Loader";
-import ServerErrorMessage from "@/components/ServerErrorMessage/ServerErrorMessage";
 import { EditProfileAction } from "@/lib/actions/EditActions/EditProfileAction";
 import { FormEditProfileErrors } from "@/lib/interfaces/interfaces";
 import { EditProfileSchema } from "@/lib/schemas/EditProfileSchema";
@@ -10,6 +9,7 @@ import { FormEvent, useState } from "react";
 import toast from "react-hot-toast";
 import { FaSave, FaEdit } from "react-icons/fa";
 import { IoMdClose } from "react-icons/io";
+import AlertMessage from "@/components/AlertMessage/AlertMessage";
 // ============================================================================================
 function Form({
   user,
@@ -108,7 +108,9 @@ function Form({
                     }
                   sm:text-[15px] text-[13px]`}
                 />
-                {errors.name && <ServerErrorMessage message={errors.name} />}
+                {errors.name && (
+                  <AlertMessage type="ERROR" message={errors.name} />
+                )}
               </div>
 
               {/* Headline */}
@@ -131,7 +133,7 @@ function Form({
                   sm:text-[15px] text-[13px]`}
                 />
                 {errors.headline && (
-                  <ServerErrorMessage message={errors.headline} />
+                  <AlertMessage type="ERROR" message={errors.headline} />
                 )}
               </div>
             </div>
@@ -163,7 +165,7 @@ function Form({
                   sm:text-[15px] text-[13px]`}
                 />
                 {errors.school && (
-                  <ServerErrorMessage message={errors.school} />
+                  <AlertMessage type="ERROR" message={errors.school} />
                 )}
               </div>
             </div>
@@ -195,7 +197,7 @@ function Form({
                   sm:text-[15px] text-[13px]`}
                 />
                 {errors.country && (
-                  <ServerErrorMessage message={errors.country} />
+                  <AlertMessage type="ERROR" message={errors.country} />
                 )}
               </div>
 
@@ -217,7 +219,9 @@ function Form({
                     }
                   sm:text-[15px] text-[13px]`}
                 />
-                {errors.city && <ServerErrorMessage message={errors.city} />}
+                {errors.city && (
+                  <AlertMessage type="ERROR" message={errors.city} />
+                )}
               </div>
             </div>
           </section>
@@ -235,8 +239,8 @@ function Form({
               setCity(user.city ?? "");
               setCountry(user.country ?? "");
               setSchool(user.school ?? "");
-              setErrors({})
-              router.refresh()
+              setErrors({});
+              router.refresh();
             }}
             className="flex sm:text-[15px] text-[12px] items-center disabled:cursor-default cursor-pointer disabled:hover:bg-transparent disabled:text-gray-400 gap-1 text-sm font-bold text-gray-500 hover:text-red-600 px-4 py-2 hover:bg-red-100 rounded-lg transition-all"
           >

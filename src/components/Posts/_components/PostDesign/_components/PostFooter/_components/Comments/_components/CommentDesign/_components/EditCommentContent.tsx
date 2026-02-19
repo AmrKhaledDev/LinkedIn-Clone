@@ -1,6 +1,6 @@
 "use client";
 
-import ServerErrorMessage from "@/components/ServerErrorMessage/ServerErrorMessage";
+import AlertMessage from "@/components/AlertMessage/AlertMessage";
 import { EditCommentContentAction } from "@/lib/actions/EditActions/EditCommentContentAction";
 import { CommentDBWithRelations } from "@/lib/types/types";
 import {  User } from "@prisma/client";
@@ -79,7 +79,7 @@ function EditCommentContent({
           </button>
         </div>
       </div>
-      {serverError && <ServerErrorMessage message={serverError} />}
+      {serverError && <AlertMessage type="ERROR" message={serverError} />}
     </div>
   );
 }

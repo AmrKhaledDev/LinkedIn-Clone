@@ -1,36 +1,49 @@
-"use server"
+"use server";
 import bcrypt from "bcryptjs";
 import { RegisterSchema } from "../../schemas/RegisterSchema";
 import { RegisterActionDataType } from "../../types/types";
 import { prisma } from "@/lib/prisma";
-import { signIn } from "@/auth";
+import { generateVerificationToken } from "@/lib/generateVerificationToken";
+import { sendVerificationToken } from "@/lib/email/sendVerificationToken";
 // ==============================================================================
-export const RegisterAction = async (data: RegisterActionDataType) => {
+export const RegisterAction = async (
+  data: RegisterActionDataType,
+): Promise<{ success: boolean; message: string }> => {
   const validation = RegisterSchema.safeParse(data);
-  if (!validation.success) return { error: validation.error.issues[0].message };
-  if(validation.data.name.trim().toLowerCase() === "linkedin") return {error:"This name is reserved, please change it"}
+  if (!validation.success)
+    return { success: false, message: validation.error.issues[0].message };
   try {
-    const user = await prisma.user.findUnique({
+    const isExisting = await prisma.user.findUnique({
       where: {
         email: validation.data.email,
       },
     });
-    if (user) return { error: "This user already exists" };
+    if (isExisting) return { success: false, message: "This user already exists" };
     const passwordHashed = await bcrypt.hash(validation.data.password, 10);
-    await prisma.user.create({
+    const newUser = await prisma.user.create({
       data: {
         name: validation.data.name,
         email: validation.data.email,
         password: passwordHashed,
       },
     });
-    await signIn("credentials", {
-      email: validation.data.email,
-      password: validation.data.password,
-      redirect: false,
-    });
+    if (!newUser)
+      return {
+        success: false,
+        message: "Failed create your account, try later",
+      };
+    const verificationToken: { error: string } | { token: string } =
+      await generateVerificationToken(data.email);
+    if ("error" in verificationToken)
+      return { success: false, message: verificationToken.error };
+    const result = await sendVerificationToken(
+      data.email,
+      verificationToken.token,
+    );
+    if (!result.success) return { success: false, message: result.message };
+    return { success: true, message: result.message };
   } catch (error) {
     console.log(error);
-    return { error: "Failed join try again later" };
+    return { success: false, message: "Failed join try again later" };
   }
 };
