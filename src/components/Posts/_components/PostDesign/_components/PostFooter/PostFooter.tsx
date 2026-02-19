@@ -7,14 +7,13 @@ import { PostType } from "@/lib/types/types";
 import LikeButton from "./_components/Buttons/LikeButton";
 import DisLikeButton from "./_components/Buttons/DisLikeButton";
 import CommentButton from "./_components/Buttons/CommentButton";
-import SendButton from "./_components/Buttons/SendButton";
 // ======================================================================
 function PostFooter({ user, post }: { user: User; post: PostType }) {
   const [addComment, setAddComment] = useState(false);
   return (
     <div>
       <div
-        className={`flex items-center md:gap-12 sm:gap-5 gap-2 py-3 justify-between sm:px-5 px-7 container-actions  ${
+        className={`flex items-center md:gap-12 sm:gap-5 gap-2 py-2 justify-between sm:px-7 px-9 container-actions  ${
           (post.likes.length > 0 ||
             post.disLikes.length > 0 ||
             post.comments.length > 0) &&
@@ -28,7 +27,6 @@ function PostFooter({ user, post }: { user: User; post: PostType }) {
           addComment={addComment}
           postId={post.id}
         />
-        <SendButton />
       </div>
       <AddComment user={user} postId={post.id} addComment={addComment} />
       <Comments post={post} addComment={addComment} user={user} />

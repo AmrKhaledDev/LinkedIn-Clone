@@ -88,7 +88,7 @@ function FormRegister() {
       />
       <FormField
         id="email"
-        label="email"
+        label="Email"
         setState={setEmail}
         type="email"
         placeholder="Enter your email"

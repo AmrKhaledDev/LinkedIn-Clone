@@ -9,13 +9,13 @@
 }
 @layer utilities {
   .container-css {
-    @apply max-w-312.5 mx-auto;
+    @apply max-w-290 mx-auto;
   }
   .transition-css {
     @apply transition duration-300;
   }
   .space-section {
-    @apply pt-18;
+    @apply pt-15;
   }
 }
 .toast-font {
@@ -42,52 +42,35 @@
 /* Post Footer Icons  */
 @media(max-width:520px){
    .likeText {
-    display: none;
+    font-size: 13px;
   }
   .dislikeText {
-    display: none;
+    font-size: 13px;
   }
   .commentText {
-    display: none;
+    font-size: 13px;
   }
   .sendText {
-    display: none;
+    font-size: 13px;
   }
 }
-/* Post Footer */
-@media (max-width: 520px) {
-  .container-actions{
-    padding: 10px 16px;
-  }
-  .like {
-    font-size: 23px;
-  }
-  .dislike {
-    font-size: 23px;
-  }
-  .comment {
-    font-size: 23px;
-  }
-  .send {
-    font-size: 23px;
-  }
-}
+
 /* Post Footer */
 @media (max-width: 520px) {
   .container-actions{
     padding: 8px 13px;
   }
   .like {
-    font-size: 21px;
+    font-size: 18px;
   }
   .dislike {
-    font-size: 21px;
+    font-size: 18px;
   }
   .comment {
-    font-size: 21px;
+    font-size: 18px;
   }
   .send {
-    font-size: 21px;
+    font-size: 18px;
   }
 }
 @theme inline {

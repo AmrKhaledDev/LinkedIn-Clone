@@ -1,12 +1,10 @@
 "use client";
-import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { AiFillHome } from "react-icons/ai";
 import { HiUsers } from "react-icons/hi";
-import { MdOutlineWork } from "react-icons/md";
-import { BiSolidMessageDots } from "react-icons/bi";
+import { PiArticleNyTimesFill } from "react-icons/pi";
 import { IoNotificationsSharp } from "react-icons/io5";
 import { Notification } from "@prisma/client";
 import { IoEllipsisHorizontal } from "react-icons/io5";
@@ -32,15 +30,9 @@ function Navlinks({
     },
     {
       id: crypto.randomUUID(),
-      linkName: "Jobs",
-      icon: <MdOutlineWork />,
-      url: "/jobs",
-    },
-    {
-      id: crypto.randomUUID(),
-      linkName: "Messaging",
-      icon: <BiSolidMessageDots />,
-      url: "/messaging",
+      linkName: "Articles",
+      icon: <PiArticleNyTimesFill />,
+      url: "/articles",
     },
   ];
   const pathname = usePathname();

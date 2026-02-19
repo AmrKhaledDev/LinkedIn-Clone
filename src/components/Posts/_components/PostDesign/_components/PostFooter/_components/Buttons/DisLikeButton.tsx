@@ -25,7 +25,7 @@ function DisLikeButton({ post, user }: { post: PostType; user: User }) {
     <div
       onClick={handleDisLike}
       className={`
-         flex items-center gap-2 cursor-pointer  ${
+         flex items-center sm:gap-2 gap-1 cursor-pointer  ${
            loading ? "pointer-events-none" : "cursor-pointer  hover:bg-gray-100"
          } sm:py-2 sm:px-4 py-1 px-2 rounded transition-css
          hover:bg-gray-100

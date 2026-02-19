@@ -25,7 +25,7 @@ async function RightSide() {
   });
   return (
     <aside className="w-80 flex-col gap-2 xl:flex hidden">
-      <div className="shadow rounded overflow-hidden p-3 flex flex-col gap-5 bg-white">
+      <div className="rounded-[10px] border border-[#DFDEDA] overflow-hidden p-3 flex flex-col gap-5 bg-white">
         <div className="flex items-center justify-between">
           <h2 className="text-blackLight">Add to your feed</h2>
           <Image
@@ -55,7 +55,7 @@ async function RightSide() {
           </Link>
         </div>
       </div>
-      <div className="shadow rounded overflow-hidden p-3 bg-white">
+      <div className="rounded-[10px] border border-[#DFDEDA] overflow-hidden p-3 bg-white">
         <Image
           src={"/banner-image.jpg"}
           alt="Banner"

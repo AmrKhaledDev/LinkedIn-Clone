@@ -25,7 +25,7 @@ function LikeButton({ post, user }: { post: PostType; user: User }) {
     <div
       onClick={handleLike}
       className={`
-         flex items-center gap-2 ${
+         flex items-center sm:gap-2 gap-1 ${
            loading ? "pointer-events-none" : "cursor-pointer  hover:bg-gray-100"
          }  sm:py-2 sm:px-4 py-1 px-2 rounded transition-css
         
@@ -34,9 +34,9 @@ function LikeButton({ post, user }: { post: PostType; user: User }) {
     >
       {loading ? (
         <div className="flex space-x-1 items-center justify-center">
-          <div className="size-1.5 bg-primary rounded-full animate-[bounce_1s_infinite_0ms]"></div>
-          <div className="size-1.5 bg-primary rounded-full animate-[bounce_1s_infinite_200ms]"></div>
-          <div className="size-1.5 bg-primary rounded-full animate-[bounce_1s_infinite_400ms]"></div>
+          <div className="size-1.5 bg-primary rounded-full animate-[bounce_1s_infinite_0ms]"/>
+          <div className="size-1.5 bg-primary rounded-full animate-[bounce_1s_infinite_200ms]"/>
+          <div className="size-1.5 bg-primary rounded-full animate-[bounce_1s_infinite_400ms]"/>
         </div>
       ) : (
         <>

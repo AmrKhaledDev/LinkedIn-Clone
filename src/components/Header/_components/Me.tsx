@@ -20,7 +20,7 @@ function Me({ user }: { user: User | null }) {
     };
   });
   return (
-    <div className="flex items-center justify-center flex-col relative pt-1.5">
+    <div className="flex items-center justify-center flex-col relative pt-1">
       <div
         onClick={() => setOpenProfile(!openProfile)}
         className={`cursor-pointer button ${
@@ -32,11 +32,11 @@ function Me({ user }: { user: User | null }) {
           alt="User Image"
           width={100}
           height={100}
-          className="w-8 h-8 shrink-0 rounded-full border-2 object-cover border-gray-200"
+          className="w-6 h-6 shrink-0 rounded-full object-cover "
         />
-        <div className="flex items-center ">
-          <span className="group-hover:text-blackLight text-[12px]">Me</span>
-          <i className="text-[15px]">
+        <div className="flex items-center">
+          <span className="text-[12px]">Me</span>
+          <i className="text-[17px]">
             <IoMdArrowDropdown />
           </i>
         </div>

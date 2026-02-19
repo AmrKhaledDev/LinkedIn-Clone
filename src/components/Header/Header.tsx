@@ -16,8 +16,8 @@ async function Header() {
     },
   });
   return (
-    <header className="border-b-2 border-b-gray-100 w-full fixed top-0 lg:pb-0 pb-15 bg-white z-15">
-      <div className="container-css px-3 flex items-center justify-between h-15">
+    <header className="border-b border-b-slate-200 w-full fixed top-0 lg:pb-0 pb-15 bg-white z-15">
+      <div className="container-css px-3 flex items-center justify-between h-12.5">
         <div className="flex items-center gap-3">
           <Link href={"/linkedin"}>
             <Image
@@ -28,13 +28,11 @@ async function Header() {
               className="md:w-9 w-8"
             />
           </Link>
-          <InputSearch userSession={user}/>
+          <InputSearch userSession={user} />
         </div>
         <div className="h-full flex items-center md:gap-10 gap-5 sm:flex-row flex-row-reverse">
           <Navlinks notificationNotRead={notificationNotRead} />
-          <div className="h-full flex items-center gap-3">
-            <Me user={user} />
-          </div>
+          <Me user={user} />
         </div>
       </div>
     </header>

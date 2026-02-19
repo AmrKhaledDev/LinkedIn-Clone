@@ -25,7 +25,7 @@ function CommentButton({
     <div
       onClick={handleClick}
       className={`
-      flex items-center gap-2 cursor-pointer sm:py-2 sm:px-4 py-1 px-2 rounded transition-css
+      flex items-center sm:gap-2 gap-1 cursor-pointer sm:py-2 sm:px-4 py-1 px-2 rounded transition-css
        text-slate-700 
     `}
     >

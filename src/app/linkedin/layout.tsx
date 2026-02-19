@@ -4,7 +4,7 @@ import { Metadata } from "next";
 import React from "react";
 // ==============================================================================
 export const metadata: Metadata = {
-  title: "LinkedIn: Professional Networking & Careers",
+  title: "Feed | LinkedIn",
   description:
     "LinkedIn is a professional social networking platform. It helps people connect with professionals, find jobs, build their careers, and share work experience and skills.",
   icons: {

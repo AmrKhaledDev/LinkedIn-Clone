@@ -1,7 +1,7 @@
 "use client";
 import { User } from "@prisma/client";
 import { useEffect, useState } from "react";
-import { RiSearch2Line } from "react-icons/ri";
+import { FaSearch } from "react-icons/fa";
 import { FiSearch } from "react-icons/fi";
 import Image from "next/image";
 import Link from "next/link";
@@ -14,7 +14,7 @@ function InputSearch({ userSession }: { userSession: User }) {
   useEffect(() => {
     const FETCHING_DATA = async () => {
       const res = await fetch(
-        `/api/search-users?q=${encodeURIComponent(searchText.trim())}`
+        `/api/search-users?q=${encodeURIComponent(searchText.trim())}`,
       );
       if (!res.ok) return;
       const data = await res.json();
@@ -28,15 +28,15 @@ function InputSearch({ userSession }: { userSession: User }) {
   }, [pathname]);
   return (
     <div className="lg:relative absolute lg:bottom-0 bottom-2 lg:left-0 lg:translate-x-0 left-1/2 -translate-x-1/2 w-[96%]">
-      <div className="border border-gray-300 rounded-full overflow-hidden flex items-center gap-1 h-10 lg:w-75 w-full">
-        <button className="w-13 h-full flex items-center justify-center text-xl cursor-pointer text-slate-800">
-          <RiSearch2Line />
+      <div className="border border-gray-400 rounded-full overflow-hidden flex items-center h-8.5 lg:w-75 w-full focus-within:outline-black hover:outline-black hover:outline focus-within:outline transition-css">
+        <button className="w-11 h-full flex text-sm items-center justify-center cursor-pointer text-slate-800">
+          <FaSearch />
         </button>
         <input
           value={searchText}
           onChange={(e) => setSearchText(e.target.value)}
           type="text"
-          className="outline-none h-full w-full"
+          className="outline-none h-full w-full text-sm cursor-pointer text-black"
           placeholder="Search"
         />
       </div>

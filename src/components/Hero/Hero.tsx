@@ -16,7 +16,7 @@ async function Hero() {
   const posts = await GetAllPosts();
   return (
     <main className="flex-1 flex flex-col gap-3 ">
-      <div className="w-full md:p-5 sm:p:3 p-2 shadow rounded flex flex-col gap-3 bg-white">
+      <div className="w-full md:p-5 p-3  rounded-[10px] border border-[#DFDEDA] flex flex-col gap-3 bg-white">
         <div className="flex items-center gap-3 ">
           <Link href={"/linkedin/profile"} className="shrink-0">
             <Image

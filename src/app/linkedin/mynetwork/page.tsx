@@ -42,7 +42,7 @@ async function page() {
         <div className="lg:block hidden">
           <LeftSide />
         </div>
-        <div className="flex flex-col gap-5">
+        <div className="flex flex-col gap-5 flex-1">
           <div className="px-3 py-5 flex-1 shadow bg-white rounded">
             {userSession.country !== null && (
               <p className="font-semibold md:text-[15px] sm:text-sm text-[13px] text-gray-900 mb-5">
@@ -50,7 +50,7 @@ async function page() {
               </p>
             )}
             {usersInNetWork.length < 1 ? (
-              <div className="w-full flex flex-col gap-2 items-center justify-center">
+              <div className="w-full flex flex-col gap-2 items-center justify-center h-full">
                 <Image
                   src={"/photo-no-users.svg"}
                   alt="Photo"
@@ -62,22 +62,24 @@ async function page() {
                 <p className="font-normal text-gray-600 text-sm text-center">
                   {userSession.country
                     ? " Unfortunately, no one from your country was found"
-                    : " Please select your country to help you find people"}
+                    : " Please enter your country to help you find people"}
                 </p>
               </div>
             ) : (
               <UsersDesign users={usersInNetWork} userSession={userSession} />
             )}
           </div>
-          <div className="px-3 py-5 flex-1 shadow bg-white rounded">
-            <p className="font-semibold md:text-[15px] sm:text-sm text-[13px] text-gray-900 mb-5">
-              These users are from around the world
-            </p>
-            <UsersDesign
-              users={usersFromAroundTheWorld}
-              userSession={userSession}
-            />
-          </div>
+          {usersFromAroundTheWorld.length > 0 && (
+            <div className="px-3 py-5 flex-1 shadow bg-white rounded">
+              <p className="font-semibold md:text-[15px] sm:text-sm text-[13px] text-gray-900 mb-5">
+                These users are from around the world
+              </p>
+              <UsersDesign
+                users={usersFromAroundTheWorld}
+                userSession={userSession}
+              />
+            </div>
+          )}
         </div>
       </div>
     </main>
