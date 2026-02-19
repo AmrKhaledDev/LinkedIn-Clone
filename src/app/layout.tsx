@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
-import { Poppins } from "next/font/google";
+import { Ubuntu_Sans } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "react-hot-toast";
 // ==========================================================================
-const poppins = Poppins({
+const poppins = Ubuntu_Sans({
   subsets: ["latin"],
-  weight: ["400","500", "600", "700", "800", "900"],
+  weight: ["400","500", "600", "700", "800"],
 });
 
 export const metadata: Metadata = {
@@ -23,7 +23,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`font-sans antialiased font-medium wrap-break-word`}>
+      <body className={`${poppins.className} antialiased font-medium wrap-break-word`}>
         {children} <Toaster position="top-center" reverseOrder={false} />
       </body>
     </html>

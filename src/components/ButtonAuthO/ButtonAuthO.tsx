@@ -12,7 +12,7 @@ function ButtonAuthO() {
     <button
       type="button"
       onClick={() => signinWithAuthO("google")}
-      className="flex sm:text-[15px] text-[14px] items-center justify-center gap-3 border border-blackLight py-1.5 sm:w-87.5 w-75 rounded-full cursor-pointer bg-gray-50 hover:bg-gray-100 text-slate-700"
+      className="flex sm:text-[15px] w-full text-[14px] items-center justify-center gap-3 border border-blackLight py-1.5 rounded-full cursor-pointer bg-gray-50 hover:bg-gray-100 text-slate-700"
     >
       <Image
         src={"/google.svg"}
