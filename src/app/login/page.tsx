@@ -18,15 +18,23 @@ function LoginPage() {
                 job opportunities and growth in your field easily.
               </p>
             </div>
-            <ButtonAuthO />
-            <Link
-              href={"/credential-login"}
-              className="flex sm:text-[15px] bg-hoverColor text-[14px] shadow text-white items-center justify-center gap-3  py-3 sm:w-87.5 w-75 rounded-full cursor-pointe hover:bg-primary"
-            >
-              Sign in with Email
-            </Link>
+            <div className="space-y-3">
+              <ButtonAuthO />
+              <Link
+                href={"/credential-login"}
+                className="flex sm:text-[15px] bg-hoverColor text-[14px] shadow text-white items-center justify-center gap-3  py-3 sm:w-87.5 w-75 rounded-full cursor-pointe hover:bg-primary"
+              >
+                Sign in with Email
+              </Link>
+            </div>
             <p className="text-blackLight lg:text-center lg:w-1/2 ">
-              New to Linkedin? <Link className="font-semibold text-primary underline" href={"/register"}>Join now</Link>
+              New to Linkedin?{" "}
+              <Link
+                className="font-semibold text-primary underline"
+                href={"/register"}
+              >
+                Join now
+              </Link>
             </p>
           </div>
           <LoginImage />

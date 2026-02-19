@@ -3,42 +3,26 @@ import { signIn } from "next-auth/react";
 import Image from "next/image";
 // ====================================================================
 function ButtonAuthO() {
-  const signinWithAuthO = (typeSignin: "google" | "github") => {
+  const signinWithAuthO = (typeSignin: "google") => {
     signIn(typeSignin, {
       callbackUrl: "/linkedin",
     });
   };
   return (
-    <div className="flex items-center lg:flex-col flex-col gap-3">
-      <button
-        type="button"
-        onClick={() => signinWithAuthO("google")}
-        className="flex sm:text-[15px] text-[14px] items-center justify-center gap-3 border border-blackLight py-1.5 sm:w-87.5 w-75 rounded-full cursor-pointer bg-gray-50 hover:bg-gray-100 text-slate-700"
-      >
-        <Image
-          src={"/google.svg"}
-          alt="Google Logo"
-          width={100}
-          height={100}
-          className="sm:w-7.5 w-6.5"
-        />
-        Sign in with Google
-      </button>
-      <button
-        type="button"
-        onClick={() => signinWithAuthO("github")}
-        className="flex sm:text-[15px] text-[14px] items-center justify-center gap-3 border border-blackLight py-1 sm:w-87.5 w-75 rounded-full cursor-pointer bg-gray-50 hover:bg-gray-100 text-slate-700"
-      >
-        <Image
-          src={"/github.png"}
-          alt="Google Logo"
-          width={100}
-          height={100}
-          className="sm:w-9 w-8"
-        />
-        Sign in with Github
-      </button>
-    </div>
+    <button
+      type="button"
+      onClick={() => signinWithAuthO("google")}
+      className="flex sm:text-[15px] text-[14px] items-center justify-center gap-3 border border-blackLight py-1.5 sm:w-87.5 w-75 rounded-full cursor-pointer bg-gray-50 hover:bg-gray-100 text-slate-700"
+    >
+      <Image
+        src={"/google.svg"}
+        alt="Google Logo"
+        width={100}
+        height={100}
+        className="sm:w-7.5 w-6.5"
+      />
+      Sign in with Google
+    </button>
   );
 }
 
