@@ -16,11 +16,11 @@ function PostDetails({ post }: { post: PostType }) {
   const displayText = isExpanded || !isLongText 
     ? text 
     : text.substring(0, CHARACTER_LIMIT) + "...";
-
+  
   return (
     <div className="w-full flex flex-col gap-1 px-3">
       <div className="pb-1">
-        <p className="text-slate-800 sm:text-[15px] text-[14px] whitespace-pre-line break-all">
+        <p dir="auto" className="text-slate-800 sm:text-[15px] text-[14px] whitespace-pre-line break-all">
           {displayText}
         </p>
         

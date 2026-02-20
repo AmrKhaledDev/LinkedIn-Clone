@@ -50,9 +50,7 @@
   .commentText {
     font-size: 13px;
   }
-  .sendText {
-    font-size: 13px;
-  }
+
 }
 
 /* Post Footer */
@@ -69,9 +67,7 @@
   .comment {
     font-size: 18px;
   }
-  .send {
-    font-size: 18px;
-  }
+  
 }
 @theme inline {
   --radius-sm: calc(var(--radius) - 4px);

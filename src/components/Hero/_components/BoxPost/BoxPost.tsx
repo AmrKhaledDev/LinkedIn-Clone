@@ -100,6 +100,7 @@ function BoxPost({
           </div>
           <div className="h-105 overflow-y-auto">
             <textarea
+            dir="auto"
               ref={textareaRef}
               value={contentTxt}
               onChange={(e) => setContentTxt(e.target.value)}

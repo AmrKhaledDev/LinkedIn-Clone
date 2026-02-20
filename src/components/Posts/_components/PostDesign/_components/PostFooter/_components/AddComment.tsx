@@ -1,12 +1,10 @@
 "use client";
-import { ContextStates } from "@/context/Context";
 import { CreateCommentAction } from "@/lib/actions/CreateActions/CreateCommentAction";
 import { User } from "@prisma/client";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { useContext, useState } from "react";
+import {  useState } from "react";
 import toast from "react-hot-toast";
-import { BsFillSendFill } from "react-icons/bs";
 // =========================================================
 function AddComment({
   user,
@@ -38,11 +36,15 @@ function AddComment({
         alt="Your Photo"
         className="rounded-full md:w-10 md:h-10 w-8 h-8 shrink-0 button object-cover border-2 border-gray-100"
       />
-      <div className="w-full relative">
-        <input
+      <div
+        className={`w-full overflow-hidden relative border-2 border-gray-400
+        ${commentText.trim().length > 0 ? "h-25 flex flex-col items-end justify-end rounded-2xl " : "sm:h-10 h-9 rounded-full "}`}
+      >
+        <textarea
           onKeyDown={(e) => {
-            if (commentText.trim() === "") return;
             if (e.key == "Enter") {
+              e.preventDefault();
+              if (commentText.trim() === "") return;
               handleAddComment();
             }
           }}
@@ -50,15 +52,23 @@ function AddComment({
             const value = e.target.value;
             setCommentText(value);
           }}
+          dir="auto"
           value={commentText}
-          className="md:py-3 md:px-4 py-1.5 px-3 input border-2 border-gray-400 sm:text-[14px] text-[13px] outline-none w-full resize-none font-semibold tracking-wider overflow-hidden 
-          rounded-full
+          className="sm:text-[14px] text-[13px] outline-none w-full resize-none overflow-hidden sm:py-2 py-1.5 px-2.5
+         
          "
-          placeholder="Add a comment..."
-          type="text"
+          placeholder="Add a comment . . ."
         />
-
         <button
+          disabled={commentText.trim().length < 1 || loading}
+          onClick={handleAddComment}
+          title="Send Comment"
+          className={`text-white bg-primary disabled:cursor-default disabled:bg-gray-200 disabled:text-gray-400 py-1 px-3 rounded-full cursor-pointer font-semibold sm:text-sm text-xs shadow sm:mx-3 mx-2 sm:my-3 my-2
+            ${commentText.trim().length > 0 ? "block" : "hidden"}`}
+        >
+          {loading ? "Sending..." : "Comment"}{" "}
+        </button>
+        {/* <button
           disabled={commentText.trim().length < 1 || loading}
           onClick={handleAddComment}
           title="Send Comment"
@@ -76,7 +86,7 @@ function AddComment({
           ) : (
             <BsFillSendFill />
           )}
-        </button>
+        </button> */}
       </div>
     </div>
   );
