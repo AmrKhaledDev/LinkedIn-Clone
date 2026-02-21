@@ -9,6 +9,7 @@ import Or from "@/components/Or/Or";
 import AlertMessage from "@/components/AlertMessage/AlertMessage";
 import FormField from "@/components/FormField/FormField";
 import { LoginPageErrors } from "@/lib/types/types";
+import Link from "next/link";
 // ============================================================
 function FormLogin() {
   const [email, setEmail] = useState("");
@@ -25,7 +26,7 @@ function FormLogin() {
       setLoading(true);
       setServerError("");
       setServerSuccess("");
-      setErrors({})
+      setErrors({});
       const validation = LoginSchema.safeParse({
         email,
         password,
@@ -51,8 +52,8 @@ function FormLogin() {
       router.refresh();
       setServerError("");
       setErrors({});
-      setEmail("")
-      setPassword("")
+      setEmail("");
+      setPassword("");
     } catch (error) {
       console.error(error);
       return setServerError("Failed signin try again later");
@@ -104,6 +105,9 @@ function FormLogin() {
         showPassword={showPassword}
         setShowPassword={setShowPassword}
       />
+      <Link href={"/password/forgot-password"} className="w-fit font-bold text-primary py-1 px-2 rounded-full hover:bg-[#D0E8FF] hover:underline transition-css">
+        Forgot password?
+      </Link>
       <ButtonSubmit loading={loading} contentTxt="Sign in" />
     </form>
   );

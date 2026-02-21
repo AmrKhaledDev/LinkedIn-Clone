@@ -40,7 +40,7 @@ function OwnerPostDetails({ post, user }: { post: PostType; user: User }) {
         alt="Your Image"
         width={70}
         height={70}
-        className="sm:w-15 sm:h-15 w-12 h-12 shrink-0 rounded-full object-cover border-2 border-gray-200"
+        className="sm:w-12 sm:h-12 w-10 h-10 shrink-0 rounded-full object-cover"
       />
       <div className="w-full flex justify-between">
         <div>

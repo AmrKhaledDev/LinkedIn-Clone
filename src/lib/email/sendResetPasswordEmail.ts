@@ -1,6 +1,6 @@
 import nodemailer from "nodemailer";
 // =====================================================================
-export const sendVerificationToken = async (
+export const sendResetPasswordEmail = async (
   userEmail: string,
   verificationToken: string,
 ) => {
@@ -14,16 +14,14 @@ export const sendVerificationToken = async (
         pass: process.env.USER_PASS,
       },
     });
-    const link = `${process.env.AUTH_URL}/verify?t=${verificationToken}`;
+    const link = `${process.env.AUTH_URL}/password/reset-password/${verificationToken}`;
     await transporter.sendMail({
       from: '"LinkedIn Clone" <no-reply@linkedin.com>',
       to: userEmail,
-      subject: "Linkedin - Login verification",
+      subject: "Linkedin - Reset Password",
       html: `
   <div style="font-family: Arial, sans-serif; padding:20px; line-height:1.6;">
-      <h2>Hello 👋</h2>
-      <p>Thank you for signing up.</p>
-      <p>Please click the button below to verify your email address:</p>
+      <p>Please click the button below to reset password your account:</p>
       <a href="${link}"
          style="
            display:inline-block;
@@ -34,7 +32,7 @@ export const sendVerificationToken = async (
            border-radius:6px;
            font-weight:bold;
          ">
-         Verify Email
+         Reset Password
       </a>
       <p style="margin-top:20px; font-size:14px; color:#555;">
         If you did not create this account, you can safely ignore this email.
