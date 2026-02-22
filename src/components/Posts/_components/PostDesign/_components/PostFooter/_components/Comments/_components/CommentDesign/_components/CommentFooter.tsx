@@ -17,6 +17,10 @@ function CommentFooter({
   user: User;
   postId: string;
 }) {
+  const [replayContent, setReplayContent] = useState(
+    comment.user.name.charAt(0).toUpperCase() +
+      comment.user.name.slice(1).toLowerCase(),
+  );
   const router = useRouter();
   const [showBoxReplay, setShowBoxReplay] = useState(false);
   const [loadingLike, setLoadingLike] = useState(false);
@@ -30,25 +34,25 @@ function CommentFooter({
     router.refresh();
   };
   const isLikeForComment = comment.likeForComments.find(
-    (like) => like.user.id === user.id
+    (like) => like.user.id === user.id,
   );
-  const [replayContent, setReplayContent] = useState(
-    comment.user.name.charAt(0).toUpperCase() +
-      comment.user.name.slice(1).toLowerCase()
-  );
+
   const handleCreateReplay = async () => {
     setLoading(true);
     const result = await CreateReplayAction(
       replayContent,
       comment.id,
       user.id,
-      postId
+      postId,
     );
     setLoading(false);
     if (result?.error)
       return toast.error(result.error, { className: "toast-font" });
     setShowBoxReplay(false);
-    setReplayContent("");
+    setReplayContent(
+      comment.user.name.charAt(0).toUpperCase() +
+        comment.user.name.slice(1).toLowerCase(),
+    );
     router.refresh();
   };
   const textareaRef = useRef<HTMLTextAreaElement | null>(null);
@@ -114,7 +118,13 @@ function CommentFooter({
         <span className="w-px h-4.25 bg-gray-400"></span>
         <div className="flex items-center gap-1">
           <button
-            onClick={() => setShowBoxReplay(!showBoxReplay)}
+            onClick={() => {
+              setShowBoxReplay(!showBoxReplay);
+              setReplayContent(
+                comment.user.name.charAt(0).toUpperCase() +
+                  comment.user.name.slice(1).toLowerCase(),
+              );
+            }}
             className="hover:bg-gray-100 rounded cursor-pointer py-1 sm:text-[14px] text-[13px] px-1 transition-css"
           >
             Replay
@@ -133,7 +143,7 @@ function CommentFooter({
         </div>
       </div>
       <div
-        className={`mt-2 w-full bg-white border border-gray-100 rounded-2xl overflow-hidden  items-end flex-col ${
+        className={`mt-2 sm:-translate-x-11 w-full bg-white border border-gray-100 rounded-2xl overflow-hidden items-end flex-col ${
           showBoxReplay ? "flex" : "hidden"
         }`}
       >

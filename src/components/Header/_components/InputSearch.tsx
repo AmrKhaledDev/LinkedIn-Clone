@@ -5,9 +5,10 @@ import { FaSearch } from "react-icons/fa";
 import { FiSearch } from "react-icons/fi";
 import Image from "next/image";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 // ==========================================================
 function InputSearch({ userSession }: { userSession: User }) {
+  const router = useRouter();
   const [searchText, setSearchText] = useState<string>("");
   const pathname = usePathname();
   const [data, setData] = useState([]);
@@ -26,6 +27,10 @@ function InputSearch({ userSession }: { userSession: User }) {
     if (searchText) setSearchText("");
     setData([]);
   }, [pathname]);
+  const handleSubmit = () => {
+    if (searchText.trim().length < 1) return;
+    router.push(`/linkedin/search/results?q=${encodeURIComponent(searchText)}`);
+  };
   return (
     <div className="lg:relative absolute lg:bottom-0 bottom-2 lg:left-0 lg:translate-x-0 left-1/2 -translate-x-1/2 w-[96%]">
       <div className="border border-gray-400 rounded-full overflow-hidden flex items-center h-8.5 lg:w-75 w-full focus-within:outline-black hover:outline-black hover:outline focus-within:outline transition-css">
@@ -33,10 +38,16 @@ function InputSearch({ userSession }: { userSession: User }) {
           <FaSearch />
         </button>
         <input
+          onKeyDown={(e) => {
+            if (e.key === "Enter") {
+              handleSubmit();
+            }
+          }}
+          dir="auto"
           value={searchText}
           onChange={(e) => setSearchText(e.target.value)}
           type="text"
-          className="outline-none h-full w-full text-sm cursor-pointer text-black"
+          className="outline-none h-full w-full text-sm cursor-pointer text-black pr-2"
           placeholder="Search"
         />
       </div>
@@ -79,15 +90,13 @@ function InputSearch({ userSession }: { userSession: User }) {
                     )}
                   </div>
                 </div>
-                {user.image && (
                   <Image
-                    src={user.image}
+                    src={user.image || "/user.svg"}
                     alt="User Image"
                     width={70}
                     height={70}
                     className="rounded-full shrink-0 w-7.5 h-7.5 object-cover"
                   />
-                )}
               </div>
             </Link>
           ))}

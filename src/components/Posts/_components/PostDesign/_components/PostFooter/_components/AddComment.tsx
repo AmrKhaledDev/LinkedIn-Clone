@@ -30,7 +30,7 @@ function AddComment({
   return (
     <div className={`p-3 gap-2 ${addComment ? "flex" : "hidden"}`}>
       <Image
-        src={user.image ? user.image : "user.svg"}
+        src={user.image ? user.image : "/user.svg"}
         width={40}
         height={40}
         alt="Your Photo"

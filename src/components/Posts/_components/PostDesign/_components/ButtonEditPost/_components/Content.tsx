@@ -50,6 +50,7 @@ function Content({
       }`}
     >
       <textarea
+      dir="auto"
         ref={textareaRef}
         defaultValue={content}
         onChange={(e) => setContent(e.target.value)}

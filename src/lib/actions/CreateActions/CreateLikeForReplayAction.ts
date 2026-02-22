@@ -5,7 +5,7 @@ import { revalidatePath } from "next/cache";
 export const CreateLikeForReplayAction = async (
   replayId: string,
   postId: string,
-  userId: string
+  userId: string,
 ) => {
   if (!replayId) return { error: "This Replay does not exist" };
   if (!userId) return { error: "Login to can send a like" };
@@ -37,15 +37,13 @@ export const CreateLikeForReplayAction = async (
           id: isLikeForReplayExist.id,
         },
       });
-      if (user.id !== replay.userId) {
-        await prisma.notification.deleteMany({
-          where: {
-            type:"LIKE",
-            actorId: userId,
-            replayId: replay.id,
-          },
-        });
-      }
+      await prisma.notification.deleteMany({
+        where: {
+          type: "LIKE",
+          actorId: userId,
+          replayId: replay.id,
+        },
+      });
     } else {
       await prisma.likeForReplay.create({
         data: {
@@ -53,17 +51,19 @@ export const CreateLikeForReplayAction = async (
           replayId,
         },
       });
-      await prisma.notification.create({
-        data: {
-          actorId: userId,
-          type: "LIKE",
-          replayContent: replay.content,
-          recipientId: replay.userId,
-          title: `${user.name.split(" ")[0]} Liked Your Replay`,
-          route: `/linkedin/post/${postId}`,
-          replayId: replay.id,
-        },
-      });
+      if (user.id !== replay.userId) {
+        await prisma.notification.create({
+          data: {
+            actorId: userId,
+            type: "LIKE",
+            replayContent: replay.content,
+            recipientId: replay.userId,
+            title: `${user.name.split(" ")[0]} Liked Your Replay`,
+            route: `/linkedin/post/${postId}`,
+            replayId: replay.id,
+          },
+        });
+      }
     }
     revalidatePath("/linkedin");
   } catch (error) {

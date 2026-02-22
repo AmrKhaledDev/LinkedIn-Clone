@@ -8,14 +8,13 @@ import Link from "next/link";
 import Article from "./_components/Buttons/Article";
 import Photo from "./_components/Buttons/Photo";
 import Video from "./_components/Buttons/Video";
-import Event from "./_components/Buttons/Event";
 // ======================================================
 async function Hero() {
   const user = await GetUser();
   if (!user) redirect("/login");
   const posts = await GetAllPosts();
   return (
-    <main className="flex-1 flex flex-col gap-3 ">
+    <main className="flex-1 flex flex-col gap-3 overflow-hidden ">
       <div className="w-full md:p-5 p-3  rounded-[10px] border border-[#DFDEDA] flex flex-col gap-3 bg-white">
         <div className="flex items-center gap-3 ">
           <Link href={"/linkedin/profile"} className="shrink-0">
@@ -29,11 +28,9 @@ async function Hero() {
           </Link>
           <ButtonAddPost user={user} />
         </div>
-        <ul className="flex items-center justify-between w-full">
-          <Photo user={user}/>
-          <Video user={user}/>
-          <Event />
-          <Article />
+        <ul className="flex items-center justify-evenly w-full">
+          <Photo user={user} />
+          <Video user={user} />
         </ul>
       </div>
       <Posts posts={posts} />

@@ -3,6 +3,7 @@ export const dynamic = "force-dynamic";
 import { Metadata } from "next";
 import Article from "./_components/Article";
 import BoxMedia from "./_components/BoxMedia";
+import { notFound } from "next/navigation";
 // =========================================================
 export const metadata: Metadata = {
   title: "Publish new article | Linkedin",
@@ -13,10 +14,11 @@ export const metadata: Metadata = {
   },
 };
 function page() {
+  return notFound();
   return (
     <div className="flex justify-center mt-5">
       <div className="container-css flex flex-col gap-5 lg:w-200 md:w-175">
-        <BoxMedia/>
+        <BoxMedia />
         <Article />
       </div>
     </div>

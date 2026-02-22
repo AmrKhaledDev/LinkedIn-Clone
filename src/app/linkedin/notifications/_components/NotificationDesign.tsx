@@ -7,6 +7,7 @@ import { FaCommentDots } from "react-icons/fa";
 import ButtonEditNotification from "./ButtonEditNotification";
 import { User } from "@prisma/client";
 import { RiUserFollowFill } from "react-icons/ri";
+import NotificationContentBadge from "./NotificationContentBadge";
 // ==========================================================================
 function NotificationDesign({
   notification,
@@ -42,22 +43,22 @@ function NotificationDesign({
               <span className="absolute top-0 right-0 block h-3 w-3 rounded-full bg-blue-500 ring-2 ring-white" />
             )}
             {notification.type === "LIKE" && (
-              <i className="absolute bottom-0 right-0 p-0.5 text-[13px] text-primary rounded-full shadow bg-gray-100 border border-white">
+              <i className="absolute bottom-0 right-0 p-0.5 sm:text-[13px] text-xs text-primary rounded-full shadow bg-gray-100 border border-white">
                 <BiSolidLike />
               </i>
             )}
             {notification.type === "DISLIKE" && (
-              <i className="absolute bottom-0 right-0 p-0.5 text-[13px] text-red-500 rounded-full shadow bg-gray-100 border border-white">
+              <i className="absolute bottom-0 right-0 p-0.5 sm:text-[13px] text-xs text-red-500 rounded-full shadow bg-gray-100 border border-white">
                 <BiSolidDislike />
               </i>
             )}
             {notification.type === "COMMENT" && (
-              <i className="absolute bottom-0 right-0 p-0.5 text-[13px] text-green-600 rounded-full shadow bg-gray-100 border border-white">
+              <i className="absolute bottom-0 right-0 p-0.5 sm:text-[13px] text-xs text-green-600 rounded-full shadow bg-gray-100 border border-white">
                 <FaCommentDots />
               </i>
             )}
             {notification.type === "FOLLOW" && (
-              <i className="absolute bottom-0 right-0 p-0.5 text-[13px] text-primary rounded-full shadow bg-gray-100 border border-white">
+              <i className="absolute bottom-0 right-0 p-0.5 sm:text-[13px] text-xs text-primary rounded-full shadow bg-gray-100 border border-white">
                 <RiUserFollowFill />
               </i>
             )}
@@ -68,24 +69,26 @@ function NotificationDesign({
                 {notification.title}
               </h2>
             </div>
+            {/* === */}
             {notification.postTitle && (
-              <p className="mt-2 lg:text-[13px] sm:text-[12px] text-[10px] text-gray-700 bg-gray-50/80 border border-gray-100 py-1 px-4 rounded-2xl w-fit sm:line-clamp-1 line-clamp-2 shadow-sm">
-                <span className="font-semibold mr-1">Post</span>:{" "}
-                {notification.postTitle}
-              </p>
+              <NotificationContentBadge
+                content={notification.postTitle}
+                label="Post"
+              />
             )}
             {notification.commentContent && (
-              <p className="mt-2 lg:text-[13px] sm:text-[12px] text-[10px] text-gray-700 bg-gray-50/80 border border-gray-100 py-1 px-4 rounded-2xl w-fit sm:line-clamp-1 line-clamp-2 shadow-sm">
-                <span className="font-semibold mr-1">Comment</span>:{" "}
-                {notification.commentContent}
-              </p>
+              <NotificationContentBadge
+                content={notification.commentContent}
+                label="Comment"
+              />
             )}
             {notification.replayContent && (
-              <p className="mt-2 lg:text-[13px] sm:text-[12px] text-[10px] text-gray-700 bg-gray-50/80 border border-gray-100 py-1 px-4 rounded-2xl w-fit sm:line-clamp-1 line-clamp-2 shadow-sm">
-                <span className="font-semibold mr-1">Replay</span>:{" "}
-                {notification.replayContent}
-              </p>
+              <NotificationContentBadge
+                content={notification.replayContent}
+                label="Replay"
+              />
             )}
+            {/* === */}
             {notification.body && (
               <p className="mt-2 lg:text-[13px] sm:text-[12px] border-l-2 border-l-primary text-[10px] text-gray-700 leading-relaxed bg-gray-50/80 border border-gray-100 py-1 px-4 rounded-2xl w-fit  sm:line-clamp-1 line-clamp-2 shadow-sm">
                 <span className="font-semibold mr-1 capitalize">

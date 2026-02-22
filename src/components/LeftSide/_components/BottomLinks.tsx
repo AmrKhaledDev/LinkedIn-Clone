@@ -18,12 +18,12 @@ function BottomLinks() {
       icon: <ImProfile />,
       url: "/linkedin/profile",
     },
-    {
-      id: crypto.randomUUID(),
-      linkName: "Newsletters",
-      icon: <RiNewsLine />,
-      url: "/",
-    },
+    // {
+    //   id: crypto.randomUUID(),
+    //   linkName: "Newsletters",
+    //   icon: <RiNewsLine />,
+    //   url: "/",
+    // },
   ];
   return (
     <div className="p-5 rounded-[10px] border border-[#DFDEDA] flex flex-col gap-4 bg-white">

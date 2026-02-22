@@ -69,7 +69,7 @@ async function page({ params }: { params: Promise<{ postId: string }> }) {
         <div className="lg:block hidden">
           <LeftSide />
         </div>
-        <div className="flex-1">
+        <div className="flex-1 overflow-hidden">
           <PostDesign post={post} user={user} />
         </div>
         <RightSide />

@@ -28,12 +28,12 @@ function Navlinks({
       icon: <HiUsers />,
       url: "/linkedin/mynetwork",
     },
-    {
-      id: crypto.randomUUID(),
-      linkName: "Articles",
-      icon: <PiArticleNyTimesFill />,
-      url: "/articles",
-    },
+    // {
+    //   id: crypto.randomUUID(),
+    //   linkName: "Articles",
+    //   icon: <PiArticleNyTimesFill />,
+    //   url: "/articles",
+    // },
   ];
   const pathname = usePathname();
   const [openNav, setOpenNave] = useState(false);
