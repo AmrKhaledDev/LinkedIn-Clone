@@ -225,6 +225,10 @@ export type RegisterPageErrors = {
   email?: string;
   password?: string;
 };
+export type ResetPasswordErrors = {
+  newPassword?:string,
+  confirmPassword?:string
+}
 // Form Field Type
 export type FormFieldType = {
   id: string;

@@ -1,6 +1,7 @@
 "use client";
 
-import { ForgotPasswordAction } from "@/lib/actions/ForgotPasswordAction/ForgotPasswordAction";
+import AlertMessage from "@/components/AlertMessage/AlertMessage";
+import { ForgotPasswordAction } from "@/lib/actions/PasswordActions/ForgotPasswordAction";
 import Link from "next/link";
 import { useRef, useState } from "react";
 // =================================================================
@@ -39,25 +40,23 @@ function FormForgotPassword() {
     }
   };
   return (
-    <form className="p-6 rounded-[7px] shadow-gray-300 bg-white shadow-[0_2px_10px_gray] space-y-8 w-110">
-      <h2 className="text-[32px] font-extrabold">Forgot password</h2>
+    <form className="p-6 rounded-[7px] shadow bg-white sm:space-y-8 space-y-6 sm:w-110 w-[95%]">
+      <h2 className="sm:text-[32px] text-2xl font-extrabold">Forgot password</h2>
       <div className="space-y-2">
         <input
           ref={inputRef}
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          className={`border  transition-css cursor-pointer hover:bg-gray-50  w-full py-3 px-3 rounded text-[18px] 
+          className={`border focus:bg-white  transition-css cursor-pointer hover:bg-gray-50  w-full sm:py-3 py-2 px-3 rounded sm:text-[18px] 
             ${serverError ? "border-red-500 outline-none border-2" : "border-gray-500 focus:outline focus:outline-primary"}`}
           type="email"
           placeholder="Email"
         />
         {serverError && (
-          <p className="font-extrabold text-sm text-red-500">{serverError}</p>
+          <p className="font-extrabold sm:text-sm text-xs text-red-500">{serverError}</p>
         )}
         {serverSuccess && (
-          <p className="font-extrabold text-sm text-green-500">
-            {serverSuccess}
-          </p>
+          <AlertMessage type="SUCCESS" message={serverSuccess} />
         )}
       </div>
       <p className="text-sm pr-3">
@@ -69,13 +68,13 @@ function FormForgotPassword() {
           type="button"
           onClick={handle}
           disabled={loading}
-          className="py-4 cursor-pointer disabled:bg-gray-200 disabled:cursor-not-allowed disabled:text-gray-400 text-[17px] w-full transition-css hover:bg-hoverColor bg-primary text-white font-bold rounded-full"
+          className="sm:py-4 py-3 cursor-pointer disabled:bg-gray-200 disabled:cursor-not-allowed disabled:text-gray-400 sm:text-[17px] w-full transition-css hover:bg-hoverColor bg-primary text-white font-bold rounded-full"
         >
           {loading ? "Sending . . ." : " Send"}
         </button>
         <Link
           href={"/credential-login"}
-          className="px-2 py-1 hover:underline hover:bg-gray-200 transition-css text-center block text-[17px] w-fit text-gray-600 font-bold rounded-full"
+          className="px-2 py-1 hover:underline hover:bg-gray-200 transition-css text-center block sm:text-[17px] w-fit text-gray-600 font-bold rounded-full"
         >
           Back
         </Link>

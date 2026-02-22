@@ -64,6 +64,15 @@ async function RightSide() {
           className="rounded w-100 h-62.5 object-cover"
         />
       </div>
+      <div className="flex items-center gap-1 mx-auto mt-1">
+        <Image
+          src={"/login-logo.svg"}
+          alt="linkedIn logo"
+          width={55}
+          height={55}
+        />
+        <span className="text-xs"> LinkedIn Corporation © 2026</span>
+      </div>
     </aside>
   );
 }

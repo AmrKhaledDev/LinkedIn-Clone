@@ -24,6 +24,8 @@ export default proxy(async (req: NextRequest) => {
   }
   if (pathname.startsWith("/verify") && user)
     return NextResponse.redirect(new URL("/linkedin", req.nextUrl.origin));
+  if (pathname.startsWith("/password") && user)
+    return NextResponse.redirect(new URL("/linkedin", req.nextUrl.origin));
 });
 
 export const config = {
@@ -34,5 +36,6 @@ export const config = {
     "/register",
     "/credential-login",
     "/verify",
+    "/password/:path*",
   ],
 };
