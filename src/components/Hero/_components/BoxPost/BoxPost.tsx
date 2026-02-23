@@ -52,7 +52,8 @@ function BoxPost({
           };
       if ("error" in media && !contentTxt)
         return toast.error(media.error, { className: "toast-font" });
-      if("error" in media && contentTxt) toast.error("Failed upload image, check your internet")
+      if ("error" in media && contentTxt && mediaFile)
+        toast.error("Failed upload image, check your internet");
       const result = await CreatePostAction({
         contentTxt,
         mediaUrl: "error" in media ? "" : media.url,

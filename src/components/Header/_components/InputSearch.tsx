@@ -75,7 +75,7 @@ function InputSearch({ userSession }: { userSession: User }) {
                     {userSession.id === user.id && (
                       <>
                         <span className="size-0.75 rounded-full bg-gray-600 shrink-0" />
-                        <h3 className="text-[11px]  text-gray-700 font-normal">
+                        <h3 className="text-[11px]  text-gray-700 font-normal shrink-0">
                           You
                         </h3>
                       </>

@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
+import { GetUser } from "@/lib/GetUser";
 // =================================================================
 export async function GET(req: NextRequest) {
   const searchText = req.nextUrl.searchParams.get("q")?.trim();
@@ -64,7 +65,9 @@ export async function GET(req: NextRequest) {
 
     const users = searchText
       ? await prisma.user.findMany({
-          where: { name: { contains: searchText, mode: "insensitive" } },
+          where: {
+            name: { contains: searchText, mode: "insensitive" },
+          },
           take: 4,
         })
       : await prisma.user.findMany({ take: 4 });

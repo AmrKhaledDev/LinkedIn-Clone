@@ -49,14 +49,14 @@ function EditPost({ post, user }: EditPostProps) {
         </div>
         {dropDownMenu === post.id && (
           <div
-            className={`shadow box z-10 bg-white border border-gray-200 rounded-xl absolute right-0 p-1 flex flex-col gap-3 ${
+            className={`shadow box z-10 bg-white border border-gray-200 rounded-xl absolute right-0 p-1 flex flex-col gap-1 ${
               isSaved ? "sm:w-65 w-58" : "w-fit"
             }`}
           >
             <button
               disabled={loading}
               onClick={handleSavePost}
-              className="flex items-center disabled:text-gray-500 disabled:cursor-wait disabled:hover:bg-transparent gap-2 cursor-pointer py-2 px-4 rounded hover:bg-gray-100 sm:text-[14px] text-[13px] font-semibold"
+              className="flex items-center min-w-30 disabled:text-gray-500 disabled:cursor-wait disabled:hover:bg-transparent gap-2 cursor-pointer py-2 px-4 rounded hover:bg-gray-100 sm:text-[14px] text-[13px] font-semibold"
             >
               <i className="sm:text-[18px] text-[17px]">
                 {isSaved ? <FaBookmark /> : <FaRegBookmark />}

@@ -19,7 +19,7 @@ function UsersRecommendations({
         alt="User Photo"
         width={100}
         height={100}
-        className="rounded-full object-cover w-13.75 h-13.75 border-2 border-gray-200 shrink-0"
+        className="rounded-full object-cover w-13 h-13 shrink-0"
       />
       <div>
         <Link

@@ -23,7 +23,7 @@ function PostDetails({ post }: { post: PostType }) {
       <div className="pb-1">
         <p
           dir="auto"
-          className="text-slate-800 sm:text-[15px] text-[14px] whitespace-pre-line [word-break:break-word]"
+          className="text-slate-800 sm:text-[15px] text-[14px] whitespace-pre-line"
         >
           {displayText}
         </p>

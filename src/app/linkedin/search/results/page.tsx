@@ -1,10 +1,12 @@
 import RightSide from "@/components/RightSide/RightSide";
-import Link from "next/link";
 import axios from "axios";
 import { PostType, UserWithRelationType } from "@/lib/types/types";
 import { redirect } from "next/navigation";
-import PostDesign from "@/components/Posts/_components/PostDesign/PostDesign";
 import { GetUser } from "@/lib/GetUser";
+import PageSidebar from "./_components/PageSidebar";
+import ResultsPosts from "./_components/ResultsPosts";
+import ResultsUsers from "./_components/ResultsUsers";
+import Image from "next/image";
 // ========================================================
 async function page({
   searchParams,
@@ -19,42 +21,35 @@ async function page({
     | { error: string }
     | { posts: PostType[]; users: UserWithRelationType[] } = res.data;
   if ("error" in data) return redirect("/linkedin");
-  const user = await GetUser()
-  if(!user) return redirect("/login")
+  const user = await GetUser();
+  if (!user) return redirect("/login");
   return (
-    <main className="space-section bg-[#F4F2EE] min-h-screen">
+    <main className="space-section bg-[#F4F2EE] min-h-screen pb-3">
       <div className="container-css flex justify-between sm:gap-7 px-3">
-        <div className="w-60 border sticky top-15 sm:block hidden border-[#DFDEDA] bg-white p-3 rounded-[10px] space-y-3 h-fit">
-          <h2 className="text-xl font-extrabold">On this page</h2>
-          <div className="flex flex-col gap-1">
-            <Link href={`/linkedin/search/results?q=${q}#posts`} className="hover:bg-gray-200 py-1 px-2 rounded">
-              Posts
-            </Link>
-            <Link href={`/linkedin/search/results?q=${q}#users`} className="hover:bg-gray-200 py-1 px-2 rounded">
-              People
-            </Link>
-          </div>
+        <PageSidebar q={q} />
+        <div className="flex-1 space-y-5 shrink-0">
+          <ResultsPosts posts={data.posts} user={user} />
+          <ResultsUsers users={data.users} user={user} />
         </div>
-        <div className="flex-1 space-y-5">
-          <div className="bg-white border border-[#DFDEDA] p-3 rounded-[10px] space-y-3">
-            <h2 className="font-extrabold text-xl">Posts</h2>
-            <div id="posts" className="space-y-2">
-              {data.posts.map((post) => (
-                <PostDesign key={post.id} post={post} user={user} />
-              ))}
-            </div>
+        <div className="w-80 flex-col gap-2 xl:flex hidden">
+          <div className="rounded-[10px] border border-[#DFDEDA] overflow-hidden p-3 bg-white">
+            <Image
+              src={"/banner-image.jpg"}
+              alt="Banner"
+              width={400}
+              height={400}
+              className="rounded w-100 h-62.5 object-cover"
+            />
           </div>
-            <div className="bg-white border border-[#DFDEDA] p-3 rounded-[10px] space-y-3">
-            <h2 className="font-extrabold text-xl">Users</h2>
-            <div id="users" className="space-y-2">
-              {data.posts.map((post) => (
-                <PostDesign key={post.id} post={post} user={user} />
-              ))}
-            </div>
+          <div className="flex items-center gap-1 mx-auto mt-1">
+            <Image
+              src={"/login-logo.svg"}
+              alt="linkedIn logo"
+              width={55}
+              height={55}
+            />
+            <span className="text-xs"> LinkedIn Corporation © 2026</span>
           </div>
-        </div>
-        <div>
-          <RightSide />
         </div>
       </div>
     </main>

@@ -64,7 +64,7 @@ function OwnerPostDetails({ post, user }: { post: PostType; user: User }) {
               </i>
             )}
           </div>
-          <h2 className="sm:text-[13px] text-[12px] text-slate-700 line-clamp-1 break-all">
+          <h2 className="sm:text-[13px] text-[12px] text-slate-700 line-clamp-2 ">
             {post.user.headline}
           </h2>
           <p className="text-[11px] text-slate-700 line-clamp-1">{formatted}</p>
@@ -73,7 +73,7 @@ function OwnerPostDetails({ post, user }: { post: PostType; user: User }) {
           <button
             onClick={handleFollow}
             disabled={loading}
-            className={`sm:text-[16px] disabled:text-gray-500 disabled:cursor-default disabled:hover:bg-transparent text-[13px] cursor-pointer flex items-center gap-1  font-bold  rounded px-2 py-1 pr-4 transition-css h-fit ${isFollow ? "bg-gray-100 text-slate-800" : "text-primary hover:text-blue-900 hover:bg-blue-50"}`}
+            className={`sm:text-[16px] shrink-0 disabled:text-gray-500 disabled:cursor-default disabled:hover:bg-transparent text-[13px] cursor-pointer flex items-center gap-1  font-bold  rounded px-2 py-1 pr-4 transition-css h-fit ${isFollow ? "bg-gray-100 text-slate-800" : "text-primary hover:text-blue-900 hover:bg-blue-50"}`}
           >
             {isFollow ? (
               <>

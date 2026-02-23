@@ -37,7 +37,7 @@ function UserDetails({
               </i>
             )}
           </div>
-          <span className="px-4 py-1.5 text-center sm:block hidden bg-blue-50 text-blue-600 text-xs font-bold rounded-full uppercase tracking-wider">
+          <span className="px-4 shrink-0 py-1.5 text-center sm:block hidden bg-blue-50 text-blue-600 text-xs font-bold rounded-full uppercase tracking-wider">
             Joined In {formatted}
           </span>
         </div>
