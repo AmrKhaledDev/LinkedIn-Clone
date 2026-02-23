@@ -7,23 +7,26 @@ import { useState } from "react";
 function PostDetails({ post }: { post: PostType }) {
   const [isExpanded, setIsExpanded] = useState(false);
 
-  const CHARACTER_LIMIT = 250; 
+  const CHARACTER_LIMIT = 250;
 
   const text = post.contentText || "";
-  
+
   const isLongText = text.length > CHARACTER_LIMIT;
 
-  const displayText = isExpanded || !isLongText 
-    ? text 
-    : text.substring(0, CHARACTER_LIMIT) + "...";
-  
+  const displayText =
+    isExpanded || !isLongText
+      ? text
+      : text.substring(0, CHARACTER_LIMIT) + "...";
+
   return (
-    <div className="w-full flex flex-col gap-1 px-3">
+    <div className="w-full flex flex-col gap-1 px-3 ">
       <div className="pb-1">
-        <p dir="auto" className="text-slate-800 sm:text-[15px] text-[14px] whitespace-pre-line">
+        <p
+          dir="auto"
+          className="text-slate-800 sm:text-[15px] text-[14px] whitespace-pre-line [word-break:break-word]"
+        >
           {displayText}
         </p>
-        
         {isLongText && (
           <button
             onClick={() => setIsExpanded(!isExpanded)}

@@ -44,17 +44,21 @@ function BoxPost({
         method: "POST",
         body: formData,
       });
-      const media = (await res.json()) as {
-        url: string;
-        type: "video" | "image";
-      };
+      const media = (await res.json()) as
+        | { error: string }
+        | {
+            url: string;
+            type: "video" | "image";
+          };
+      if ("error" in media && !contentTxt)
+        return toast.error(media.error, { className: "toast-font" });
+      if("error" in media && contentTxt) toast.error("Failed upload image, check your internet")
       const result = await CreatePostAction({
         contentTxt,
-        mediaUrl: media.url,
-        mediaType: media.type,
+        mediaUrl: "error" in media ? "" : media.url,
+        mediaType: "error" in media ? "" : media.type,
         userId: user.id,
       });
-      setLoading(false);
       if (result?.error)
         return toast.error(result.error, {
           className: "toast-font",
@@ -66,6 +70,8 @@ function BoxPost({
     } catch (error) {
       console.log(error);
       return { error: "Failed fetch" };
+    } finally {
+      setLoading(false);
     }
   };
   useEffect(() => {
@@ -100,7 +106,7 @@ function BoxPost({
           </div>
           <div className="h-105 overflow-y-auto">
             <textarea
-            dir="auto"
+              dir="auto"
               ref={textareaRef}
               value={contentTxt}
               onChange={(e) => setContentTxt(e.target.value)}

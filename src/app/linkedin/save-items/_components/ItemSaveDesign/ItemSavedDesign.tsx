@@ -36,11 +36,9 @@ function ItemSavedDesign({ item, user }: { item: SaveItemType; user: User }) {
             className="w-20 h-20 object-cover"
           />
         )}
-        <div>
-          <p className="font-normal text-slate-700 sm:text-[14px] text-[13px]">
-            {item.post.contentText}
-          </p>
-        </div>
+        <p className="font-normal text-slate-700 sm:text-[14px] text-[13px] whitespace-pre-line [word-break:break-word]">
+          {item.post.contentText}
+        </p>
       </div>
     </div>
   );

@@ -28,6 +28,6 @@ export async function POST(req: NextRequest) {
     );
   } catch (error) {
     console.error(error);
-    return NextResponse.json({ error: "Upload failed" }, { status: 500 });
+    return NextResponse.json({ error: "Upload failed, check your internet" }, { status: 500 });
   }
 }

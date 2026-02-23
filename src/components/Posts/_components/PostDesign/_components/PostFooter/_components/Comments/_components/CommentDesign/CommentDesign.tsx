@@ -83,7 +83,7 @@ function CommentDesign({
               editCommentText={editCommentText}
             />
           ) : (
-            <p className="sm:text-[15px] text-[14px]">
+            <p className="sm:text-[15px] text-[14px] [word-break:break-word] ">
               {comment.content}
             </p>
           )}

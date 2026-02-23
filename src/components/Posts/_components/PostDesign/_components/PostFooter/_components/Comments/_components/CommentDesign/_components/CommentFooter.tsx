@@ -143,7 +143,7 @@ function CommentFooter({
         </div>
       </div>
       <div
-        className={`mt-2 sm:-translate-x-11 w-full bg-white border border-gray-100 rounded-2xl overflow-hidden items-end flex-col ${
+        className={`mt-2 w-full bg-white border border-gray-100 rounded-2xl overflow-hidden items-end flex-col ${
           showBoxReplay ? "flex" : "hidden"
         }`}
       >
@@ -155,7 +155,7 @@ function CommentFooter({
             e.target.style.height = "auto";
             e.target.style.height = e.target.scrollHeight + "px";
           }}
-          defaultValue={replayContent}
+          value={replayContent}
           className="w-full py-3 px-4  
              outline-none transition-all duration-300 ease-in-out
              placeholder:text-gray-300

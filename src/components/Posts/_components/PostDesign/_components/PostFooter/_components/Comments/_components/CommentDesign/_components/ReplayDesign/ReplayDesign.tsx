@@ -95,7 +95,7 @@ function ReplayDesign({
             user={user}
           />
         ) : (
-          <p className="sm:text-[14px] text-[13px] pr-10">
+          <p className="sm:text-[14px] text-[13px] [word-break:break-word]">
             {replay.content}
           </p>
         )}

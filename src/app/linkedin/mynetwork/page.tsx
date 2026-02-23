@@ -50,7 +50,7 @@ async function page() {
               </p>
             )}
             {usersInNetWork.length < 1 ? (
-              <div className="w-full flex flex-col gap-2 items-center justify-center h-full">
+              <div className={`w-full flex flex-col gap-2 items-center justify-center ${usersFromAroundTheWorld.length < 1 && "h-full"}`}>
                 <Image
                   src={"/photo-no-users.svg"}
                   alt="Photo"

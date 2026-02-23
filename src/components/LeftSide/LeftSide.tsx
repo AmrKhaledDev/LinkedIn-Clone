@@ -9,7 +9,7 @@ function LeftSide() {
       <TopProfile />
       <div className="p-5 rounded-[10px] border border-[#DFDEDA] bg-white">
         <Link
-          href={"/"}
+          href={"/linkedin/mynetwork"}
           className="group hover:underline flex items-center justify-between"
         >
           <div>

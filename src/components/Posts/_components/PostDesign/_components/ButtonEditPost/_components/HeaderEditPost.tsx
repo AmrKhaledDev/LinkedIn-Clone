@@ -22,7 +22,7 @@ function HeaderEditPost({
           alt="Your image"
           width={80}
           height={80}
-          className="sm:w-17 sm:h-17 w-13 h-13 rounded-full object-cover shrink-0 border-2 border-gray-200"
+          className="sm:w-17 sm:h-17 w-13 h-13 rounded-full object-cover shrink-0"
         />
         <div>
           <h2 className="capitalize font-semibold sm:text-[20px] text-[16px]">

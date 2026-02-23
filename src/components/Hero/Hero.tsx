@@ -5,7 +5,6 @@ import ButtonAddPost from "./_components/ButtonAddPost";
 import Posts from "../Posts/Posts";
 import { GetAllPosts } from "@/server/db/GetAllPosts";
 import Link from "next/link";
-import Article from "./_components/Buttons/Article";
 import Photo from "./_components/Buttons/Photo";
 import Video from "./_components/Buttons/Video";
 // ======================================================
@@ -14,7 +13,7 @@ async function Hero() {
   if (!user) redirect("/login");
   const posts = await GetAllPosts();
   return (
-    <main className="flex-1 flex flex-col gap-3 overflow-hidden ">
+    <main className="flex-1 flex flex-col gap-3 ">
       <div className="w-full md:p-5 p-3  rounded-[10px] border border-[#DFDEDA] flex flex-col gap-3 bg-white">
         <div className="flex items-center gap-3 ">
           <Link href={"/linkedin/profile"} className="shrink-0">
@@ -23,7 +22,7 @@ async function Hero() {
               alt="Your Photo"
               width={100}
               height={100}
-              className="md:w-12.5 md:h-12.5 w-10 h-10  shrink-0 object-cover rounded-full border-2 border-gray-200"
+              className="md:w-12.5 md:h-12.5 w-10 h-10  shrink-0 object-cover rounded-full "
             />
           </Link>
           <ButtonAddPost user={user} />
