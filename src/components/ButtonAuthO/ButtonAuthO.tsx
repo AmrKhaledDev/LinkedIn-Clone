@@ -1,16 +1,18 @@
 "use client";
 import { signIn } from "next-auth/react";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 import { useState } from "react";
 // ====================================================================
 function ButtonAuthO() {
+  const pathname = usePathname();
   const [loading, setLoading] = useState(false);
   const signinWithAuthO = async (typeSignin: "google") => {
     setLoading(true);
     await signIn(typeSignin, {
       callbackUrl: "/linkedin",
     });
-    setLoading(false);
+    if (pathname === "/linkedin") return setLoading(false);
   };
   return (
     <button
