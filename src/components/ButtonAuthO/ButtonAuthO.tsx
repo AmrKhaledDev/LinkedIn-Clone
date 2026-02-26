@@ -12,7 +12,6 @@ function ButtonAuthO() {
     await signIn(typeSignin, {
       callbackUrl: "/linkedin",
     });
-    if (pathname === "/linkedin") return setLoading(false);
   };
   return (
     <button
