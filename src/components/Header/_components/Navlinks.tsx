@@ -61,7 +61,7 @@ function Navlinks({
         <IoEllipsisHorizontal />
       </button>
       <nav
-        className={`sm:flex div items-center sm:h-full sm:relative sm:left-0 sm:translate-x-0 sm:top-0 fixed left-1/2 -translate-x-1/2 top-18 sm:border-b-0 border-b-2 border-b-gray-200 bg-white sm:px-0 px-3 sm:w-fit w-full sm:py-0 py-2 sm:justify-start justify-center sm:gap-0 gap-4 sm:flex-row flex-col ${
+        className={`sm:flex div items-center sm:h-full sm:relative sm:left-0 sm:translate-x-0 sm:top-0 fixed left-1/2 -translate-x-1/2 top-16 sm:border-b-0 border-b-2 border-b-gray-200 bg-white sm:px-0 px-3 sm:w-fit w-full sm:py-0 py-2 sm:justify-start justify-center sm:gap-0 gap-4 sm:flex-row flex-col ${
           openNav ? "flex" : "hidden"
         } border-r border-r-gray-100`}
       >

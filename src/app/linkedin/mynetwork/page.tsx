@@ -6,7 +6,13 @@ import { prisma } from "@/lib/prisma";
 import LeftSide from "@/components/LeftSide/LeftSide";
 import UsersDesign from "./_components/UsersDesign";
 import Image from "next/image";
+import { Metadata } from "next";
 // =======================================================
+export const metadata: Metadata = {
+  title: "My Network | LinkedIn",
+  description:
+    "Manage and grow your professional network. View connection requests, discover new people, and expand your connections on LinkedIn.",
+};
 async function page() {
   const userSession = await GetUser();
   if (!userSession) return redirect("/login");
@@ -50,7 +56,9 @@ async function page() {
               </p>
             )}
             {usersInNetWork.length < 1 ? (
-              <div className={`w-full flex flex-col gap-2 items-center justify-center ${usersFromAroundTheWorld.length < 1 && "h-full"}`}>
+              <div
+                className={`w-full flex flex-col gap-2 items-center justify-center ${usersFromAroundTheWorld.length < 1 && "h-full"}`}
+              >
                 <Image
                   src={"/photo-no-users.svg"}
                   alt="Photo"

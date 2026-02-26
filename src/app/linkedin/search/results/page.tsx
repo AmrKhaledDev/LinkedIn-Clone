@@ -8,7 +8,12 @@ import PageSidebar from "./_components/PageSidebar";
 import ResultsPosts from "./_components/ResultsPosts";
 import ResultsUsers from "./_components/ResultsUsers";
 import Image from "next/image";
+import { Metadata } from "next";
 // ========================================================
+export const metadata:Metadata ={
+  title:"Search | LinkedIn",
+  description:"Search for professionals, companies, and opportunities. Connect with people, explore profiles, and grow your network on LinkedIn."
+} 
 async function page({
   searchParams,
 }: {

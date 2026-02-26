@@ -6,7 +6,13 @@ import LeftSide from "./_components/LeftSide";
 import ItemSavedDesign from "./_components/ItemSaveDesign/ItemSavedDesign";
 import Image from "next/image";
 import Link from "next/link";
+import { Metadata } from "next";
 // =======================================================
+export const metadata: Metadata = {
+  title: "Saved Items | LinkedIn",
+  description:
+   "Access and manage your saved posts, Keep track of important content and revisit it anytime on LinkedIn."
+};
 async function page() {
   const user = await GetUserWithRelation();
   if (!user) redirect("/login");

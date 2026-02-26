@@ -3,7 +3,26 @@ import PostDesign from "@/components/Posts/_components/PostDesign/PostDesign";
 import RightSide from "@/components/RightSide/RightSide";
 import { GetUser } from "@/lib/GetUser";
 import { prisma } from "@/lib/prisma";
+import { Metadata } from "next";
 // ================================================
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{postId: string }>;
+}): Promise<Metadata> {
+  const { postId  } = await params;
+  const post = await prisma.post.findUnique({
+    where: {
+      id: postId,
+    },
+  });
+  if (!post) return { title: "This post not found" };
+  return {
+    title: post.contentText,
+    description: post.contentText,
+  };
+}
+
 async function page({ params }: { params: Promise<{ postId: string }> }) {
   const { postId } = await params;
   if (!postId) return;

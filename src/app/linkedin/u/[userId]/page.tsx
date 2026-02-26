@@ -5,14 +5,24 @@ import { UserWithRelationType } from "@/lib/types/types";
 import { Metadata } from "next";
 import { redirect } from "next/navigation";
 // ==========================================================================
-export const metadata: Metadata = {
-  title: "User Profile | Connect & Grow Professionally",
-  description:
-    "Discover professional experience, skills, and achievements. Build meaningful connections and grow your career.",
-  icons: {
-    icon: "/linkedin.png",
-  },
-};
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ userId: string }>;
+}): Promise<Metadata> {
+  const { userId } = await params;
+  const user = await prisma.user.findUnique({
+    where: {
+      id: userId,
+    },
+  });
+  if (!user) return { title: "User not found" };
+  return {
+    title: user.name.toUpperCase(),
+    description: user.headline,
+  };
+}
+
 async function page({ params }: { params: Promise<{ userId: string }> }) {
   const { userId } = await params;
   if (!userId) redirect("/login");

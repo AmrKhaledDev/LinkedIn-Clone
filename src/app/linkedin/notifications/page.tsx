@@ -3,7 +3,12 @@ export const dynamic = "force-dynamic";
 import LeftSide from "@/components/LeftSide/LeftSide";
 import { GetUserWithRelation } from "@/lib/GetUserWithRelation";
 import NotificationDesign from "./_components/NotificationDesign";
+import { Metadata } from "next";
 // ===========================================================================
+export const metadata:Metadata ={
+  title:"Notifications | LinkedIn",
+  description:"Stay updated with your latest notifications. See connection requests, messages, profile views, and activity updates on LinkedIn."
+} 
 async function page() {
   const user = await GetUserWithRelation();
   if (!user) return;
