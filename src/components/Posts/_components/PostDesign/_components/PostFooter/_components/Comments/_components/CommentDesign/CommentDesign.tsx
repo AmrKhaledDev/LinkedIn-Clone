@@ -21,7 +21,7 @@ function CommentDesign({
 }) {
   const [editCommentText, setEditCommentText] = useState(false);
   return (
-    <li className="bg-white sm:p-3 rounded-2xl overflow-hidden">
+    <li className="bg-white sm:p-3 rounded-2xl">
       <div className="flex gap-2 w-full">
         <Image
           src={comment.user.image || "/user.svg"}

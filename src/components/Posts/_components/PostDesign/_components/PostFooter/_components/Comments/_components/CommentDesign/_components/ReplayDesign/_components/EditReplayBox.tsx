@@ -51,15 +51,13 @@ function EditReplayBox({
         </i>
       )}
       <div
-        className={`sm:p-3 p-1 rounded-xl box shadow z-10 bg-white flex-col absolute right-0 ${
-          replay.userId !== user.id ? "min-w-50" : "min-w-fit"
-        } sm:gap-2 mt-1 ${dropDownMenu === replay.id ? "flex" : "hidden"}`}
+        className={`sm:p-3 p-1 rounded-xl box shadow z-10 bg-white flex-col absolute right-0 min-w-fit mt-1 ${dropDownMenu === replay.id ? "flex" : "hidden"}`}
       >
         {replay.userId === user.id && (
           <>
             <button
               onClick={handleEditReplay}
-              className="flex items-center sm:text-[13px] text-[11px] sm:gap-2 gap-1 text-slate-600 cursor-pointer font-semibold hover:bg-gray-50 rounded hover:shadow py-2 px-3"
+              className="flex items-center text-nowrap sm:text-[13px] text-[11px] sm:gap-2 gap-1 text-slate-600 cursor-pointer font-semibold hover:bg-gray-50 rounded hover:shadow py-2 px-3"
             >
               <i className="sm:text-[17px] text-[16px]">
                 <MdModeEdit />
@@ -69,7 +67,7 @@ function EditReplayBox({
             <button
               onClick={handleDeleteReplay}
               disabled={loading}
-              className="flex disabled:cursor-wait sm:text-[13px] text-[11px] disabled:shadow disabled:bg-gray-200 disabled:text-gray-500 items-center sm:gap-2 gap-1 text-slate-600 cursor-pointer font-semibold hover:bg-gray-50 rounded hover:shadow py-2 px-3"
+              className="flex disabled:cursor-wait text-nowrap sm:text-[13px] text-[11px] disabled:shadow disabled:bg-gray-200 disabled:text-gray-500 items-center sm:gap-2 gap-1 text-slate-600 cursor-pointer font-semibold hover:bg-gray-50 rounded hover:shadow py-2 px-3"
             >
               <i className="sm:text-[17px] text-[16px]">
                 <MdDeleteSweep />

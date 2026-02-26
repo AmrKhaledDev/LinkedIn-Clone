@@ -9,33 +9,33 @@ import { User } from "@prisma/client";
 // =============================================================================
 function Profile({
   user,
-  currentUser,
+  userSession,
 }: {
   user: UserWithRelationType;
-  currentUser: User;
+  userSession: User;
 }) {
   return (
-    <div className="lg:w-187.5 md:w-176 flex flex-col gap-2">
+    <div className="lg:w-187.5 md:w-176 flex flex-col gap-2 ">
       <div className="rounded flex flex-col bg-white shadow">
         <div className="relative">
-          <BigImage user={user} currentUser={currentUser} />
-          <SmallImage user={user} currentUser={currentUser} />
+          <BigImage user={user} currentUser={userSession} />
+          <SmallImage user={user} currentUser={userSession} />
         </div>
         <div
-          className={`overflow-hidden px-7 flex sm:pt-15 pt-10 flex-col gap-3 relative ${
-            user.id !== currentUser.id && "pb-4"
+          className={`px-7 flex sm:pt-15 pt-10 flex-col gap-3 relative ${
+            user.id !== userSession.id && "pb-4"
           }`}
         >
-          <UserDetails user={user} currentUser={currentUser} />
-          {user.id === currentUser.id && <UserInfo user={user} />}
-          {user.id === currentUser.id && <EditProfileBox user={user} />}
+          <UserDetails user={user} userSession={userSession} />
+          {user.id === userSession.id && <UserInfo user={user} />}
+          {user.id === userSession.id && <EditProfileBox user={user} />}
         </div>
       </div>
       {user.posts.length > 0 ? (
         <Posts posts={user.posts} />
       ) : (
         <p className="text-center font-bold tracking-widest p-3 shadow bg-white text-red-400 uppercase sm:text-[15px] text-[13px]">
-          {user.id === currentUser.id
+          {user.id === userSession.id
             ? "Your posts will be displayed here"
             : "  This user has no posts yet"}
         </p>

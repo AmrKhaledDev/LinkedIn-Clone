@@ -67,7 +67,11 @@ export const GetUserWithRelation = async () => {
               saveItems: true,
             },
           },
-          followers:true,
+          followers: {
+            include: {
+              follower: true,
+            },
+          },
           receivedNotifications: {
             include: {
               actor: true,

@@ -34,7 +34,7 @@ function ReplayDesign({
   );
   const [editReplayText, setEditReplayText] = useState(false);
   return (
-    <div className="flex gap-2 w-full bg-gray-100 sm:p-3 p-2 rounded-xl overflow-hidden">
+    <div className="flex gap-2 w-full bg-gray-100 sm:p-3 p-2 rounded-xl">
       <Image
         src={replay.user.image || "/user.svg"}
         alt="User Image"

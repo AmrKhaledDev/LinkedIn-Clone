@@ -1,6 +1,6 @@
 "use client";
 import { User } from "@prisma/client";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { FaSearch } from "react-icons/fa";
 import { FiSearch } from "react-icons/fi";
 import Image from "next/image";
@@ -8,6 +8,7 @@ import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 // ==========================================================
 function InputSearch({ userSession }: { userSession: User }) {
+  const inputRef = useRef<HTMLInputElement | null>(null);
   const router = useRouter();
   const [searchText, setSearchText] = useState<string>("");
   const pathname = usePathname();
@@ -33,11 +34,19 @@ function InputSearch({ userSession }: { userSession: User }) {
   };
   return (
     <div className="lg:relative absolute lg:bottom-0 bottom-2 lg:left-0 lg:translate-x-0 left-1/2 -translate-x-1/2 w-[96%]">
-      <div className="border border-gray-400 rounded-full overflow-hidden flex items-center h-8.5 lg:w-75 w-full focus-within:outline-black hover:outline-black hover:outline focus-within:outline transition-css">
-        <button className="w-11 h-full flex text-sm items-center justify-center cursor-pointer text-slate-800">
+      <div
+        onClick={() => {
+          if (inputRef.current) {
+            inputRef.current.focus();
+          }
+        }}
+        className="border border-gray-400 rounded-full overflow-hidden flex items-center h-8.5 lg:w-75 w-full focus-within:outline-black hover:outline-black hover:outline focus-within:outline transition-css"
+      >
+        <button className="w-8 pl-2 h-full flex text-sm items-center justify-center cursor-pointer text-slate-800">
           <FaSearch />
         </button>
         <input
+          ref={inputRef}
           onKeyDown={(e) => {
             if (e.key === "Enter") {
               handleSubmit();
@@ -47,7 +56,7 @@ function InputSearch({ userSession }: { userSession: User }) {
           value={searchText}
           onChange={(e) => setSearchText(e.target.value)}
           type="text"
-          className="outline-none h-full w-full text-sm cursor-pointer text-black pr-2"
+          className="outline-none h-full flex-1 text-sm cursor-pointer text-black px-1"
           placeholder="Search"
         />
       </div>
@@ -90,13 +99,13 @@ function InputSearch({ userSession }: { userSession: User }) {
                     )}
                   </div>
                 </div>
-                  <Image
-                    src={user.image || "/user.svg"}
-                    alt="User Image"
-                    width={70}
-                    height={70}
-                    className="rounded-full shrink-0 w-7.5 h-7.5 object-cover"
-                  />
+                <Image
+                  src={user.image || "/user.svg"}
+                  alt="User Image"
+                  width={70}
+                  height={70}
+                  className="rounded-full shrink-0 w-7.5 h-7.5 object-cover"
+                />
               </div>
             </Link>
           ))}

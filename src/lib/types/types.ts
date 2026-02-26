@@ -116,7 +116,11 @@ export type UserWithRelationType = Prisma.UserGetPayload<{
         saveItems: true;
       };
     };
-    followers: true;
+    followers: {
+      include: {
+        follower: true;
+      };
+    };
     saveItems: {
       include: {
         post: {
@@ -221,14 +225,14 @@ export type LoginPageErrors = {
   password?: string;
 };
 export type RegisterPageErrors = {
-  name?:string,
+  name?: string;
   email?: string;
   password?: string;
 };
 export type ResetPasswordErrors = {
-  newPassword?:string,
-  confirmPassword?:string
-}
+  newPassword?: string;
+  confirmPassword?: string;
+};
 // Form Field Type
 export type FormFieldType = {
   id: string;

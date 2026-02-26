@@ -75,7 +75,11 @@ async function page({ params }: { params: Promise<{ userId: string }> }) {
           saveItems: true,
         },
       },
-      followers: true,
+      followers: {
+        include: {
+          follower: true,
+        },
+      },
       receivedNotifications: {
         include: {
           actor: true,
@@ -96,14 +100,14 @@ async function page({ params }: { params: Promise<{ userId: string }> }) {
     },
   });
   if (!user) return;
-  const currentUser = await GetUser();
-  if (!currentUser) return;
+  const userSession = await GetUser();
+  if (!userSession) return;
   return (
     <main className="space-section min-h-screen bg-[#F4F2EE]">
       <div className="container-css p-3">
         <Profile
           user={user as UserWithRelationType}
-          currentUser={currentUser}
+          userSession={userSession}
         />
       </div>
     </main>

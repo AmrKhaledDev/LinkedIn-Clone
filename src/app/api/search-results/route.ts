@@ -1,6 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
-import { GetUser } from "@/lib/GetUser";
 // =================================================================
 export async function GET(req: NextRequest) {
   const searchText = req.nextUrl.searchParams.get("q")?.trim();
@@ -54,6 +53,7 @@ export async function GET(req: NextRequest) {
     },
     saveItems: true,
   };
+
   try {
     const posts = searchText
       ? await prisma.post.findMany({
@@ -68,9 +68,17 @@ export async function GET(req: NextRequest) {
           where: {
             name: { contains: searchText, mode: "insensitive" },
           },
+          include: {
+            followers: true,
+          },
           take: 4,
         })
-      : await prisma.user.findMany({ take: 4 });
+      : await prisma.user.findMany({
+          take: 4,
+          include: {
+            followers: true,
+          },
+        });
 
     return NextResponse.json({ posts, users }, { status: 200 });
   } catch (error) {

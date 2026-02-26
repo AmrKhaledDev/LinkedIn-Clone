@@ -38,13 +38,13 @@ function UsersDesign({
           <div className="sm:px-3 px-1.5 pb-2 mt-2 flex flex-col gap-1">
             <Link
               href={`/linkedin/u/${user.id}`}
-              className="font-semibold hover:underline capitalize sm:text-[17px] line-clamp-1 break-all w-fit"
+              className="font-semibold hover:underline capitalize sm:text-[17px] line-clamp-1  w-fit"
             >
               {user.name}
             </Link>
             <Link
               href={`/linkedin/u/${user.id}`}
-              className="font-normal sm:text-sm text-[12px] text-gray-600 line-clamp-2 break-all w-fit"
+              className="font-normal sm:text-sm text-[12px] text-gray-600 line-clamp-2 w-fit"
             >
               {user.headline}
             </Link>

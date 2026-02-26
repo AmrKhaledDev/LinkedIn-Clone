@@ -21,7 +21,7 @@ async function RightSide() {
     where: {
       id: { not: userSession.id },
     },
-    take: 3,
+    take: 4,
   });
   return (
     <aside className="w-80 flex-col gap-2 xl:flex hidden">

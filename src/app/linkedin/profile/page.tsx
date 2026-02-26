@@ -20,7 +20,7 @@ async function page() {
   return (
     <main className="space-section min-h-screen bg-[#F4F2EE]">
       <div className="container-css p-3">
-        <Profile user={user} currentUser={user} />
+        <Profile user={user} userSession={user} />
       </div>
     </main>
   );

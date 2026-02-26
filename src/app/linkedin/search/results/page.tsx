@@ -1,6 +1,7 @@
-import RightSide from "@/components/RightSide/RightSide";
+export const dynamic = "force-dynamic";
+
 import axios from "axios";
-import { PostType, UserWithRelationType } from "@/lib/types/types";
+import { PostType, UserWithFollower, UserWithRelationType } from "@/lib/types/types";
 import { redirect } from "next/navigation";
 import { GetUser } from "@/lib/GetUser";
 import PageSidebar from "./_components/PageSidebar";
@@ -19,7 +20,7 @@ async function page({
   );
   const data:
     | { error: string }
-    | { posts: PostType[]; users: UserWithRelationType[] } = res.data;
+    | { posts: PostType[]; users: UserWithFollower[] } = res.data;
   if ("error" in data) return redirect("/linkedin");
   const user = await GetUser();
   if (!user) return redirect("/login");
@@ -29,7 +30,7 @@ async function page({
         <PageSidebar q={q} />
         <div className="flex-1 space-y-5 shrink-0">
           <ResultsPosts posts={data.posts} user={user} />
-          <ResultsUsers users={data.users} user={user} />
+          <ResultsUsers users={data.users} userSession={user} />
         </div>
         <div className="w-80 flex-col gap-2 xl:flex hidden">
           <div className="rounded-[10px] border border-[#DFDEDA] overflow-hidden p-3 bg-white">

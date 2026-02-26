@@ -3,14 +3,15 @@ import { UserWithRelationType } from "@/lib/types/types";
 import { FaLinkedin } from "react-icons/fa";
 import { User } from "@prisma/client";
 import ButtonFollow from "./ButtonFollow";
+import Followers from "./Followers";
 
 // =====================================================================
 function UserDetails({
   user,
-  currentUser,
+  userSession,
 }: {
   user: UserWithRelationType;
-  currentUser: User;
+  userSession: User;
 }) {
   const date = new Date(user.createdAt);
 
@@ -25,7 +26,7 @@ function UserDetails({
       <div className="space-y-1">
         <div className="flex items-center gap-3 justify-between">
           <div className="flex items-center gap-1">
-            <h2 className="sm:text-3xl capitalize text-2xl font-bold text-slate-900 tracking-tight break-all line-clamp-1">
+            <h2 className="sm:text-3xl capitalize text-2xl font-bold text-slate-900 tracking-tight line-clamp-1">
               {user.name}
             </h2>
             {user.role === "SUPER_ADMIN" && (
@@ -47,10 +48,7 @@ function UserDetails({
           </p>
         )}
         <div className="flex items-center gap-5">
-          <h4 className="text-[13px] font-bold text-slate-500 flex items-center gap-1">
-            {user.followers.length}{" "}
-            <span className="font-medium"> followers</span>
-          </h4>
+         <Followers user={user} userSession={userSession}/>
           <h4 className="text-[13px] font-bold text-slate-600 flex items-center gap-1">
             {user.posts.length}
             <span className="font-medium">
@@ -59,9 +57,9 @@ function UserDetails({
           </h4>
         </div>
       </div>
-      {user.id !== currentUser.id && (
+      {user.id !== userSession.id && (
         <div className="flex items-center gap-3">
-          <ButtonFollow user={user} currentUser={currentUser} />
+          <ButtonFollow user={user} currentUser={userSession} />
         </div>
       )}
     </div>
