@@ -1,36 +1,37 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# LinkedIn Full-Stack Clone
 
-## Getting Started
+محاكاة كاملة لمنصة لينكد إن الاحترافية، تركز على ميزات الأمان المتقدمة، البحث الذكي، وتفاعل المستخدمين الحقيقي.
 
-First, run the development server:
+## 🚀 التقنيات المستخدمة (Tech Stack)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- **Framework:** Next.js (App Router)
+- **Database:** PostgreSQL & Prisma ORM
+- **Authentication:** NextAuth.js (Custom Providers)
+- **Security:** Bcryptjs for Hashing & Verification Tokens
+- **Email Service:** [Nodemailer / Resend] (لتأكيد الحساب واستعادة كلمة السر)
+- **Validation:** Zod
+- **Styling:** Tailwind CSS (LinkedIn UI Replica)
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## ✨ المميزات الرئيسية (Key Features)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- **Advanced Auth System:** - تسجيل دخول وإنشاء حساب حقيقي.
+  - **Email Verification:** نظام تأكيد الإيميل لضمان هوية المستخدم.
+  - **Forgot Password:** ميزة استعادة كلمة السر عبر البريد الإلكتروني.
+- **Smart Search & Geo-Targeting:** - نظام بحث حقيقي عن المستخدمين.
+  - **Location-based Results:** ميزة ذكية تظهر الأشخاص المتواجدين في نفس بلدك أولاً في نتائج البحث.
+- **Social Core:** - إنشاء منشورات (Text/Images).
+  - نظام متابعة (Follow System) لبناء شبكتك الاحترافية.
+- **Professional Profiles:** صفحات شخصية تعرض البيانات، الخبرات، والموقع الجغرافي بشكل احترافي.
+- **Real Data:** النظام يعمل ببيانات حقيقية 100% مع معالجة كاملة لكل حالات الخطأ (Error Handling).
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## ⚙️ التحديات التقنية التي تم حلها
 
-## Learn More
+- **Security Workflow:** بناء دورة كاملة لتأكيد الإيميل واستعادة كلمة السر باستخدام Tokens مؤقتة ومشفرة.
+- **Complex Querying:** تحسين استعلامات البحث (Prisma Queries) لفلترة المستخدمين بناءً على الموقع الجغرافي قبل النتائج العامة.
+- **Responsive Replication:** تصميم واجهة تحاكي لينكد إن بدقة مع الحفاظ على الأداء وسرعة التصفح.
 
-To learn more about Next.js, take a look at the following resources:
+## 🛠️ التشغيل المحلي (Local Setup)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+1. Clone the repo:
+   ```bash
+   git clone [https://github.com/AmrKhaledDev/LinkedIn-Clone.git](https://github.com/AmrKhaledDev/LinkedIn-Clone.git)
