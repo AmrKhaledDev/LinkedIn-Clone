@@ -14,7 +14,7 @@ export const sendResetPasswordEmail = async (
         pass: process.env.USER_PASS,
       },
     });
-    const link = `${process.env.AUTH_URL}/password/reset-password/${verificationToken}`;
+    const link = `${process.env.DOMAIN}/password/reset-password/${verificationToken}`;
     await transporter.sendMail({
       from: '"LinkedIn Clone" <no-reply@linkedin.com>',
       to: userEmail,

@@ -1,11 +1,11 @@
 "use server";
 import { prisma } from "@/lib/prisma";
 import { CreatePostSchema } from "@/lib/schemas/CreatePostSchema";
-import { CreatePostActionDataType } from "@/lib/types/types";
 import { revalidatePath } from "next/cache";
+import z from "zod";
 // ===================================================
 export const EditPostAction = async (
-  data: CreatePostActionDataType,
+  data: z.infer<typeof CreatePostSchema>,
   postId: string,
 ) => {
   try {

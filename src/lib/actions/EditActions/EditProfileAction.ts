@@ -2,9 +2,9 @@
 import { revalidatePath } from "next/cache";
 import { prisma } from "@/lib/prisma";
 import { EditProfileSchema } from "@/lib/schemas/EditProfileSchema";
-import { EditProfileActionDataType } from "@/lib/types/types";
+import z from "zod";
 // ===============================================================================
-export const EditProfileAction = async (data: EditProfileActionDataType) => {
+export const EditProfileAction = async (data: z.infer<typeof EditProfileSchema>) => {
   const validation = EditProfileSchema.safeParse(data);
   if (!validation.success) return { error: validation.error.issues[0].message };
   try {

@@ -15,6 +15,7 @@ function Icons({
       const url = URL.createObjectURL(file);
       setMediaUrl(url);
       setMediaFile(file);
+      e.target.value= ""
     }
   };
   return (

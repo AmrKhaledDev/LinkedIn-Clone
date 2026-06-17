@@ -1,10 +1,10 @@
 "use server";
+import z from "zod";
 import { CreateArticleSchema } from "../../schemas/CreateArticleSchema";
-import { CreateArticleActionDataType } from "../../types/types";
 import { prisma } from "@/lib/prisma";
 // ==============================================================
 export const CreateArticleAction = async (
-  data: CreateArticleActionDataType
+  data: z.infer<typeof CreateArticleSchema>
 ) => {
   const validation = CreateArticleSchema.safeParse(data);
   if (!validation.success) return { error: validation.error.issues[0].message };

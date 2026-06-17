@@ -1,18 +1,6 @@
-import z from "zod";
-import { RegisterSchema } from "../schemas/RegisterSchema";
-import { LoginSchema } from "../schemas/LoginSchema";
-import { CreatePostSchema } from "../schemas/CreatePostSchema";
 import { Prisma } from "@prisma/client";
-import { EditProfileSchema } from "../schemas/EditProfileSchema";
-import { CreateArticleSchema } from "../schemas/CreateArticleSchema";
 import { Dispatch, SetStateAction } from "react";
 // ===================================================================
-// Actions types
-export type RegisterActionDataType = z.infer<typeof RegisterSchema>;
-export type LoginActionDataType = z.infer<typeof LoginSchema>;
-export type CreatePostActionDataType = z.infer<typeof CreatePostSchema>;
-export type EditProfileActionDataType = z.infer<typeof EditProfileSchema>;
-export type CreateArticleActionDataType = z.infer<typeof CreateArticleSchema>;
 // Db Types
 export type PostType = Prisma.PostGetPayload<{
   include: {
@@ -219,20 +207,7 @@ export type ContextStatesType = {
   dropDownMenu: string | null;
   setDropDownMenu: Dispatch<SetStateAction<string | null>>;
 };
-// Errors
-export type LoginPageErrors = {
-  email?: string;
-  password?: string;
-};
-export type RegisterPageErrors = {
-  name?: string;
-  email?: string;
-  password?: string;
-};
-export type ResetPasswordErrors = {
-  newPassword?: string;
-  confirmPassword?: string;
-};
+
 // Form Field Type
 export type FormFieldType = {
   id: string;

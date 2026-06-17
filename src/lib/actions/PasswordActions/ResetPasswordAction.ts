@@ -7,14 +7,13 @@ import z from "zod";
 // =============================================================
 export const ResetPasswordAction = async (
   data: z.infer<typeof ResetPasswordSchema>,
+  verificationToken: string,
 ): Promise<{ success: boolean; message: string }> => {
   const validation = ResetPasswordSchema.safeParse(data);
   if (!validation.success)
     return { success: false, message: validation.error.issues[0].message };
   try {
-    const token = createHash("sha256")
-      .update(validation.data.verificationToken)
-      .digest("hex");
+    const token = createHash("sha256").update(verificationToken).digest("hex");
     const isExistingToken = await prisma.verificationToken.findUnique({
       where: {
         token,

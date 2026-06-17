@@ -6,57 +6,38 @@ import { RegisterAction } from "@/lib/actions/AuthActions/RegisterAction";
 import { useRouter } from "next/navigation";
 import ButtonSubmit from "@/components/ButtonSubmit/ButtonSubmit";
 import Or from "@/components/Or/Or";
-import { RegisterPageErrors } from "@/lib/types/types";
-import FormField from "@/components/FormField/FormField";
 import AlertMessage from "@/components/AlertMessage/AlertMessage";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import AuthFormField from "@/components/AuthFormField/AuthFormField";
 // ============================================================
 function FormRegister() {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm({
+    resolver: zodResolver(RegisterSchema),
+  });
   const [loading, setLoading] = useState(false);
-  const [errors, setErrors] = useState<RegisterPageErrors>({});
   const router = useRouter();
   const [serverError, setServerError] = useState("");
   const [serverSuccess, setServerSuccess] = useState("");
   const [showPassword, setShowPassword] = useState(false);
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+  const handleRegister = async (data: {
+    name: string;
+    email: string;
+    password: string;
+  }) => {
     try {
       setServerError("");
       setServerSuccess("");
-      setErrors({});
       setLoading(true);
-      const validation = RegisterSchema.safeParse({
-        name,
-        email,
-        password,
-      });
-      if (!validation.success) {
-        const newError: RegisterPageErrors = {};
-        validation.error.issues.forEach((error) => {
-          if (error.path[0] === "name") newError.name = error.message;
-          if (error.path[0] === "email") newError.email = error.message;
-          if (error.path[0] === "password") newError.password = error.message;
-        });
-        setErrors(newError);
-        return;
-      }
-      const result = await RegisterAction({
-        name,
-        password,
-        email,
-      });
-      if (!result.success) {
-        setServerError(result.message);
-        return;
-      }
+      const result = await RegisterAction(data);
+      if (!result.success) return setServerError(result.message);
       setServerSuccess(result.message);
-      setServerError("");
-      setErrors({});
-      setName("");
-      setEmail("");
-      setPassword("");
+      reset();
       router.refresh();
     } catch (error) {
       console.error(error);
@@ -67,7 +48,7 @@ function FormRegister() {
   };
   return (
     <form
-      onSubmit={handleSubmit}
+      onSubmit={handleSubmit(handleRegister)}
       className="bg-white px-6 py-10 rounded-xl flex flex-col gap-3 sm:w-112.5 w-full shadow"
     >
       {serverError && !serverSuccess && (
@@ -76,37 +57,37 @@ function FormRegister() {
       {serverSuccess && !serverError && (
         <AlertMessage type="SUCCESS" message={serverSuccess} />
       )}
-      <FormField
+      {/* Name */}
+      <AuthFormField
         id="name"
         label="Name"
-        setState={setName}
         type="text"
         placeholder="Enter your name"
-        error={errors.name}
+        error={errors.name?.message}
         disabled={loading}
-        value={name}
+        register={register}
       />
-      <FormField
+      {/* Email */}
+      <AuthFormField
         id="email"
         label="Email"
-        setState={setEmail}
         type="email"
         placeholder="Enter your email"
-        error={errors.email}
+        error={errors.email?.message}
         disabled={loading}
-        value={email}
+        register={register}
       />
-      <FormField
+      {/* Password */}
+      <AuthFormField
         id="password"
         label="Password"
-        setState={setPassword}
         type={showPassword ? "text" : "password"}
         placeholder="Enter your password"
-        error={errors.password}
+        error={errors.password?.message}
         disabled={loading}
-        value={password}
         setShowPassword={setShowPassword}
         showPassword={showPassword}
+        register={register}
       />
       <ButtonSubmit loading={loading} contentTxt="Join" />
       {!loading && (

@@ -16,11 +16,15 @@ export const ForgotPasswordAction = async (
       where: {
         email,
       },
+      select: { id: true },
     });
-    if(!isExistingUser) return {success:false,message:"An error occurred while sending the link to your email"}
-    const verificationToken: { error: string } | { token: string } =
-      await generateVerificationToken(email);
-    if ("error" in verificationToken)
+    if (!isExistingUser)
+      return {
+        success: false,
+        message: "An error occurred while sending the link to your email",
+      };
+    const verificationToken = await generateVerificationToken(email);
+    if (verificationToken.error || !verificationToken.token)
       return { success: false, message: verificationToken.error };
     const result = await sendResetPasswordEmail(email, verificationToken.token);
     if (!result.success) return { success: false, message: result.message };

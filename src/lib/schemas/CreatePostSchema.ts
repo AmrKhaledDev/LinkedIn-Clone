@@ -8,4 +8,5 @@ export const CreatePostSchema = z.object({
   mediaUrl: z.string().optional().nullable(),
   mediaType: z.string().optional().nullable(),
   userId: z.string().nonempty({ message: "User not found" }),
+  
 });

@@ -7,7 +7,8 @@ import ButtonPost from "./_components/ButtonPost";
 import TopBoxPost from "./_components/TopBoxPost";
 import { CreatePostAction } from "@/lib/actions/CreateActions/CreatePostAction";
 import toast from "react-hot-toast";
-import { MdDelete } from "react-icons/md";
+import { uploadMedia } from "@/lib/uploadMedia";
+import PostContentInput from "./_components/PostContentInput";
 // ======================================================
 function BoxPost({
   showBoxPost,
@@ -34,30 +35,24 @@ function BoxPost({
   const [loading, setLoading] = useState(false);
   const [mediaUrl, setMediaUrl] = useState("");
   const [mediaFile, setMediaFile] = useState<File | null>(null);
-  const handleClick = async () => {
+  const handleCreatePost = async () => {
     try {
       setLoading(true);
-      const formData = new FormData();
-      if (mediaFile) formData.append("file", mediaFile);
-      formData.append("pathname", "posts-media");
-      const res = await fetch(`/api/upload-media`, {
-        method: "POST",
-        body: formData,
-      });
-      const media = (await res.json()) as
+      let media:
         | { error: string }
-        | {
-            url: string;
-            type: "video" | "image";
-          };
-      if ("error" in media && !contentTxt)
+        | { url: string; type: "image" | "video" }
+        | null = null;
+      if (mediaFile) {
+        media = await uploadMedia(mediaFile, "posts-media");
+      }
+      if (media && "error" in media && !contentTxt)
         return toast.error(media.error, { className: "toast-font" });
-      if ("error" in media && contentTxt && mediaFile)
+      if (media && "error" in media && contentTxt && mediaFile)
         toast.error("Failed upload image, check your internet");
       const result = await CreatePostAction({
         contentTxt,
-        mediaUrl: "error" in media ? "" : media.url,
-        mediaType: "error" in media ? "" : media.type,
+        mediaUrl: media ? ("error" in media ? "" : media.url) : "",
+        mediaType: media ? ("error" in media ? "" : media.type) : "",
         userId: user.id,
       });
       if (result?.error)
@@ -105,43 +100,20 @@ function BoxPost({
               </h3>
             </div>
           </div>
-          <div className="h-105 overflow-y-auto">
-            <textarea
-              dir="auto"
-              ref={textareaRef}
-              value={contentTxt}
-              onChange={(e) => setContentTxt(e.target.value)}
-              placeholder="what do you want to talk about?"
-              className="rounded p-2 md:min-h-40 sm:min-h-52 min-h-22 outline-none resize-none md:text-xl sm:text-[17px] w-full"
-            />
-            {mediaUrl && (
-              <div className="relative div">
-                {isVideo ? (
-                  <video controls src={mediaUrl} />
-                ) : (
-                  <Image
-                    src={mediaUrl}
-                    alt="Post Image"
-                    width={500}
-                    height={500}
-                    className="w-full rounded object-cover max-h-full"
-                  />
-                )}
-                <button
-                  type="button"
-                  onClick={() => setMediaUrl("")}
-                  className="absolute top-3 right-3 cursor-pointer text-red-500 text-xl p-2 rounded-full bg-white shadow hover:scale-105 transition-css "
-                >
-                  <MdDelete />
-                </button>
-              </div>
-            )}
-          </div>
+          <PostContentInput
+            mediaUrl={mediaUrl}
+            setMediaUrl={setMediaUrl}
+            contentTxt={contentTxt}
+            textareaRef={textareaRef}
+            setContentTxt={setContentTxt}
+            isVideo={isVideo}
+          />
+
           <div className="flex items-center justify-between border-t pt-2 border-t-gray-200">
             <Icons setMediaUrl={setMediaUrl} setMediaFile={setMediaFile} />
             <ButtonPost
               loading={loading}
-              handleClick={handleClick}
+              handleClick={handleCreatePost}
               contentTxt={contentTxt}
               mediaUrl={mediaUrl}
             />

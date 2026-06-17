@@ -14,7 +14,7 @@ export const sendVerificationToken = async (
         pass: process.env.USER_PASS,
       },
     });
-    const link = `${process.env.AUTH_URL}/verify?t=${verificationToken}`;
+    const link = `${process.env.DOMAIN}/verify?t=${verificationToken}`;
     await transporter.sendMail({
       from: '"LinkedIn Clone" <no-reply@linkedin.com>',
       to: userEmail,

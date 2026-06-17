@@ -1,10 +1,10 @@
 "use server";
 import { revalidatePath } from "next/cache";
 import { CreatePostSchema } from "../../schemas/CreatePostSchema";
-import { CreatePostActionDataType } from "../../types/types";
 import { prisma } from "@/lib/prisma";
+import z from "zod";
 // ===================================================================
-export const CreatePostAction = async (data: CreatePostActionDataType) => {
+export const CreatePostAction = async (data: z.infer<typeof CreatePostSchema>) => {
   const validation = CreatePostSchema.safeParse(data);
   if (!validation.success) return { error: validation.error.issues[0].message };
   try {
